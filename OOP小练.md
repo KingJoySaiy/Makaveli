@@ -117,13 +117,14 @@ return 0;
 ## 三、面向对象设计(JAVA)
 ```java
 import java.util.*;
-class student{
+
+class student implements Comparable<student>{
 
     int num,score=0;
     int []b=new int[5];
     String name;
     public student(int x,String y,int []t){
-    
+
         num=x;
         name=y;
         for(int i=0;i<5;i++){
@@ -132,39 +133,37 @@ class student{
         }
     }
     void show(){
-    
+
         System.out.print(num+" "+name);
         for(int tt:b) System.out.print(" "+tt);
         System.out.println(" "+score);
+    }
+    public int compareTo( student o) {
+        return o.score-this.score;
     }
 }
 public class Main{
 
     public static void main(String[] args){
-    
+
         int n,x;
         int []t=new int[5];
         String y;
         Vector<student> a=new Vector<student>();
-        Iterator<student> p;
-        
+
         Scanner input=new Scanner(System.in);
         n=input.nextInt();
-        
+
         while(n--!=0){
             x=input.nextInt();
             y=input.next();
             for(int i=0;i<5;i++) t[i]=input.nextInt();
-            a.add( new student(x,y,t));
+            a.add(new student(x,y,t));
         }
-        Collections.sort(a, new Comparator<student>() {
-            @Override
-            public int compare(student o1, student o2) {
-                return o2.score-o1.score;
-            }
-        });
+        Collections.sort(a);
+
         for(student tt:a) tt.show();
-        
+
         x=input.nextInt();
         for(student tt:a)
             if(tt.num==x){

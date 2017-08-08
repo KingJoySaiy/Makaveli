@@ -8,10 +8,12 @@
 ```c++
 #include<stdio.h>
 typedef struct{
+
     int num,b[5],sum;
     char s[100];
 }data;
 void sort(data *a,int n){
+
     int i,j;
     for(i=0;i<n-1;i++)
         for(j=0;j<n-1-i;j++)
@@ -22,12 +24,14 @@ void sort(data *a,int n){
             }
 }
 void show(data x){
+
     int j;
     printf("%d %s",x.num,x.s);
     for(j=0;j<5;j++) printf(" %d",x.b[j]);
     printf(" %d\n",x.sum);
 }
 int main(){
+
     int n,x,i,j;
     data a[45];
     scanf("%d",&n);
@@ -39,14 +43,16 @@ int main(){
             a[i].sum+=a[i].b[j];
         }
     }
-    scanf("%d",&x);
     sort(a,n);
     for(i=0;i<n;i++) show(a[i]);
+    
+    scanf("%d",&x);
     for(i=0;i<n;i++)
         if(a[i].num==x){
             show(a[i]);
             break;
         }
+        
 return 0;
 }
 
@@ -56,11 +62,13 @@ return 0;
 #include<bits/stdc++.h>
 using namespace std;
 class student{
+
 private:
     int num,b[5],score;
     string name;
 public:
     student(int x,string y,int *t){
+    
         num=x;
         name=y;
         score=0;
@@ -70,15 +78,18 @@ public:
         }
     }
     friend ostream &operator <<(ostream &ct,const student &t){
+    
         ct<<t.num<<' '<<t.name;
         for(int i=0; i<5; i++) ct<<' '<<t.b[i];
         ct<<' '<<t.score<<endl;
         return ct;
     }
     bool operator ==(const student &tmp){
+    
         return this->num==tmp.num;
     }
     bool operator <(const student &tmp){
+    
         return this->score>tmp.score;
     }
 };
@@ -87,6 +98,7 @@ int main(){
     string y;
     vector<student> a;
     vector<student>::iterator p;
+    
     cin>>n;
     while(n--){
         cin>>x>>y;
@@ -95,8 +107,10 @@ int main(){
     }
     sort(a.begin(),a.end());
     for(p=a.begin(); p!=a.end(); p++) cout<<(*p);
+    
     cin>>x;
     cout<<(*find(a.begin(),a.end(),student(x,y,t)));
+    
 return 0;
 }
 ```
@@ -104,10 +118,12 @@ return 0;
 ```java
 import java.util.*;
 class student{
+
     int num,score=0;
     int []b=new int[5];
     String name;
     public student(int x,String y,int []t){
+    
         num=x;
         name=y;
         for(int i=0;i<5;i++){
@@ -116,20 +132,25 @@ class student{
         }
     }
     void show(){
+    
         System.out.print(num+" "+name);
         for(int tt:b) System.out.print(" "+tt);
         System.out.println(" "+score);
     }
 }
 public class Main{
+
     public static void main(String[] args){
+    
         int n,x;
         int []t=new int[5];
         String y;
         Vector<student> a=new Vector<student>();
         Iterator<student> p;
+        
         Scanner input=new Scanner(System.in);
         n=input.nextInt();
+        
         while(n--!=0){
             x=input.nextInt();
             y=input.next();
@@ -143,6 +164,7 @@ public class Main{
             }
         });
         for(student tt:a) tt.show();
+        
         x=input.nextInt();
         for(student tt:a)
             if(tt.num==x){

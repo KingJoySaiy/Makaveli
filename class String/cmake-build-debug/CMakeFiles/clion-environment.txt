@@ -1,0 +1,3 @@
+ToolSet: 3.20@D:\KingJoySaiy\CodeBlocks\MinGW
+Options: 
+CMake: 3.8.2@C:\Program Files\CLion 2017.2.1\bin\cmake\bin\cmake.exe

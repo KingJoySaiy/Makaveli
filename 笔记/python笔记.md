@@ -53,7 +53,6 @@
 |unittest                | 提供代码测试工具,测试函数是否在各种情形下的行为都符合要求|
 
 
-
 |常用方法||
 |---|---|
 |keywords.kwlist         | 输出标准库的所有关键字|
@@ -70,85 +69,91 @@
 
 ## 二、字符串 str
 
-a = '233' / "233" 皆可
-a.upper()               | 转为大写
-a.lower()               | 转为小写
-a.title()               | 所有单词以大写开始，其余小写
-a.rjust(len,char)       | 长度扩展为len,原字符在右侧，其余填充char(默认空格)
-a.ljust(len,char)       | 同上，原字符在左侧
-a='{id1:<6d},{id2:^5d}'.format(23,13) | 字符串格式化，id省略则按原顺序(居左<,居中^,居右>，默认>)
+|a = '233' / "233" 皆可||
+|---|---|
+|a.upper()               | 转为大写|
+|a.lower()               | 转为小写|
+|a.title()               | 所有单词以大写开始，其余小写|
+|a.rjust(len,char)       | 长度扩展为len,原字符在右侧，其余填充char(默认空格)|
+|a.ljust(len,char)       | 同上，原字符在左侧|
+|a='{id1:<6d},{id2:^5d}'.format(23,13) | 字符串格式化，id省略则按原顺序(居左<,居中^,居右>，默认>)|
 
 
 ## 三、列表 List
 
-a = [1,2,3]
-a.append(4)             | 末尾添上4
-a.extend(b)             | 列表b接到a后面
-a.insert(0,5)           | 在位置0处添上5
-a[0:3]                  | 返回[0,3)的切片副本,省却即为首尾
-del a[0]                | 删除a[0]
-a.pop(2)                | 弹出a[2]并返回，默认a[-1]
-a.remove(3)             | 弹出值为3的元素
-a.reverse()             | 逆序
-a.clear()               | 删除所有元素
-a.index(x)              | 返回第一个值为x的索引
-a.count(x)              | 返回x出现的次数
-a.sort(reverse=True)    | 字典序排序，默认升序
-a.copy()                | 返回一个浅拷贝
-min(a)/max/sum          | 返回最小值/最大值/总和
-*a                      | 解包列表，返回所有元素
+|a = [1,2,3]||
+|---|---|
+|a.append(4)             | 末尾添上4|
+|a.extend(b)             | 列表b接到a后面|
+|a.insert(0,5)           | 在位置0处添上5|
+|a[0:3]                  | 返回[0,3)的切片副本,省却即为首尾|
+|del a[0]                | 删除a[0]|
+|a.pop(2)                | 弹出a[2]并返回，默认a[-1]|
+|a.remove(3)             | 弹出值为3的元素|
+|a.reverse()             | 逆序|
+|a.clear()               | 删除所有元素|
+|a.index(x)              | 返回第一个值为x的索引|
+|a.count(x)              | 返回x出现的次数|
+|a.sort(reverse=True)    | 字典序排序，默认升序|
+|a.copy()                | 返回一个浅拷贝|
+|min(a)/max/sum          | 返回最小值/最大值/总和|
+|*a                      | 解包列表，返回所有元素|
 
 
-其他 
-range(1,10,3)           | 生成[1,10)内间隔为3的数字
-list(range(4))          | 将[0,4)转化为列表
-b = (1,4,2,3)           | 小括号为不可变的元组
+|其他|| 
+|---|---|
+|range(1,10,3)           | 生成[1,10)内间隔为3的数字|
+|list(range(4))          | 将[0,4)转化为列表|
+|b = (1,4,2,3)           | 小括号为不可变的元组|
 
 
 ## 四、元组 tuple
 与 list 类似，但是tuple元素不能修改
 
-a = (1,2,3,'233') 
-a+b                     | 元组简单拼接
-a = (1,)                | 一个元素后加逗号，否则认为是int型
-
+|a = (1,2,3,'233')|| 
+|---|---|
+|a+b                     | 元组简单拼接|
+|a = (1,)                | 一个元素后加逗号，否则认为是int型|
 
 ## 五、集合 set
 
-a = {1,2,3,'233'}
-a = set('123abc')       | 字符串拆分成字符集合
-a = set()               | 创建空集合
+|a = {1,2,3,'233'}||
+|---|---|
+|a = set('123abc')       | 字符串拆分成字符集合|
+|a = set()               | 创建空集合|
 
 
 ## 六、字典 dict
 
-a = {'001':'Jason','002':'Kitty'}|key-value任意类型
-a = {}                  | 创建空字典
-a[key]=value            | 添加键-值对
-del a['001']            | 删除键值为'001'的键值对
-.item()                 | 返回字典的 key-value 对列表
-.keys()                 | 返回key组成的list
-.values()               | 返回value组成的list
-.clear()                | 清空字典
-a=dict([('a',1),('b',2)])|从list键值对构建字典
-a = dict(a=1,b=2)       | 直接用键值对构建字典
-**a                     | 
+|a = {'001':'Jason','002':'Kitty'}|key-value任意类型|
+|---|---|
+|a = {}                  | 创建空字典|
+|a[key]=value            | 添加键-值对|
+|del a['001']            | 删除键值为'001'的键值对|
+|.item()                 | 返回字典的 key-value 对列表|
+|.keys()                 | 返回key组成的list|
+|.values()               | 返回value组成的list|
+|.clear()                | 清空字典|
+|a=dict([('a',1),('b',2)])|从list键值对构建字典|
+|a = dict(a=1,b=2)       | 直接用键值对构建字典|
+|**a                     | |
 
 
 ## 七、文件 file
 
-file object
-f=open(filename,mode)   | 以mode模式打开文件
-f.write('233')          | 文件写入，返回写入的字符数
-f.read(size)            | 读取size个字节的数据，无size则所有内容
-f.readline()            | 读取一行，返回str
-f.readlines()           | 读取所有行，返回每一行构成的list
-f.tell()                | 返回文件对象所处位置
-f.seek(offset,from)     | 改变f所处位置，offset偏移量，from:开头0,当前1,末尾2（默认0）
-f.close()               | 关闭文件对象
-a = b'233'              | 创建byte对象
-a = byte('233','UTF-8') | 创建byte对象，须指定编码格式，默认 UTF-8
-a.decode()              | byte对象解码为str
+|file object||
+|---|---|
+|f=open(filename,mode)   | 以mode模式打开文件|
+|f.write('233')          | 文件写入，返回写入的字符数|
+|f.read(size)            | 读取size个字节的数据，无size则所有内容|
+|f.readline()            | 读取一行，返回str|
+|f.readlines()           | 读取所有行，返回每一行构成的list|
+|f.tell()                | 返回文件对象所处位置|
+|f.seek(offset,from)     | 改变f所处位置，offset偏移量，from:开头0,当前1,末尾2（默认0）|
+|f.close()               | 关闭文件对象|
+|a = b'233'              | 创建byte对象|
+|a = byte('233','UTF-8') | 创建byte对象，须指定编码格式，默认 UTF-8|
+|a.decode()              | byte对象解码为str|
 
 
 

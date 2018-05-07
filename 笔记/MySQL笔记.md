@@ -29,7 +29,7 @@
 
 |Syntaxes                | Results  |
 |----                    | ----     |
-|INSERT INTO tb_name (c_name,...) VALUES (value,...) | 向表中插入记录，可以不制定字段名，但value顺序要与字段排列一致|
+|INSERT INTO tb_name c_list VALUES (value,...) | 向表中插入记录，可以不制定字段名，但value顺序要与字段排列一致|
 |UPDATE tb_name SET c_name=n_value WHERE condition| 修改满足condition的所有记录|
 |DELETE FROM tb_name WHERE condition| 删除记录，不加WHERE条件则删除表中所有记录|
 |SELECT * FROM tb_name WHERE condition| 查询记录,WHERE条件可不加，*可改成一些字段名|
@@ -44,8 +44,6 @@
 5. **外连接** 分为左连接和右连接。 **左连接**：包含所有的左边表中的记录甚至是右边表中没有和它匹配的记录。 **右连接**：包含所有的右边表中的记录甚至是左边表中没有和它匹配的记录。用法`SELECT c1_name,c2_name FROM tb1_name LEFT/RIGHT JOIN tb2_name ON condition`
 6. `SELECT`也可用在`condition`条件中，称为 **子查询**。`SELECT...WHERE (..SELECT(...))`
 7. `HAVING`和`WHERE`的区别：前者时对聚合后的结果进行条件的过滤，而后者是在聚合前就对记录进行过滤。
-
-
 
 ### 3、DCL语句
 * DCL（Data   Control    Language）语句：数据控制语句，用于控制不同数据段直接的许可和访问级别的语句。这些语句定义了数据库、表、  字段  、用户的访问权限和安全级别。主要的语句关键字包括grant、revoke等。
@@ -74,7 +72,28 @@
 
 ### 2. 字符串类型
 
-|CHAR(M)|VARCHAR(M)|
+|CHAR(M)|VARCHAR(M)|BINARY(M)|VARBINARY(M)|ENUM(...)|
 |---|---|
+|m范围0-255|m范围0-65535|m任意|m任意|枚举类型内元素个数、类型任意|
+* char和varchar的区别在于，检索时char删除尾部的空格,varchar则保留空格。
+* binary和varbinary类型，不足最大长度的空间用'\0'补全.
+* enum类型忽略大小写，当插入值不在制定范围内，则插入第一值。
+
+## 三、MySQL中的运算符
+
+## 四、视图
+* 视图（View）是一种虚拟存在的表，对于使用视图的用户来说基本上是透明的。视图并不在数据库中实际存在，行和列数据来自定义视图的查询中使用的表，并且是在使用视图时动态生成的。一旦基本表中的数据发生变化，从视图中查询的数据页随之改变。
+视图相对于表的优势包括以下几项：
+1. **简单** ：使用视图的用户完全不需要关心后面对应的表的结构、关联条件和筛选条件，对用户来说已经是过滤好的复合条件的结果集。
+2. **安全** ：使用视图的用户只能访问他们被允许查询的结果集，对表的权限管理并不能限制到某个行某个列，但是通过视图就可以简单的实现。
+3. **数据独立** ：一旦视图的结构确定了，可以屏蔽表结构变化对用户的影响，源表增加列对视图没有影响；源表修改列名，则可以通过修改视图来解决，不会造成对访问者的影响
+
+|Syntaxes                | Results  |
+|----                    | ----     |
+|CREATE VIEW v_name colume_list AS select_statement | 创建视图|
+|ALTER v_name c_list AS select_statement | 修改视图 |
+
+
+* 创建视图语句后可加`WITH CHECK OPTION`子句，则以后对该视图进行插入、修改和删除操作时，关系数据库管理系统会自动加上子查询的条件，以确保视图一致性，以保证视图中的记录都满足子查询的where条件。with后可加`CASCADED/LOCAL`，默认为cascaded，前者会循环检查视图规则和底层视图规则，后者不检查底层视图规则（视图建立在视图上）。
 
 

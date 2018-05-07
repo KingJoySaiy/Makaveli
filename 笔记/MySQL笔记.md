@@ -1,0 +1,74 @@
+## 一、MySQL 基础
+### 1、DDL语句
+* DDL（Data Definition Languages）语句：数据定义语言，这些语句定义了不同的数据段、数据库、表、  列、  索引等数据库对象的定义。常用的语句关键字主要包括create、drop、alter等。
+
+```table
+Syntaxes                | Results
+CREATE DATABASE db_name | 创建数据库
+SHOW DATABASES/TABLES/COLUMNS | 显示所有数据库/表/字段
+USE db_name             | 选择要操作的数据库
+SHOW TABLES             | 查看数据库中所有数据表
+DROP DATABASE db_name   | 删除数据库
+CREATE TABLE tb_name(c_name c_type contrains,...)   | 创建表，contrains为约束条件
+DESC tb_name            | 查看表
+SHOW CREATE TABLE tb_name \G| 查看创建表的SQL语句
+DROP TABLE tb_name      | 删除表
+ALTER TABLE tb_name RENAME new_name| 表改名
+ALTER TABLE tb_name MODIFY c_name new_type| 修改字段的类型
+ALTER TABLE tb_name ADD COLUMN c_name c_type| 表中添加字段
+ALTER TABLE tb_name DROP COLUMN c_name| 删除表中字段
+ALTER TABLE tb_name CHANGE o_c_name n_c_name n_type | 修改字段名和字段类型
+```
+1. 控制台输入`mysql -uroot -p`，然后输入密码，进入mysql欢迎界面。
+2. ADD添加字段默认添在表的最后位置，使用`ALTER TABLE tb_name ADD COLUMN c_name c_type (AFTER c_name/FIRST)`可以使新字段添在(`c_name`后/最前面)。该可选项也可以用在`CHANGE/MODIFY`中。
+
+### 2、DML语句
+* DML（Data Manipulation Language）语句：数据操纵语句，用于添加、删除、更新和查询数据库记录，并检查数据完整性，常用的语句关键字主要包括insert、delete、udpate和select等
+```table
+Syntaxes                | Results
+INSERT INTO tb_name (c_name,...) VALUES (value,...) | 向表中插入记录，可以不制定字段名，但value顺序要与字段排列一致
+UPDATE tb_name SET c_name=n_value WHERE condition| 修改满足condition的所有记录
+DELETE FROM tb_name WHERE condition| 删除记录，不加WHERE条件则删除表中所有记录
+SELECT * FROM tb_name WHERE condition| 查询记录,WHERE条件可不加，*可改成一些字段名
+SELECT c1_name,c2_name FROM tb1_name,tb2_name WHERE condition | 外连接查询表
+SELECT...UNION (ALL) SELECT... | 合并查询出的记录，有ALL则去重
+SELECT * FROM tb_name GROUP BY C_NAME HAVING condition | 将查询结果按某字段进行分组，值相等的为一组。
+```
+1. 插入记录时，对于可空字段、非空但含有默认值的字段、自增字段，可以不在`INSERT`后的字段列表中出现，没写的自动设置为：NULL、默认值、自增的下一个数字。`INSERT VALUES`后可以一次性插入多条记录，用逗号隔开即可。
+2. 更新记录时，可以同时更新多个表中的字段。用法：`UPDATE tb_name1  a,tb_name2 b SET a.c_name=n_value,b.c_name=n_value WHERE condition`，其中a,b是为两个表起的别名。
+3. 删除记录时，可以同时删除多个表中的字段。用法：`DELETE a,b FROM tb_name1 a,tb_name2 b WHERE condition`。
+4. 查询记录时，`SELECT`后可加`DISTINCT`去重。后加`ORDER BY c_name DESC/ASC,...`实现排序，ASC默认升序，DESC降序。后加`LIMIT start,count`只输出start开始前count个,start默认为0
+5. **外连接** 分为左连接和右连接。 **左连接**：包含所有的左边表中的记录甚至是右边表中没有和它匹配的记录。 **右连接**：包含所有的右边表中的记录甚至是左边表中没有和它匹配的记录。用法`SELECT c1_name,c2_name FROM tb1_name LEFT/RIGHT JOIN tb2_name ON condition`
+6. `SELECT`也可用在`condition`条件中，称为 **子查询**。`SELECT...WHERE (..SELECT(...))`
+7. `HAVING`和`WHERE`的区别：前者时对聚合后的结果进行条件的过滤，而后者是在聚合前就对记录进行过滤。
+
+
+
+### 3、DCL语句
+* DCL（Data   Control    Language）语句：数据控制语句，用于控制不同数据段直接的许可和访问级别的语句。这些语句定义了数据库、表、  字段  、用户的访问权限和安全级别。主要的语句关键字包括grant、revoke等。
+* `GRANT SELECT/INSERT ON db_name.* TO ’user‘@'localhost' INDENTIFIED BY 'password'`。创建数据库用户，具有对某数据库的select/insert权限
+
+### 4、聚合函数
+```table
+Syntaxes                | Results
+SUM(c_name)             | 字段的总和
+AVG(c_name)             | 字段的平均数
+MIN(c_name)             | 字段的最小值
+MAX(c_name)             | 字段的最大值
+COUNT(c_name/*)         | 字段的个数
+```
+## 二、MySQL支持的数据类型
+### 1. 数值类型
+```table
+TINYINT|SMALLINT|DEDIUMINT|INT/INTERGER|BIGINT
+FLOAT|DOUBLE|DEC(M,D)/DECIMAL(M,D)|BIT(M)
+```
+* 整数类型的操作若超出对应范围，则报出"Out of range"错误。后加括号可指定宽度，后加`ZEROFILL`在位数不够时用0填满。
+* 定点数decimal(m,d)中，m表示精度(整数位+小数位共保留m位)，d表示标度(保留小数点后d位)
+* bit(m)存放二进制数，m制定位数，范围为1-64，默认为1。插入的值超过范围则报出"Data too long"错误。select命令不显示结果，可以用`bin(c_name), hex(c_name)`显示二进制或十六进制的结果。
+
+### 2. 字符串类型
+```table
+CHAR(M)|VARCHAR(M)
+```
+

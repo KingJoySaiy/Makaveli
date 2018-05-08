@@ -81,6 +81,8 @@
 
 ## 三、MySQL中的运算符
 
+**待完善。。**
+
 ## 四、视图
 * 视图（View）是一种虚拟存在的表，对于使用视图的用户来说基本上是透明的。视图并不在数据库中实际存在，行和列数据来自定义视图的查询中使用的表，并且是在使用视图时动态生成的。一旦基本表中的数据发生变化，从视图中查询的数据页随之改变。
 视图相对于表的优势包括以下几项：
@@ -90,10 +92,14 @@
 
 |Syntaxes                | Results  |
 |----                    | ----     |
-|CREATE VIEW v_name colume_list AS select_statement | 创建视图|
-|ALTER v_name c_list AS select_statement | 修改视图 |
+|CREATE (OR REPLACE) VIEW v_name (colume_list) AS select_statement | 创建视图|
+|ALTER VIEW v_name (c_list) AS select_statement | 修改视图 |
+|DROP VIEW (IF EXISTS) v_names..    | 删除视图 |
 
 
-* 创建视图语句后可加`WITH CHECK OPTION`子句，则以后对该视图进行插入、修改和删除操作时，关系数据库管理系统会自动加上子查询的条件，以确保视图一致性，以保证视图中的记录都满足子查询的where条件。with后可加`CASCADED/LOCAL`，默认为cascaded，前者会循环检查视图规则和底层视图规则，后者不检查底层视图规则（视图建立在视图上）。
+
+* 创建视图语句后可加`WITH CHECK OPTION`子句，则以后对该视图进行插入、修改和删除操作时，关系数据库管理系统会自动加上子查询的条件，以确保视图一致性，以保证视图中的记录都满足子查询的where条件。with后可加`CASCADED/LOCAL`，默认cascaded只有满足针对该视图的所有视图的条件才可以更新，后者只要满足本视图的条件就可以更新。
+* 创建视图时from关键字后不能加子查询，可以先将子查询定义为一个视图，再对该视图再创建视图就能试下类似的功能了。查看视图`show tables`命令不仅显示表名，也显示视图名。
+
 
 

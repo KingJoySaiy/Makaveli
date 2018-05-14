@@ -95,11 +95,14 @@
 |CREATE (OR REPLACE) VIEW v_name (colume_list) AS select_statement | 创建视图|
 |ALTER VIEW v_name (c_list) AS select_statement | 修改视图 |
 |DROP VIEW (IF EXISTS) v_names..    | 删除视图 |
-
+|SELECT c_list FROM v_name WHERE condition| 查询视图 |
 
 
 * 创建视图语句后可加`WITH CHECK OPTION`子句，则以后对该视图进行插入、修改和删除操作时，关系数据库管理系统会自动加上子查询的条件，以确保视图一致性，以保证视图中的记录都满足子查询的where条件。with后可加`CASCADED/LOCAL`，默认cascaded只有满足针对该视图的所有视图的条件才可以更新，后者只要满足本视图的条件就可以更新。
 * 创建视图时from关键字后不能加子查询，可以先将子查询定义为一个视图，再对该视图再创建视图就能试下类似的功能了。查看视图`show tables`命令不仅显示表名，也显示视图名。
+
+## 五、存储过程和函数
+* **存储过程** 和 **函数** 是事先经过编译并存储在数据库中的一段SQL语句的集合，调用存储过程和函数可以减少数据在数据库和应用服务器之间的传输，提高数据处理的效率。**二者的区别** 在于函数必须有返回值，而存储过程没有，存储过程的参数可以使用IN、OUT、INOUT类型，而函数的参数只能是IN类型的。如果有函数从其他类型的数据库迁移到MySQL，那么就可能因此需要将函数改造成存储过程。
 
 
 

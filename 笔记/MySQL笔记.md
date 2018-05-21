@@ -104,5 +104,79 @@
 ## 五、存储过程和函数
 * **存储过程** 和 **函数** 是事先经过编译并存储在数据库中的一段SQL语句的集合，调用存储过程和函数可以减少数据在数据库和应用服务器之间的传输，提高数据处理的效率。**二者的区别** 在于函数必须有返回值，而存储过程没有，存储过程的参数可以使用IN、OUT、INOUT类型，而函数的参数只能是IN类型的。如果有函数从其他类型的数据库迁移到MySQL，那么就可能因此需要将函数改造成存储过程。
 
+|Syntaxes               |Results            |
+|----|----|
+|DROP PROCEDURE / FUNCTION (IF EXISTS) sp_name | (若存在则) 删除 存储过程/函数|
+|SHOW PROCEDURE / FUNCTION STATUS (LIKE '...') | 查询存储过程/函数的状态|
+|SHOW CREATE PROCEDURE / FUNCTION sp_name      | 查看存储过程/函数的定义|
+|CALL sp_name(p_name...);                      | 调用存储过程/函数|
+|DECLAR var_name... type (DEFAULT value)       | 定义变量, 必须卸载begin-end块中, 写在其他语句前面|
+|SET var_name = value...                       | 对变量进行赋值|
+|SELECT value... INTO var_name... (from t_name where condition)| 通过查询将结果赋值给变量|
+
+
+
+
+```mysql
+DELIMITER $$            # 指定mysql解释器命令行结束符, 默认为 ';'
+
+# 定义存储过程
+CREATE PROCEDURE sp_name (IN/OUT/INOUT p_name p_type...)
+  # characteristics:
+  DETERMINISTIC / NOT DETERMINISTIC  # deterministic 保证对同一输入参数产生同一结果, 默认为后者
+  READS SQL DATA        # 对数据库只读, 不能修改
+  MODIFY SQL DATA       # 对数据库可以读取, 修改, 删除
+  NO SQL                # 程序不包含sql语句
+  CONTAINS SQL          # 默认为 contains sql, 包含 sql 语句, 但不对数据库进行读取或写入
+  BEGIN
+    (...)
+  END $$
+
+# 定义函数
+CREATE FUNCTION f_name (IN/OUT/INOUT p_name p_type...)
+  RETURNS type
+  (characteristics...)
+  BEGIN
+    (...)
+    RETURN variable;
+  END $$
+
+DELIMITER ;             # 将结束符改回 ';'
+```
+
+```mysql
+# if 语句
+  IF case THEN statement;
+    ELSEIF case THEN statement;
+    ELSE statement;
+  END IF;
+
+# case 语句
+  CASE (v_name)         # 若无 v_name 则 when 后为判断条件
+    WHEN value THEN statement;
+    ELSE statement;
+  END CASE;
+
+# LOOP-LEAVE-ITERATE 语句
+  label_name: LOOP      # leave跳出循环, iterate进入下一轮循环
+   (statement)
+   IF condition THEN LEAVE/ITERATE  label_name;
+    END IF;
+  END LOOP label_name;
+
+# REPEAT 语句
+  (label_name:) REPEAT
+    (statement)
+  UNTIL condition END REPEAT (label_name);
+
+# WHILE 语句
+  (label_name:) WHILE CONDITION DO
+    (statement)
+  END WHILE (label_name);
+```
+
+
+
+
 
 

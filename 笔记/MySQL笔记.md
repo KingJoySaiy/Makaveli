@@ -164,12 +164,12 @@ DELIMITER ;             # 将结束符改回 ';'
     END IF;
   END LOOP label_name;
 
-# REPEAT 语句
+# REPEAT-UNTIL 语句
   (label_name:) REPEAT
     (statement)
   UNTIL condition END REPEAT (label_name);
 
-# WHILE 语句
+# WHILE-DO 语句
   (label_name:) WHILE CONDITION DO
     (statement)
   END WHILE (label_name);

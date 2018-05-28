@@ -1,5 +1,5 @@
-## 一、MySQL 基础
-### 1、DDL语句
+## 一. MySQL 基础
+### 1. DDL语句
 * DDL（Data Definition Languages）语句：数据定义语言，这些语句定义了不同的数据段、数据库、表、  列、  索引等数据库对象的定义。常用的语句关键字主要包括create、drop、alter等。
 
 
@@ -24,7 +24,7 @@
 1. 控制台输入`mysql -uroot -p`，然后输入密码，进入mysql欢迎界面。
 2. ADD添加字段默认添在表的最后位置，使用`ALTER TABLE tb_name ADD COLUMN c_name c_type (AFTER c_name/FIRST)`可以使新字段添在(`c_name`后/最前面)。该可选项也可以用在`CHANGE/MODIFY`中。
 
-### 2、DML语句
+### 2. DML语句
 * DML（Data Manipulation Language）语句：数据操纵语句，用于添加、删除、更新和查询数据库记录，并检查数据完整性，常用的语句关键字主要包括insert、delete、udpate和select等
 
 |Syntaxes                | Results  |
@@ -45,11 +45,11 @@
 6. `SELECT`也可用在`condition`条件中，称为 **子查询**。`SELECT...WHERE (..SELECT(...))`
 7. `HAVING`和`WHERE`的区别：前者时对聚合后的结果进行条件的过滤，而后者是在聚合前就对记录进行过滤。
 
-### 3、DCL语句
+### 3. DCL语句
 * DCL（Data   Control    Language）语句：数据控制语句，用于控制不同数据段直接的许可和访问级别的语句。这些语句定义了数据库、表、  字段  、用户的访问权限和安全级别。主要的语句关键字包括grant、revoke等。
 * `GRANT SELECT/INSERT ON db_name.* TO ’user‘@'localhost' INDENTIFIED BY 'password'`。创建数据库用户，具有对某数据库的select/insert权限
 
-### 4、聚合函数
+### 4. 聚合函数
 
 |Syntaxes                | Results|
 |----                    |----    |
@@ -59,7 +59,7 @@
 |MAX(c_name)             | 字段的最大值|
 |COUNT(c_name/*)         | 字段的个数|
 
-## 二、MySQL支持的数据类型
+## 二. MySQL支持的数据类型
 ### 1. 数值类型
 
 |TINYINT|SMALLINT|DEDIUMINT|INT/INTERGER|BIGINT|
@@ -80,7 +80,7 @@
 * binary和varbinary类型，不足最大长度的空间用'\0'补全.
 * enum类型忽略大小写，当插入值不在制定范围内，则插入第一值。
 
-## 三、MySQL中的运算符
+## 三. MySQL中的运算符
 
 1. 算数运算符
 
@@ -123,7 +123,7 @@
 | >>            | 右移|
 | <<            | 右移|
 
-## 四、视图
+## 四. 视图
 
 * 视图（View）是一种虚拟存在的表，对于使用视图的用户来说基本上是透明的。视图并不在数据库中实际存在，行和列数据来自定义视图的查询中使用的表，并且是在使用视图时动态生成的。一旦基本表中的数据发生变化，从视图中查询的数据页随之改变。
 
@@ -144,7 +144,7 @@
 * 创建视图语句后可加`WITH CHECK OPTION`子句，则以后对该视图进行插入、修改和删除操作时，关系数据库管理系统会自动加上子查询的条件，以确保视图一致性，以保证视图中的记录都满足子查询的where条件。with后可加`CASCADED/LOCAL`，默认cascaded只有满足针对该视图的所有视图的条件才可以更新，后者只要满足本视图的条件就可以更新。
 * 创建视图时from关键字后不能加子查询，可以先将子查询定义为一个视图，再对该视图再创建视图就能试下类似的功能了。查看视图`show tables`命令不仅显示表名，也显示视图名。
 
-## 五、存储过程和函数
+## 五. 存储过程和函数
 * **存储过程** 和 **函数** 是事先经过编译并存储在数据库中的一段SQL语句的集合，调用存储过程和函数可以减少数据在数据库和应用服务器之间的传输，提高数据处理的效率。**二者的区别** 在于函数必须有返回值，而存储过程没有，存储过程的参数可以使用IN、OUT、INOUT类型，而函数的参数只能是IN类型的。如果有函数从其他类型的数据库迁移到MySQL，那么就可能因此需要将函数改造成存储过程。
 
 |Syntaxes               |Results            |
@@ -220,6 +220,7 @@ DELIMITER ;             # 将结束符改回 ';'
   END WHILE (label_name);
 ```
 
+## 六. 数据库编程
 
 
 

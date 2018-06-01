@@ -12,3 +12,4 @@ We ride or die.
 * [一个pygame半成品](/其他/一个pygame半成品)
 * [哈夫曼编码](/其他/哈夫曼编码.cpp)
 * [oop小练](/其他/oop小练.md)
+* [java连接mysql](/其他/java连接mysql)

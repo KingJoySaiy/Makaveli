@@ -4,8 +4,8 @@ public class Main {
 
         final String schema = "_233";
         final String query = "select * from test";
-        final String insert = "insert into test values ('°¡¹þ')";
-        final String delete = "delete from test where t = '°¡¹þ'";
+        final String insert = "insert into test values ('å•Šå“ˆ')";
+        final String delete = "delete from test where t = 'å•Šå“ˆ'";
 
         MYSQL test = new MYSQL(schema);
         test.query(query, 1);

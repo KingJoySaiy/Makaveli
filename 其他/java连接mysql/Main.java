@@ -10,7 +10,7 @@ public class Main {
         final String insert = "insert into test values ('啊哈')";
         final String delete = "delete from test where t = 'Hello'";
 
-        MYSQL test = new MYSQL(schema);
+        JDBC test = new JDBC(schema);
         test.query(query, 3);   //需指定列数
         test.update(insert);
         test.update(delete);

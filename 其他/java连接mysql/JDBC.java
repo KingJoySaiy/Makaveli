@@ -1,6 +1,6 @@
 import java.sql.*;
 
-public class MYSQL {
+public class JDBC {
 
     private static String schema;
     private static final String NAME = "root";          //登录名
@@ -8,7 +8,7 @@ public class MYSQL {
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private Connection conn = null;
 
-    public MYSQL(String c_name) {                   //连接数据库
+    public JDBC(String c_name) {                   //连接数据库
 
         use_schema(c_name);
     }

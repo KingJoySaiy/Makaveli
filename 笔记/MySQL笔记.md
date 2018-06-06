@@ -244,6 +244,32 @@ DELIMITER ;             # 将结束符改回 ';'
 | RELEASE SAVEPOINT i_name  | 删除一个保存点，若保存点不存在则结束事务并抛出异常|
 | ROLLBACK TO i_name        | 把事务回滚到保存点|
 
+## 七. 权限与安全性控制
+* MySQL的权限系统主要用来对连接到数据库的用户进行权限的验证，以此来判断此用户是否属于合法的用户，如果是合法用户则赋予相应的数据库权限。对于身份的认证，MySQL是通过 **IP地址** 和 **用户名** 联合进行确认的。
+
+|Syntaxes | Results|
+|---|---|
+|CREATE USER u_name@localhost IDENTIFIED BY 'pw'| 创建本地用户|
+|DROP USER u_name@localhost         | 删除本地用户(推荐)|
+|DELETE FROM mysql.user WHERE USER='u_name' AND HOST='localhost'; FLUSH PRIVILEGES;|删除本地用户|
+|GRANT SELECT ON d_name.* to u_name@localhost IDENTIFIED BY pw|授予本地用户对数据库的查询权限, 如不存在用户则创建用户|
+|REVOKE UPDATE ON *.* FROM u_name@localhost|删除用户对所有数据库的表的更改权限|
+|UPDATE mysql.user SET PASSWORD=PASSWORD('pw') WHERE user='u_name'; FLUSH PRIVILEGES;|修改用户密码|
+|UPDATE mysql.user SET user='nu_name' WHERE user='root'; flush privileges;|修改用户名|
+
+* grant或revoke权限时，后加 `WITH GRANT OPTION` 表示被改变权限的用户可以将该权限授予给其他用户， 需 **谨慎使用** 。能授予或收回的权限如下，注意其中管理权限(如super,process,file等)不能指定某个数据库，on后必须为 `*.*`。
+
+|Privileges | Instructions          |Privileges        | Instructions |
+|---|---|---|---|
+|usage      |登陆权限，新建用户自动授予，不能被revoke| file  | 文件导入导出权限(谨慎)|
+|process    |查看正在执行的线程权限show processlist(谨慎)|super|终止查询，修改全局变量等(谨慎)|
+|select     | 查询权限              | delete            | 删除记录权限|
+| update    | 更新权限              | create            | 创建权限|
+| drop      | 删除库,表,试图等       | alter             | 修改权限|
+| insert    | 插入权限              | index             | 索引权限|
+| excute    | 执行函数或存储过程的权限 | reload            | 重载权限,flush tables/logs/privileges等|
+| reference | 外键约束权限          | shutdown           | 关闭mysql权限|
+|all privileges | 所有权限, with grant option可以连带授权|||
 
 
 

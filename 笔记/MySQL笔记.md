@@ -158,8 +158,6 @@
 |SELECT value... INTO var_name... (from t_name where condition)| 通过查询将结果赋值给变量|
 
 
-
-
 ```mysql
 DELIMITER $$            # 指定mysql解释器命令行结束符, 默认为 ';'
 
@@ -220,7 +218,32 @@ DELIMITER ;             # 将结束符改回 ';'
   END WHILE (label_name);
 ```
 
-## 六. 数据库编程
+## 六. 事务控制和锁定语句
+## 1. 锁表控制
+|Syntaxes | Results|
+|---|---|
+|LOCK TABLES tb_name read | 读锁定, 只能读取表, 其他操作一直等待|
+| UNLOCK TABLES;          | 释放读锁定 |
+
+## 2. 事务控制
+
+* [『浅入深出』MySQL 中事务的实现](https://draveness.me/mysql-transaction)
+
+1. MySQL 事务主要用于处理操作量大，复杂度高的数据。
+2. 只有使用了 Innodb 数据库引擎的数据库或表才支持事务。
+3. 事务处理可以用来维护数据库的完整性，保证成批的 SQL 语句要么全部执行，要么全部不执行。
+4. 事务用来管理 insert,update,delete 语句
+
+|Syntaxes | Results|
+|---|---|
+| SET AUTOCOMMIT = 0 / 1    | 禁止 / 开启自动提交， 默认开启|
+| BEGIN / START TRANSACTION | 开始事务 |
+| COMMIT / COMMIT WORK      | 提交事务 |
+| ROLLBACK / ROLLBACK WORK  | 撤销所有未提交的修改，并结束事务|
+| SAVEPOINT i_name          | 事务中新建一个保存点|
+| RELEASE SAVEPOINT i_name  | 删除一个保存点，若保存点不存在则结束事务并抛出异常|
+| ROLLBACK TO i_name        | 把事务回滚到保存点|
+
 
 
 

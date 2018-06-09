@@ -1,3 +1,6 @@
+/*
+Main.java   创建GUI界面并管理数据库
+ */
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
@@ -26,7 +29,7 @@ public class Main extends JFrame {
         exit = new JButton("退出");
 
         panelUP = new JPanel();        // 新建按钮组件面板
-        panelUP.setLayout(new FlowLayout(FlowLayout.LEFT));    // 设置面板的布局方式
+        panelUP.setLayout(new FlowLayout(FlowLayout.CENTER));    // 设置面板的布局方式
 
         // 将各按钮组件依次添加到面板中
         panelUP.add(add);
@@ -124,7 +127,6 @@ public class Main extends JFrame {
                 } catch (Exception t) {
                     t.printStackTrace();
                 }
-                System.exit(0);         //保存后退出
             }
         });
         exit.addActionListener(new ActionListener() {       //退出

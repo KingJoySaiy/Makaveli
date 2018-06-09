@@ -1,7 +1,10 @@
+/*
+Tablemodel.java    继承AbstractTableModel类并提供接口
+ */
 import javax.swing.table.AbstractTableModel;
 import java.util.Vector;
 
-class Tablemodel extends AbstractTableModel {  //继承AbstractTableModel类
+class Tablemodel extends AbstractTableModel {
 
     private static Vector content = null;
     private static final String[] title_name = {"学号", "姓名", "性别", "年龄", "所在系"};

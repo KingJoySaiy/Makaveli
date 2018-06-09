@@ -1,9 +1,12 @@
+/*
+JDBC.java   连接数据库并获取相关数据
+ */
 import java.sql.*;
 import java.util.Vector;
 
 public class JDBC {
 
-    private static final String sql_url = "jdbc:mysql://localhost:3306/school?useUnicode=true&characterEncoding=GBK";	//数据库路径（一般都是这样写），test是数据库名称
+    private static final String sql_url = "jdbc:mysql://localhost:3306/school?useUnicode=true&characterEncoding=GBK";	//数据库路径
     private static final String name = "root";		//用户名
     private static final String password = "root";	//密码
     private static Connection conn = null;

@@ -26,8 +26,7 @@ public class JDBC {
         Vector rows = null;
         try {
             conn = GetConn();
-            String tmp = choose ? "select * from student" :
-                    "select sno, sname, 2018 - SAGE from student where SDEPT = '–≈œ¢œµ'";
+            String tmp = choose ? all : part;
             preparedStatement = conn.prepareStatement(tmp);
             ResultSet result1 = preparedStatement.executeQuery();
 
@@ -48,7 +47,7 @@ public class JDBC {
         Vector columnHeads = null;
         try {
             conn = GetConn();
-            preparedStatement = conn.prepareStatement("select * from student");
+            preparedStatement = conn.prepareStatement(all);
             ResultSet result1 = preparedStatement.executeQuery();
 
             columnHeads = new Vector();

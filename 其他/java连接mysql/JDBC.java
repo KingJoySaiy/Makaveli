@@ -1,63 +1,74 @@
 import java.sql.*;
+import java.util.Vector;
 
 public class JDBC {
 
-    private static String schema;
-    private static final String NAME = "root";          //登录名
-    private static final String PASSWORD = "神秘代码";   //密码
-    private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private Connection conn = null;
+    private static final String sql_url = "jdbc:mysql://localhost:3306/school?useUnicode=true&characterEncoding=GBK";	//数据库路径（一般都是这样写），test是数据库名称
+    private static final String name = "root";		//用户名
+    private static final String password = "root";	//密码
+    private static Connection conn = null;
+    private static PreparedStatement preparedStatement = null;
+    private static final String all = "select * from student";
+    private static final String part = "select sno, sname, 2018 - SAGE from student where SDEPT = '信息系'";
 
-    public JDBC(String c_name) {                   //连接数据库
+    public static Connection GetConn() {       //获取Connection接口
 
-        use_schema(c_name);
-    }
-    public void use_schema(String c_name) {         //更改连接的数据库
-
-        schema = c_name;
-        String URL = "jdbc:mysql://localhost:3306/" + schema + "?useUnicode=true&characterEncoding=GBK";
         try {
-            if(conn != null) CLOSE();
-            Class.forName(DRIVER);                  //加载驱动程序
-            conn = DriverManager.getConnection(URL, NAME, PASSWORD);    //获取连接
-            System.out.println(schema + "数据库连接成功！");
+            Class.forName("com.mysql.jdbc.Driver");     //加载驱动
+            conn = DriverManager.getConnection(sql_url, name, password);       //连接数据库
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return conn;
     }
-    public void CLOSE() {   //关闭数据库
-        try {
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            conn = null;
-        }
-    }
-    public void query(String que, int column_num) {     //调用查询语句
+    public static Vector getRows(boolean choose) {  //获取表数据, choose true整个表, false信息系
 
+        Vector rows = null;
         try {
-            Statement statement = conn.createStatement();
-            ResultSet result = statement.executeQuery(que);
-            System.out.println("查询结果为：");
+            conn = GetConn();
+            String tmp = choose ? "select * from student" :
+                    "select sno, sname, 2018 - SAGE from student where SDEPT = '信息系'";
+            preparedStatement = conn.prepareStatement(tmp);
+            ResultSet result1 = preparedStatement.executeQuery();
 
-            while(result.next()) {
-                for(int i = 1; i <= column_num; i++)
-                    System.out.print(result.getString(i) + " ");
-                System.out.println();
+            rows = new Vector();
+            ResultSetMetaData rsmd = result1.getMetaData();
+            while(result1.next()) {
+                rows.addElement(getNextRow(result1,rsmd));
             }
-        } catch (SQLException e) {
-            e.printStackTrace();    //异常信息在程序中出错的位置和信息
-        }
-    }
-    public void update(String sql) {
-
-        try {
-            PreparedStatement p_Statement = conn.prepareStatement(sql);
-            p_Statement.executeUpdate();
-            System.out.println("执行成功!");
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return rows;
     }
 
+    public static Vector getHead() {            //获取表头
+
+        Vector columnHeads = null;
+        try {
+            conn = GetConn();
+            preparedStatement = conn.prepareStatement("select * from student");
+            ResultSet result1 = preparedStatement.executeQuery();
+
+            columnHeads = new Vector();
+            ResultSetMetaData rsmd = result1.getMetaData();
+            for(int i = 1; i <= rsmd.getColumnCount(); i++)
+                columnHeads.addElement(rsmd.getColumnName(i));
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return columnHeads;
+    }
+
+    // 得到数据库中下一行数据
+    private static Vector getNextRow(ResultSet rs, ResultSetMetaData rsmd) throws SQLException {
+
+        Vector currentRow = new Vector();
+        for(int i = 1; i <= rsmd.getColumnCount(); i++){
+            currentRow.addElement(rs.getString(i));
+        }
+        return currentRow;
+    }
 }

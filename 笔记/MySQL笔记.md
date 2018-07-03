@@ -271,7 +271,7 @@ DELIMITER ;             # 将结束符改回 ';'
 | reference | 外键约束权限          | shutdown           | 关闭mysql权限|
 |all privileges | 所有权限, with grant option可以连带授权|||
 
-
+## 八. 索引
 
 
 

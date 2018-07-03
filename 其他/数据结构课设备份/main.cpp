@@ -10,7 +10,7 @@ Table table;        //(from, to) -> id
 
 int main() {
 
-    Airline airline = Airline("iidd", "北京", "上海", 12, 0, 13, 0, 99, 1, 50);
+    Airline airline = Airline("iidd", "鍖椾含", "涓婃捣", 12, 0, 13, 0, 99, 1, 50);
 
     table.Insert(airline.id, airline.from, airline.to);
     map.AddAirline(airline);
@@ -25,7 +25,7 @@ int main() {
     cout << map.DeleteAirline("iidd") << endl;
 
 
-    cout << table.FindId("北京", "上海") << endl;
+    cout << table.FindId("鍖椾含", "涓婃捣") << endl;
 
 
 

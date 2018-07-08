@@ -13,8 +13,10 @@ using std::endl;
 const int maxn = 100;
 
 template<class T> class SinList;
+template<class T> class DbList;
 template<class T> void Mix(SinList<T>*, SinList<T>*);
 template<class T> SinList<T> *Union(SinList<T> *, SinList<T> *);
+template<class T> bool exchange(DbList<T>*);
 
 template<class T>
 class SeqList {      //順序表的實現
@@ -151,16 +153,22 @@ private:
 public:
     DbList() {}
     DbList(T x) : data(x) {}
-    bool insert(DbList *head, int i, T x) { //在指定位置插入數值
+    DbList *create() {        //創建雙向鏈表
+        auto *head = new DbList;
+        return head;
+    }
+    void inserthead(DbList *head, T x) {     //頭插法
+        auto *p = new DbList(x);
+        p->next = head->next;
+        p->prior = head;
+        if(head->next != nullptr) head->next->prior = p;    //注意第一次插入
+        head->next = p;
+    }
+    void insertback(DbList *head, T x) {     //尾插法
         DbList *p = head, *t = new DbList(x);
-        int ct = 0;
-        while (p != nullptr and ct < i) p = p->next, ct++;
-        if (p == nullptr or ct > i) return false;
-        t->prior = p->prior;
-        t->next = p;
-        p->prior->next = t;
-        p->prior = t;
-        return true;
+        while (p->next != nullptr) p = p->next;
+        p->next = t;
+        t->prior = p;
     }
     bool Delete(DbList *head, int i) {      //刪除某位置處的結點
         DbList *p = head;
@@ -172,6 +180,20 @@ public:
         delete p;
         return true;
     }
+    DbList *find(DbList *head, T x) {       //查找某值
+        DbList *p = head->next;
+        while (p != nullptr and p->data != x) p = p->next;
+        return p;
+    }
+    void show() {
+        DbList *t = this->next;
+        while (t != nullptr) {
+            cout << t->data << ' ';
+            t = t->next;
+        }
+        cout << endl;
+    }
+    friend bool exchange<>(DbList<T>*);
 };
 
 template <class T>
@@ -240,6 +262,21 @@ void Mix(List<T> *la, List<T> *lb) {  //已知ab為兩個升序集合，求其�
     }
     p->next = lb->next = nullptr;
     delete lb;
+}
+
+template <class T>
+bool exchange(DbList<T> *p) {       //交換當前結點和其前驅結點
+
+    if (p->prior == nullptr) return false;         //表空，只剩下頭結點
+    if (p->prior->prior == nullptr) return false;  //首元結點無法與頭結點交換
+    DbList<T> *t = p->prior;
+    if (p->next != nullptr) p->next->prior = t;     //注意尾結點的情況
+    t->prior->next = p;
+    p->prior = t->prior;
+    t->next = p->next;
+    p->next = t;
+    t->prior = p;
+    return true;
 }
 
 

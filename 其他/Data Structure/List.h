@@ -5,11 +5,16 @@
 #include <climits>
 
 #define ERROR INT_MIN
+#define List SinList
 
 using std::cin;
 using std::cout;
 using std::endl;
 const int maxn = 100;
+
+template<class T> class SinList;
+template<class T> void Mix(SinList<T>*, SinList<T>*);
+template<class T> SinList<T> *Union(SinList<T> *, SinList<T> *);
 
 template<class T>
 class SeqList {      //順序表的實現
@@ -131,7 +136,8 @@ public:
         }
         cout << endl;
     }
-    friend SinList *Union(SinList *, SinList *);
+    friend SinList<T>* Union<>(SinList<T> *, SinList<T> *);
+    friend void Mix<>(SinList<T>*, SinList<T>*);
 };
 
 template<class T>
@@ -166,12 +172,11 @@ public:
     }
 };
 
-typedef SinList List;
+template <class T>
+List<T> *Union(List<T> *la, List<T> *lb) {  //把兩個帶頭結點的升序鏈表合併，不開額外空間，去重，新鏈表也升序
 
-List *Union(List *la, List *lb) {  //把兩個帶頭結點的升序鏈表合併，不開額外空間，去重，新鏈表也升序
-
-    List *a = la->next, *b = lb->next;
-    List *lc = la, *c = la, *tmp;
+    List<T> *a = la->next, *b = lb->next;
+    List<T> *lc = la, *c = la, *tmp;
     while (a != nullptr and b != nullptr) {
         if (a->data < b->data) {
             c->next = a;
@@ -191,8 +196,48 @@ List *Union(List *la, List *lb) {  //把兩個帶頭結點的升序鏈表合併�
         }
     }
     c->next = a ? a : b;        //插入剩餘的結點
+    lb->next = nullptr;
     delete lb;                  //釋放b的頭結點
     return lc;
+}
+
+template <class T>
+void Mix(List<T> *la, List<T> *lb) {  //已知ab為兩個升序集合，求其交集並存到a中
+
+    List<T> *a = la->next, *b = lb->next;
+    List<T> *p = la, *t;
+    while (a != nullptr and b != nullptr) {
+        if (a->data == b->data) {   //交集併入到結果表中
+            p->next = a;
+            p = a;
+            a = a->next;
+            t = b;
+            b = b->next;
+            delete t;
+        }
+        else if (a->data < b->data) {
+            t = a;
+            a = a->next;
+            delete t;
+        }
+        else {
+            t = b;
+            b = b->next;
+            delete t;
+        }
+    }
+    while (a != nullptr) {      //釋放多餘的結果空間
+        t = a;
+        a = a->next;
+        delete t;
+    }
+    while (b != nullptr) {
+        t = b;
+        b = b->next;
+        delete t;
+    }
+    p->next = lb->next = nullptr;
+    delete lb;
 }
 
 

@@ -140,6 +140,8 @@ public:
     friend void Mix<>(SinList<T>*, SinList<T>*);
 };
 
+template <class T> int SinList<T>::length = 0;
+
 template<class T>
 class DbList {   //雙向鏈表的插入刪除功能
 

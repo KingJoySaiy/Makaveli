@@ -1,5 +1,5 @@
-#ifndef INC_233_StackQueue_H
-#define INC_233_StackQueue_H
+#ifndef INC_233_Queue_H
+#define INC_233_Queue_H
 
 #include <iostream>
 #include <climits>
@@ -10,67 +10,6 @@ using std::cin;
 using std::cout;
 using std::endl;
 const int maxn = 100;
-
-template<class T>
-class Stack1 { //順序棧
-
-private:
-    T *base, *top;
-    int Stacksize;
-public:
-    Stack1 *create() {  //棧的初始化
-        Stack1 *s = new Stack1;
-        s->top = s->base = new T[maxn];
-        s->Stacksize = maxn;
-        return s;
-    }
-    int Size() {       //棧的元素個數
-        return int(top - base);
-    }
-    bool push(T x) {   //入棧
-        if (top - base == Stacksize) return false;
-        *top++ = x;
-        return true;
-    }
-    bool Empty() {      //判斷棧是否為空
-        return top == base;
-    }
-    T pop() {            //出棧
-        if (Empty()) return ERROR;
-        return *--top;
-    }
-    T Top() {            //返回棧頂
-        return *(top - 1);
-    }
-};
-
-/************************/
-template <class T>
-struct Stack {      //鏈棧(不帶頭節點)
-    T data;
-    Stack *next = nullptr;
-    Stack() {}
-    Stack(T x) : data(x) {}
-};
-template <class T>
-Stack<T>* push(Stack<T> *s, T x) {    //入棧（返回新棧）
-    Stack<T> *p = new Stack<T>(x);
-    p->next = s;
-    return p;
-}
-template <class T>
-Stack<T>* pop(Stack<T> *s) {          //出棧（返回新棧）
-    if (s == nullptr) return nullptr;
-    Stack<T> *p = s;
-    delete p;
-    return s->next;
-}
-template <class T>
-T Top(Stack<T> *s) {                  //返回棧頂
-    if (s != nullptr) return s->data;
-    return ERROR;
-}
-/************************/
 
 template <class T>
 class Queue1 {         //循環隊列的基本操作
@@ -150,5 +89,77 @@ public:
 };
 
 
-#endif //INC_233_StackQueue_H
 
+template <class T>
+struct Node {        //定义循環隊列類的节点类型
+
+    T data;
+    Node *next = nullptr;
+    Node() {}
+    Node(T x) : data(x) {}
+};
+
+template <class T>
+class Queue2 {       //定义循環队列类（只設尾指針，不設頭指針）
+
+private:
+    Node<T> *back;
+public:
+    Queue2() {       //構造函數
+        back = new Node<T>;
+    }
+    Queue2 *Create() {       //創建循環隊列
+
+        Queue2 *t = new Queue2;
+        t->back->next = t->back;    //創建頭結點
+        return t;
+    }
+    bool empty() {           //判斷隊列是否為空
+
+        return back->next == back;
+    }
+    void push(T x) {       //入隊操作
+
+        Node<T> *t = new Node<T>(x);
+        t->next = back->next;
+        back = back->next = t;
+    }
+    T pop() {              //出隊操作
+
+        if (empty()) return ERROR;    //空隊無法彈出
+        Node<T> *t = back->next->next;
+        T res = t->data;
+        if (t == back) {      //隊列只有一個元素時隊尾指針指向頭結點
+            back = back->next;
+            back->next = back;
+        } else back->next->next = t->next;
+        delete t;
+        return res;
+    }
+    T top() {
+        if (empty()) return ERROR;  //空隊則報錯
+        return back->next->next->data;
+    }
+    void pop_all() {         //置空队列
+
+        back = back->next;
+        Node<T> *t;
+        while (back != back->next) {
+            t = back->next;
+            back->next = t->next;
+            delete t;
+        }
+    }
+    void show() {           //輸出完整的隊列
+
+        Node<T> *t = back->next->next;
+        while (t != back->next) {
+            cout << t->data << ' ';
+            t = t->next;
+        }
+        cout << endl;
+    }
+};
+
+
+#endif //INC_233_Queue_H

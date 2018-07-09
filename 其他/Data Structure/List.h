@@ -5,11 +5,18 @@
 #include <climits>
 
 #define ERROR INT_MIN
+#define List SinList
 
 using std::cin;
 using std::cout;
 using std::endl;
 const int maxn = 100;
+
+template<class T> class SinList;
+template<class T> class DbList;
+template<class T> void Mix(SinList<T>*, SinList<T>*);
+template<class T> SinList<T> *Union(SinList<T> *, SinList<T> *);
+template<class T> bool exchange(DbList<T>*);
 
 template<class T>
 class SeqList {      //順序表的實現
@@ -131,8 +138,11 @@ public:
         }
         cout << endl;
     }
-    friend SinList *Union(SinList *, SinList *);
+    friend SinList<T>* Union<>(SinList<T> *, SinList<T> *);
+    friend void Mix<>(SinList<T>*, SinList<T>*);
 };
+
+template <class T> int SinList<T>::length = 0;
 
 template<class T>
 class DbList {   //雙向鏈表的插入刪除功能
@@ -143,16 +153,22 @@ private:
 public:
     DbList() {}
     DbList(T x) : data(x) {}
-    bool insert(DbList *head, int i, T x) { //在指定位置插入數值
+    DbList *create() {        //創建雙向鏈表
+        auto *head = new DbList;
+        return head;
+    }
+    void inserthead(DbList *head, T x) {     //頭插法
+        auto *p = new DbList(x);
+        p->next = head->next;
+        p->prior = head;
+        if(head->next != nullptr) head->next->prior = p;    //注意第一次插入
+        head->next = p;
+    }
+    void insertback(DbList *head, T x) {     //尾插法
         DbList *p = head, *t = new DbList(x);
-        int ct = 0;
-        while (p != nullptr and ct < i) p = p->next, ct++;
-        if (p == nullptr or ct > i) return false;
-        t->prior = p->prior;
-        t->next = p;
-        p->prior->next = t;
-        p->prior = t;
-        return true;
+        while (p->next != nullptr) p = p->next;
+        p->next = t;
+        t->prior = p;
     }
     bool Delete(DbList *head, int i) {      //刪除某位置處的結點
         DbList *p = head;
@@ -164,14 +180,27 @@ public:
         delete p;
         return true;
     }
+    DbList *find(DbList *head, T x) {       //查找某值
+        DbList *p = head->next;
+        while (p != nullptr and p->data != x) p = p->next;
+        return p;
+    }
+    void show() {
+        DbList *t = this->next;
+        while (t != nullptr) {
+            cout << t->data << ' ';
+            t = t->next;
+        }
+        cout << endl;
+    }
+    friend bool exchange<>(DbList<T>*);
 };
 
-typedef SinList List;
+template <class T>
+List<T> *Union(List<T> *la, List<T> *lb) {  //把兩個帶頭結點的升序鏈表合併，不開額外空間，去重，新鏈表也升序
 
-List *Union(List *la, List *lb) {  //把兩個帶頭結點的升序鏈表合併，不開額外空間，去重，新鏈表也升序
-
-    List *a = la->next, *b = lb->next;
-    List *lc = la, *c = la, *tmp;
+    List<T> *a = la->next, *b = lb->next;
+    List<T> *lc = la, *c = la, *tmp;
     while (a != nullptr and b != nullptr) {
         if (a->data < b->data) {
             c->next = a;
@@ -191,8 +220,63 @@ List *Union(List *la, List *lb) {  //把兩個帶頭結點的升序鏈表合併�
         }
     }
     c->next = a ? a : b;        //插入剩餘的結點
+    lb->next = nullptr;
     delete lb;                  //釋放b的頭結點
     return lc;
+}
+
+template <class T>
+void Mix(List<T> *la, List<T> *lb) {  //已知ab為兩個升序集合，求其交集並存到a中
+
+    List<T> *a = la->next, *b = lb->next;
+    List<T> *p = la, *t;
+    while (a != nullptr and b != nullptr) {
+        if (a->data == b->data) {   //交集併入到結果表中
+            p->next = a;
+            p = a;
+            a = a->next;
+            t = b;
+            b = b->next;
+            delete t;
+        }
+        else if (a->data < b->data) {
+            t = a;
+            a = a->next;
+            delete t;
+        }
+        else {
+            t = b;
+            b = b->next;
+            delete t;
+        }
+    }
+    while (a != nullptr) {      //釋放多餘的結果空間
+        t = a;
+        a = a->next;
+        delete t;
+    }
+    while (b != nullptr) {
+        t = b;
+        b = b->next;
+        delete t;
+    }
+    p->next = lb->next = nullptr;
+    delete lb;
+}
+
+template <class T>
+bool exchange(DbList<T> *p) {       //交換當前結點和其前驅結點
+
+    if (p->prior == nullptr) return false;         //表空，只剩下頭結點
+    if (p->prior->prior == nullptr) return false;  //首元結點無法與頭結點交換
+    DbList<T> *t = p->prior;
+    if (p->next != nullptr) p->next->prior = t;     //注意尾結點的情況
+    t->prior->next = p;
+    p->prior = t->prior;
+    t->next = p->next;
+    p->next = t;
+    t->prior = p;
+    return true;
 }
 
 

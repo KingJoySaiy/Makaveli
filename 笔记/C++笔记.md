@@ -133,10 +133,11 @@ string a,b,c;
 * `vector<int>a(b,b+n)`		用数组b初始化a
 #### 4. set				集合（4）
 * `set<int>a`声明集合
+* `unordered_set<int> a`声明无序集合
 #### 5. utility			对组（5）
 * `pair<string,int> a`			声明一个对组（有2个元素的结构体）
 * `pair<int,pair<int,int> >a`	声明有3个元素的结构体
-#### 6. map			映射（6）
+#### 6. map			  有序哈希表（6）
 * `map<string,int>a`			声明一个从string类（key）到int类（value）的映射，自动按key升序排序
 * `multimap<string,int>a`		声明一个映射（允许一个键对应多个值）
 #### 7. bitset          二进制数（7）
@@ -144,40 +145,54 @@ string a,b,c;
 * `bitset<maxn>a(x,s,e)` 将x从s位到e位构造二进制数，其余为0（x只能说string类，且每一位都是0或1）
 #### 8. complex         复数类(8)
 * `complex<double> a(1,2)` 声明一个复数对象,实部虚部分别是1,2
+#### 9. unordered_map   无序哈希表(9)
+* `unordered_map<int, int>`       定义一个无序哈希表
+* `unordered_multimao<int, int>`  允许一个key对应多个value
+#### 10. dequeue        双端队列(10)
+* `deque<int> a`       定义双端队列
+#### 11. tuple          元组类（11）
+* `tuple<int, string, double> a` 定义一个元组
+
 
 ## 具体实现:
-* `a.push_back()`				末尾添加元素（3）
+* `a.push_back()`				末尾添加元素（3, 10）
 * `a.push()`				末尾添加元素（1，2）
-* `a.size()	`					返回队列中元素的个数（1，2，3，4，6，7）
-* `a.empty()`					判断队列是否为空，返回布尔值（1，2，3，4，6）
+* `a.size()	`					返回队列中元素的个数（1，2，3，4，6，7，9，10）
+* `a.empty()`					判断队列是否为空，返回布尔值（1，2，3，4，6，9，10）
 * `a.pop()	`					删除第一个元素（1，2）
-* `a.front()	`				返回第一个元素的引用（1，3）
-* `a.back()`				返回最后一个元素的引用（1，3）
+* `a.front()	`				返回第一个元素的引用（1，3，10）
+* `a.back()`				返回最后一个元素的引用（1，3，10）
 * `a.top()`						返回最后一个元素（2）
-* `a.max_size()`				返回最大容量（3，4，6）
-* `a.resize(x)	`				把大小更改为x（3，4）
-* `a.pop_back()`				末尾删除元素（3）
-* `a.begin()`					初始位置的迭代器（3，4，6）
-* `a.end()`						末尾位置的迭代器（3，4，6）
-* `a.rbegin()	`				末尾位置的反向迭代器（3，4，6）
-* `a.rend()	`				初始位置的反向迭代器（3，4，6）
+* `a.max_size()`				返回最大容量（3，4，6，9，10）
+* `a.resize(x)	`				把大小更改为x（3，4，10）
+* `a.pop_back()`				末尾删除元素（3，10）
+* `a.pop_front()`               最前端删除元素(10)
+* `a.push_front()`              最前端添加元素(10)
+* `a.emplace_back()`            在末尾添加带多个参数的元素（3，10）
+* `a.emplace_front()`           在前端添加带多个参数的元素（10）
+* `a.begin()`					初始位置的迭代器（3，4，6，9，10）
+* `a.end()`						末尾位置的迭代器（3，4，6，9，10）
+* `a.cbegin()`					初始位置的常量迭代器（3，4，6，9，10）
+* `a.cend()`					末尾位置的常量迭代器（3，4，6，9，10）
+* `a.rbegin()	`				末尾位置的反向迭代器（3，4，6，9，10）
+* `a.rend()	`				初始位置的反向迭代器（3，4，6，9，10）
 * `a.data()	`				初始位置的指针（3）
-* `a.clear()`					清空所有元素（3，4，6）
-* `a.assign(b.brgin(),b.end())`	把b复制给a（3）
-* `a.insert(x)	`				在a中插入x（4，6）
+* `a.clear()`					清空所有元素（3，4，6，9，10）
+* `a.assign(b.brgin(),b.end())`	把b复制给a（3，10）
+* `a.insert(x)	`				在a中插入x（4，6，9，10）
 * `a.insert(a.begin(),n,x)`		在a.begin()前插入n个x，若n省去则插入一个x且返回x的迭代器（3）
 * `a.insert(a.begin(),b.begin(),b.end())`在a.begin()前插入b的对应元素（3）
-* `a.erase(a.begin(),a.end())`	把区间内的元素删去（3，4，6）
-* `a.count(x)	`				返回a中x出现的次数（4，6，7）
-* `a.lower_bound(x)`			返回>=x的第一个元素的迭代器（4，6）
-* `a.upper_bound(x)`			返回>x的第一个元素的迭代器（4，6）
+* `a.erase(a.begin(),a.end())`	把区间内的元素删去（3，4，6，9，10）
+* `a.count(x)	`				返回a中x出现的次数（4，6，7，9）
+* `a.lower_bound(x)`			返回>=x的第一个元素的迭代器（4，6，9）
+* `a.upper_bound(x)`			返回>x的第一个元素的迭代器（4，6，9）
 * `a.find(x)`					返回x元素的迭代器，若无x则返回a.end()（4，6）
 * `make_pair(x,y)`			返回一个对组（x,y）,用于给pair赋值（5）
 * `a.first`						访问pair的第一个元素（5）
 * `a.second`					访问pair的第二个元素（5）
 * `a[key]=value`				插入数据（6）
-* `a.insert(map<string,int>::value_type("b",2))`		插入数据（6）
-* `a.insert(make_pair(“b”,2))`						插入数据（6）
+* `a.insert(map<string,int>::value_type("b",2))`		插入数据（6，9）
+* `a.insert(make_pair(“b”,2))`						插入数据（6，9）
 * `a.any()`    判断是二进制数否有一位是1（7）
 * `a.none()`判断是否每一位都是0（7）
 * `a.flip(n)`第n位取反，省去n则所有位都取反（7）
@@ -192,6 +207,12 @@ string a,b,c;
 * `arg(a)`返回复数的弧度(8)
 * `conj(a)`返回共轭复数(8)
 * `polar(double,double)`极坐标(len,ang)转化为复数(9)
+* `a.at(i)`返回i索引处的引用（10）
+* `tie(x, y, z)`创建左值引用的一个元组，或解包为独立对象（11）
+* `forward_as_tuple(1, 2, 3)`创建右值引用的元组（11）
+* `tuple_cat(a, b, c)`连接任意数量的tuple创建一个元组（11） 
+* `make_tuple(x, y, z)`创建新的tuple对象（11）
+* `get<0>(a)`返回指定索引处的的引用（11）
 
 # 九、limits.h		数据类型极值
 * `SHRT_MIN`				最小short值
@@ -239,10 +260,24 @@ open(const char* filename,int mode,int access)打开文件，
 * 0：普通文件，打开访问  
 * 1：只读文件  
 * 2：隐含文件  
-* 4：系统文件 
+* 4：系统文件
+* `f.open("D:\\233.txt", ios::in)`打开某文件 
+* `f.is_open()`判断文件成功打开
+* `f.good()`检测是否发生错误
+* `f.eof()`检测是否到了文件末尾
+* `f.clear()`文件流清空
+* `getline(f, str)`读取一行到字符串
+* `f.read(str, sizeof(str))`读取到字符串
+* `f.write(str, sizeof(str)`插入字符块
+* `f.get()`读出并取走一个字符
+* `f.put(c)`插入一个字符
+* `f.unget()`撤销最近取走的一个字符
+* `f.peek()`独处不取走一个字符
+* `f >> str`读取并带走格式数据
+* `f << str`插入有格式的数据
 
 # 十二、stddef.h		标准宏及类型的定义
-* null						NULL
+* null/nullptr						NULL
 * size_t						unsigned int（sizeof操作符的结果类型）
 * ptrdiff_t					int（表示指针相减的结果类型）
 * wchar_t					char（表示宽字符类型）

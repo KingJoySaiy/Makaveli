@@ -1,149 +1,169 @@
 #include <iostream>
 #include <algorithm>
-#include <cstdlib>
-#include <cstdio>
 #include <utility>
 #include <string>
-#include <vector>
 #include <map>
+#include <set>
+#include <climits>
+#include <vector>
 
-using namespace std;
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
 
-const int maxn = 1005;  //×î´ó²»Í¬×Ö·û¸öÊı
+typedef std::pair<int, int> pp;
 
-struct Huffman {
+const int maxn = 1005;  //æœ€å¤§ä¸åŒå­—ç¬¦ä¸ªæ•°
+const int inf = INT_MAX;
 
-    int weight, parent, left, right;
+std::map<char, int> CharCount;  //è®°å½•æ‰€æœ‰å­—ç¬¦ä»¥åŠå‡ºç°çš„æ¬¡æ•°
+char book[maxn];                //è®°å½•ç¬¬iä¸ªå­—ç¬¦
+string HuffDic[maxn];           //è®°å½•å­—ç¬¦å¯¹åº”çš„å“ˆå¤«æ›¼ç 
+bool ERROR = false;             //æ¨™è¨˜å“ˆå¤«æ›¼æ¨¹æ§‹é€ å‡ºéŒ¯
+int n, m;
+
+class Huffman {
+
+private:
+    int weight, parent, left, right;    //æ¬Šå€¼, çˆ¶çµé», å·¦å­çµé», å³å­çµé»
+public:
     Huffman(int a = 0, int b = 0, int c = 0, int d = 0) : weight(a), parent(b), left(c), right(d) {}
-    friend ostream & operator << (ostream &out, Huffman t) {
+    friend std::ostream & operator << (std::ostream &out, Huffman t) {
         out << t.weight << ' ' << t.parent << ' ' << t.left << ' ' << t.right << endl;
         return out;
     }
+    friend pp Select(Huffman *tree, int x) {   //è¿”å›1-xä¸­åŒäº²ä¸º0ä¸”æƒå€¼æœ€å°çš„ä¸¤ä¸ªèŠ‚ç‚¹çš„ç´¢å¼•
+
+        int s1 = inf, s2 = inf, id1 = 1, id2 = 2;
+        for(int i = 1; i <= x; i++)
+            if(!tree[i].parent and tree[i].weight < s1) {
+                id1 = i;
+                s1 = tree[i].weight;
+            }
+        for(int i = 1; i <= x; i++)
+            if(i != id1 and !tree[i].parent and tree[i].weight < s2) {
+                id2 = i;
+                s2 = tree[i].weight;
+            }
+        return pp(id1, id2);
+    }
+    friend void Create_Huffman(Huffman *tree, string x) {
+
+        for (char &i : x) CharCount[i]++;
+        n = (int)CharCount.size();      //å…±æœ‰nå€‹ä¸åŒçš„å­—ç¬¦
+
+        if (n <= 1) {   //æ¨™è¨˜æ§‹é€ å‡ºéŒ¯
+            ERROR = true;
+            return;
+        }
+        ERROR = false;
+        m = (n << 1) - 1;
+        tree = new Huffman[m + 1];
+
+        int ct = 0;
+        for (auto &p : CharCount) {
+            tree[++ct].weight = p.second;    //æ¯å€‹è‘‰å­çµé»çš„æ¬Šå€¼ç‚ºå°æ‡‰å­—ç¬¦å‡ºç¾çš„æ¬¡æ•¸
+            book[ct] = p.first;              //index -> CharName
+        }
+
+        for (int i = n + 1; i <= m; i++) {
+            auto s = Select(tree, i - 1);
+            tree[s.first].parent = tree[s.second].parent = i;
+            tree[i].left = s.first;         //å·¦å­æ¨¹ç‚ºæœªæ¨™è¨˜çš„æ¬Šå€¼æœ€å°çµé»
+            tree[i].right = s.second;       //å³å­æ¨¹ç‚ºæœªæ¨™è¨˜çš„æ¬Šå€¼ç¬¬äºŒå°çµé»
+            tree[i].weight = tree[s.first].weight + tree[s.second].weight;  //æ–°çµé»çš„æ¬Šå€¼ç‚ºå…©å­æ¨¹æ¬Šå€¼ä¹‹å’Œ
+        }
+
+        for (int i = 1, fa, now; i <= n; i++) {   //æ±‚è‘‰å­çµé»çš„å“ˆå¤«æ›¼ç·¨ç¢¼
+            x.clear();
+            now = i;
+            do {
+                fa = tree[now].parent;
+                if (now == tree[fa].left) x += '0';
+                else x += '1';
+                now = fa;
+            } while (fa);
+            reverse(x.begin(), x.end());
+            HuffDic[i] = x;
+        }
+        puts("ç·¨ç¢¼æˆåŠŸï¼ç·¨ç¢¼è¡¨å¦‚ä¸‹ï¼š");
+        for (int i = 1; i <= n; i++) {
+            cout << book[i] << " -> " << HuffDic[i] << endl;
+        }
+    }
 };
-map<char,int> all_char;     //¼ÇÂ¼ËùÓĞ×Ö·ûÒÔ¼°³öÏÖµÄ´ÎÊı
-char book[maxn];            //¼ÇÂ¼µÚi¸ö×Ö·û
-string huff_dic[maxn];      //¼ÇÂ¼×Ö·û¶ÔÓ¦µÄ¹ş·òÂüÂë
-int n, m;
+void Coding() {  //å¯¹æŸä¸€å­—ç¬¦ä¸²è¿›è¡Œç¼–ç 
 
-pair<int,int> Select(Huffman *tree, int x) {   //·µ»Ø1-xÖĞË«Ç×Îª0ÇÒÈ¨Öµ×îĞ¡µÄÁ½¸ö½ÚµãµÄË÷Òı
-
-    int s1 = INT_MAX, s2 = INT_MAX;
-    int id1 = 1, id2 = 2;
-    for(int i = 1; i <= x; i++)
-        if(!tree[i].parent and tree[i].weight < s1) {
-            id1 = i;
-            s1 = tree[i].weight;
-        }
-    for(int i = 1; i <= x; i++)
-        if(i != id1 and !tree[i].parent and tree[i].weight < s2) {
-            id2 = i;
-            s2 = tree[i].weight;
-        }
-    return make_pair(id1, id2);
-}
-void Create_Huffman(Huffman *tree,string x) {
-
-    for(int i = 0; i < x.length(); i++) all_char[x[i]]++;
-    n = all_char.size();      //¹²ÓĞn¸ö²»Í¬µÄ×Ö·û
-
-    if(n <= 1) return;
-    m = (n << 1) - 1;
-    tree = new Huffman[m + 1];
-
-    int ct = 0;
-    for(auto p = all_char.begin(); p != all_char.end(); p++) {
-        tree[++ct].weight = (*p).second;    //Ã¿¸öÒ¶×Ó½ÚµãµÄÈ¨ÖµÎª¶ÔÓ¦×Ö·û³öÏÖµÄ´ÎÊı
-        book[ct] = (*p).first;
-    }
-
-    for(int i = n + 1; i <= m; i++) {
-        pair<int,int> s = Select(tree, i-1);
-        tree[s.first].parent = tree[s.second].parent = i;
-        tree[i].left = s.first;
-        tree[i].right = s.second;
-        tree[i].weight = tree[s.first].weight + tree[s.second].weight;
-    }
-
-    for(int i = 1, fa, now; i <= n; i++) {   //ÇóÒ¶×Ó½ÚµãµÄ¹ş·òÂü±àÂë
-        x.clear();
-        now = i;
-        do {
-            fa = tree[now].parent;
-            if(now == tree[fa].left) x += '0';
-            else x += '1';
-            now = fa;
-        } while(fa);
-        reverse(x.begin(),x.end());
-        huff_dic[i] = x;
-    }
-    puts("±àÂë³É¹¦£¡±àÂë±íÈçÏÂ£º");
-    for(int i = 1; i <= n; i++)
-        cout << book[i] << " -> " << huff_dic[i] << endl;
-}
-void Coding() {  //¶ÔÄ³Ò»×Ö·û´®½øĞĞ±àÂë
-
-    puts("ÊäÈë´ı±àÂëµÄ×Ö·û´®");
+    puts("è¼¸å…¥å¾…ç·¨ç¢¼çš„å­—ç¬¦ä¸²");
     string x;
-    getline(cin,x);
-    for(int i = 0; i < x.length(); i++)
-        if(all_char.count(x[i])) {
-            for(int j = 1; j <= n; j++)
-                if(book[j] == x[i]) {
-                    cout << huff_dic[j];
+    getline(cin, x);
+    for (int i = 0; i < x.length(); i++)
+        if (CharCount.count(x[i])) {
+            for (int j = 1; j <= n; j++)
+                if (book[j] == x[i]) {
+                    cout << HuffDic[j];
                     break;
                 }
         } else {
-            puts("\n±àÂë±íÖĞ²»´æÔÚ¸Ã×Ö·û");
+            puts("\nç·¨ç¢¼è¡¨ä¸­ä¸å­˜åœ¨è©²å­—ç¬¦");
             return;
         }
     puts("");
 }
-void Decoding() { //¶ÔÄ³¸öÁãÒ»×Ö·û´®½øĞĞÒëÂë
 
-    puts("ÊäÈë´ıÒëÂëµÄ¶ş½øÖÆÂë");
+void Decoding() { //å¯¹æŸä¸ªé›¶ä¸€å­—ç¬¦ä¸²è¿›è¡Œè¯‘ç 
+
+    puts("è¼¸å…¥å¾…è­¯ç¢¼çš„äºŒé€²åˆ¶ç¢¼");
     string x;
-    getline(cin,x);
-    int len = x.length(), all = 0;
+    getline(cin, x);
+    int len = (int)x.length(), all = 0;
     string y;
-    for(int i = 0; i < len; i++) {
+    for (int i = 0; i < len; i++) {
         y += x[i];
-        for(int j = 1; j <= n; j++)
-            if(huff_dic[j] == y) {
+        for (int j = 1; j <= n; j++)
+            if (HuffDic[j] == y) {
                 all += y.length();
                 putchar(book[j]);
                 y.clear();
                 break;
             }
     }
-    if(all < len) puts(" (¶ş½øÖÆÂë²»¹æ·¶,ÒëÂë²»³É¹¦)");
+    if (all < len) puts(" (äºŒé€²åˆ¶ä¸è¦ç¯„ï¼Œè­¯ç¢¼ä¸æˆåŠŸ)");
     puts("");
 }
+
 int main() {
 
     string x;
-    Huffman *tree;
+    Huffman *tree = nullptr;
     int choose;
 
-    puts("ÇëÊäÈëÈÎÒâ×Ö·û´®ÒÔ±ã³õÊ¼»¯£º");
-    getline(cin,x);
-    Create_Huffman(tree,x);
-
-    puts("Ñ¡Ôñ½ÓÏÂÀ´µÄ²Ù×÷£ºÍË³ö->0, ±àÂë->1, ÒëÂë->2");
-    while(cin>>choose and choose) {
-        getchar();
-        if(!choose) return 0;
-        else if(choose == 1) Coding();
-        else if(choose == 2) Decoding();
-        else {
-            puts("ÊäÈëÓĞÎó");
-            continue;
-        }
-        puts("Ñ¡Ôñ½ÓÏÂÀ´µÄ²Ù×÷£ºÍË³ö->0, ±àÂë->1, ÒëÂë->2");
+    restart:
+    puts("è«‹è¼¸å…¥ä»»æ„å­—ç¬¦ä¸²ä»¥ä¾¿åˆå§‹åŒ–ï¼š");
+    getline(cin, x);
+    Create_Huffman(tree, x);
+    if(ERROR) {
+        puts("è¼¸å…¥æœ‰èª¤, è«‹é‡æ–°è¼¸å…¥ï¼");
+        goto restart;
     }
 
-//    system("pause");
+    puts("é¸æ“‡æ¥ä¸‹ä¾†çš„æ“ä½œï¼šé€€å‡º->0, ç·¨ç¢¼->1, è­¯ç¢¼->2");
+    while (cin >> choose and choose) {
+        getchar();
+        if (!choose) return 0;
+        else if (choose == 1) Coding();
+        else if (choose == 2) Decoding();
+        else {
+            puts("è¼¸å…¥æœ‰èª¤");
+            continue;
+        }
+        puts("é¸æ“‡æ¥ä¸‹ä¾†çš„æ“ä½œï¼šé€€å‡º->0, ç·¨ç¢¼->1, è­¯ç¢¼->2");
+    }
+    
     return 0;
 }
 /*
 abbbbccddd
+aabbbccccddddddddd
  */

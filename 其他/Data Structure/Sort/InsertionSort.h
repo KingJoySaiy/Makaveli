@@ -5,7 +5,7 @@
 
 namespace Inertion {        //Insertion Sort in Sequence
 
-    template<class T> void Straight(T *a, int n) {    //Ö±½Ó²åÈëÅÅĞò
+    template<class T> void Straight(T *a, int n) {    //ç›´æ¥æ’å…¥æ’åº
 
         for (int i = 0, j; i < n - 1; i++) {
             T tmp = a[i + 1];
@@ -16,7 +16,7 @@ namespace Inertion {        //Insertion Sort in Sequence
         }
     }
 
-    template<class T> void Binary(T *a, int n) {      //ÕÛ°ë²åÈëÅÅĞò
+    template<class T> void Binary(T *a, int n) {      //æŠ˜åŠæ’å…¥æ’åº
 
         for (int i = 1; i < n; i++) {
             if (a[i] < a[i - 1]) {
@@ -35,7 +35,7 @@ namespace Inertion {        //Insertion Sort in Sequence
         }
     }
 
-    template<typename T> void Shell(T *a, int n) { //Ï£¶ûÅÅĞò
+    template<typename T> void Shell(T *a, int n) { //å¸Œå°”æ’åº
         
         int h = 1;
         while (h < n / 3) h = 3 * h + 1;

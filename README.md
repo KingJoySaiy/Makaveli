@@ -6,6 +6,7 @@ We ride or die.
 * [C++笔记](/笔记/C++笔记.md)
 * [java笔记](/笔记/java笔记.md)
 * [MySQL笔记](/笔记/MySQL笔记.md)
+* [Vim笔记.md](/笔记/Vim笔记.md)
 * [python笔记](/笔记/python笔记.md)
 
 ## 二、数据结构

@@ -1,7 +1,7 @@
 #ifndef INC_233_GRAPH_H
 #define INC_233_GRAPH_H
 
-#include "Struct.h"
+#include "Airline.h"
 #include "HashMap.h"
 
 const int maxn = 100;       //设置最多100个城市

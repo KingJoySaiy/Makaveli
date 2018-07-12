@@ -1,7 +1,7 @@
 #ifndef INC_233_HASHMAP_H
 #define INC_233_HASHMAP_H
 
-#include "Struct.h"
+#include "Airline.h"
 
 const int mod = 100;                //设置哈希表模为100
 

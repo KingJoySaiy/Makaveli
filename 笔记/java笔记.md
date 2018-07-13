@@ -17,24 +17,43 @@
 
 ## 二、Collection
 
-### 1. Collection (接口)
-* `import java.util.Collection`導入包
-
-### 2. ArrayList (抽象類)
+#### 1. ArrayList, LinkList
 * `import java.util.ArrayList`導入包 
-* `ArrayList a = new ArrayList()`定義鏈表
-* `ArrayList<Integer> a = new Arraylist<>()`用范型定義Integer對象鏈表
+* `import java.util.List` 可用 **List** 接口
+* `List a = new ArrayList(ct)`定義鏈表，ct可以定長
+* `List<Integer> a = new Arraylist<>()`用范型定義Integer對象鏈表
+* `ListIterator<> a.ListIterator()`返回迭代器
 
-### 3. Set
-### 4. List
-### 5. Queue
-### 6. Stack
+#### 2. HashSet, TreeSet
+* `import java.util.HashSet`導入包 
+* `import java.util.Set` 可用 **Set** 接口
+* `Set a = new HashSet()`
+* `Set<Integer> a = new HashSet<>()`
 
-1. `a.get(index)`獲取指定位置元素
-2. `a.add(object)`末尾添加對象
-3. `a.size()`鏈表長度
+#### 3. HashMap, TreeMap, HashTable, LinkedHashMap
+
+#### 5. Stack
+
+#### 4. Queue (接口)
 
 
-## 四、Map
-### 1. HashMap
+* `a.add(int, object)`在指定位置插入對象，index可省去（1）
+* `a.clear()`清除全部對象（1）
+* `object a.clone()`返回淺拷貝，即引用（1）
+* `boolean a.contains(object)`是否存在某對象（1）
+* `object a.get(int)`獲取索引位置的對象（1）
+* `int a.indexOf(object)`第一次出現的索引，不存在則-1（1）
+* `int a.lastIndexOf(int)`最後一次出現的索引，不存在則-1（1）
+* `boolean a.isEmpty()`是否為空（1）
+* `object a.remove(int)`刪除指定位置對象並返回（1）
+* `boolean a.remove(object)`刪除對象成功則true（1）
+* `a.removeRange(int, int)`索引區間全部刪除（1）
+* `a.set(int, object)`修改對象（1）
+* `a.size()`對象數量（1）
+* `List<> a.subList(int, int)`返回區間子鏈表（1）
+* `object[] a.toArray()`返回對象數組（1）
+* `boolean it.hasNext()`判斷迭代器有無後一個（1）
+* `boolean it.hasPrevious()`判斷迭代其有無前一個（1）
+* `object it.next()`下一個迭代器引用（1）
+* `object it.previous()`前一個迭代其引用（1）
 

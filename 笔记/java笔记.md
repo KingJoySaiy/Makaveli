@@ -21,7 +21,7 @@
 * LinkedList: 用链表结构存储数据，适合数据的动态插入和删除，随机访问和遍历速度比较慢。此外可以用于操作表头和表尾元素，可以当作堆栈、队列和双端队列使用。
 * Vector: 通过数组实现，支持线程的同步，從而避免多线程同时写而引起的不一致性，但实现同步需要很高的花费，因此访问Vector比访问ArrayList慢。
 
-#### 1. ArrayList (Collection, Iterable, List)
+### 1. ArrayList (Collection, Iterable, List)
 1. `import java.util.ArrayList`導入類包 
 2. `import java.util.List` 導入 **List** 接口
 3. `import java.util.Collection`導入 **Colletion** 接口
@@ -29,7 +29,7 @@
 5. `List<Integer> a = new Arraylist<>()`用范型定義Integer對象鏈表
 6. `Collection`
 
-#### 2. LinkedList (Collection, Iterable, List, Queue, Deque)
+### 2. LinkedList (Collection, Iterable, List, Queue, Deque)
 1. `import java.util.LinkedList` 導入 **LinkedList** 類包
 2. `import java.util.Queue`導入 **Colletion** 接口
 3. `import java.util.Deque` 導入 **List** 接口
@@ -37,7 +37,7 @@
 5. `Queue a = new LinkedList()`定義隊列
 6. `Deque a = new LinkedList()`定義雙端隊列
 
-#### 3. Vector, Stack (Collection, Iterable, List)
+### 3. Vector, Stack (Collection, Iterable, List)
 1. `import java.util.Vector`導入 **Vector**類包
 2. `List a = new Vector()`定義Vector
 3. `List a = new Stack()`定義棧
@@ -89,18 +89,18 @@
 * TreeSet: 通過樹形結構實現的有序集合，其對象以升序顺序存储，访问和遍历的时间很快。
 * LinkedHashSet: 以元素插入的顺序来维护集合的链接表，以插入的顺序在集合中迭代；  
 
-#### 1. HashSet (Collection, Iterable, Set)
+### 1. HashSet (Collection, Iterable, Set)
 1. `import java.util.HashSet`導入包
 2. `import java.util.Set`導入 **Set** 接口
 3. `Set a = new HashSet()`定義集合，哈希表實現
 
-#### 2. TreeSet (Collection, Iterable, SortedSet, Set)
+### 2. TreeSet (Collection, Iterable, SortedSet, Set)
 1. `import java.util.TreeSet`導入包
 2. `import java.util.SortedSet`導入 **SortedSet** 接口
 3. `Set a = new TreeSet()`定義集合，樹形結構實現
 4. `Sorted a = new TreeSet()`以SortedSet接口定義集合
 
-#### 3. LinkedHashSet(Collection, Iterable, HashSet, Set)
+### 3. LinkedHashSet(Collection, Iterable, HashSet, Set)
 1. `import java.util.LinkedHashSet`導入包
 2. `Set a = new LinkedHashSet`定義無序集合
 3. `HashSet a = new LinkedHashSet`以父類HashSet定義無序集合
@@ -137,18 +137,18 @@
 * TreeMap: 用樹形結構有序存儲鍵值對，實現了SortedMap接口。默認按鍵升序排序，也可以指定比較器。
 * LinkedHashMap: 按插入順序進行存儲，是無序哈希表。
 
-#### 1. HashMap (Map)
+### 1. HashMap (Map)
 1. `import java.util.HashMap`導入包
 2. `import java.util.Map`導入 **Map** 接口
 3. `Map<Key, Value> a = new HashMap<>()`定义存储键值对的哈希表
 
-#### 2. TreeMap (Map, SortedMap)
+### 2. TreeMap (Map, SortedMap)
 1. `import java.util.TreeMap`導入包
 2. `import java.util.SortedMap`導入 **SortedMap** 接口
 3. `Map<Key, Value> a = new TreeMap<>()`定義TreeMap
 4. `SortedMap<key, value> a = new TreeMap()`以SortedMap爲接口定義TreeMap
 
-#### 3. LinkedHashMap (Map, HashMap)
+### 3. LinkedHashMap (Map, HashMap)
 1. `import java.util.LinkedHashMap`導入包
 2. `Map<Key, Value> a = new LinkedHashMap<>()`定義LinkedHashMap
 3. `HashMap<Key, Value> a = new LinkedHashMap<>()`以父類HashMap定義LinkedHashMap

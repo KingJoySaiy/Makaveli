@@ -41,7 +41,7 @@
 1. `import java.util.Vector`導入 **Vector**類包
 2. `List a = new Vector()`定義Vector
 3. `List a = new Stack()`定義棧
-4. `Vector a = new Stack()`定義棧以Vector作爲接口
+4. `Vector a = new Stack()`以父類Vector定義棧
 
 * `a.add(int, object)`在指定位置插入對象，index可省去 (1, 2, 3)
 * `a.add(int, Collection<>)`尾部添加整個容器 (1, 2, 3)
@@ -103,7 +103,7 @@
 #### 3. LinkedHashSet(Collection, Iterable, HashSet, Set)
 1. `import java.util.LinkedHashSet`導入包
 2. `Set a = new LinkedHashSet`定義無序集合
-3. `HashSet a = new LinkedHashSet`定義無序集合以HashSet作爲接口
+3. `HashSet a = new LinkedHashSet`以父類HashSet定義無序集合
 
 * `boolean a.add(object)`添加對象，若已存在則false (1, 2, 3)
 * `a.clear()`清空集合 (1, 2, 3)
@@ -133,16 +133,82 @@
 
 ## 四、Map 接口
 
+* HashMap: 最常用的Map，用散列表存儲鍵值對，能夠快速隨機訪問數據。只允許一條記錄鍵爲null，不支持線程同步。
+* TreeMap: 用樹形結構有序存儲鍵值對，實現了SortedMap接口。默認按鍵升序排序，也可以指定比較器。
+* LinkedHashMap: 按插入順序進行存儲，是無序哈希表。
+
 #### 1. HashMap (Map)
-* `import java.util.Map`
+1. `import java.util.HashMap`導入包
+2. `import java.util.Map`導入 **Map** 接口
+3. `Map<Key, Value> a = new HashMap<>()`定义存储键值对的哈希表
 
+#### 2. TreeMap (Map, SortedMap)
+1. `import java.util.TreeMap`導入包
+2. `import java.util.SortedMap`導入 **SortedMap** 接口
+3. `Map<Key, Value> a = new TreeMap<>()`定義TreeMap
+4. `SortedMap<key, value> a = new TreeMap()`以SortedMap爲接口定義TreeMap
 
-#### 2. TreeMap, HashTable, LinkedHashMap 
+#### 3. LinkedHashMap (Map, HashMap)
+1. `import java.util.LinkedHashMap`導入包
+2. `Map<Key, Value> a = new LinkedHashMap<>()`定義LinkedHashMap
+3. `HashMap<Key, Value> a = new LinkedHashMap<>()`以父類HashMap定義LinkedHashMap
+
+* `Map.Entry<Key, Value>`内部泛型接口类型 (1, 2)
+* `Map.Entry(key, value)`内部泛型接口对象 (1, 2)
+* `a.clear()`清空所有对象 (1, 2)
+* `Map a.clone()`返回哈希表浅拷贝 (1, 2)
+* `Value a.get(Key)`按照key获取value，不存在则null (1, 2)
+* `boolean a.isEmpty()`判断哈希表是否为空 (1, 2)
+* `boolean a.containsKey(key)`判断是否存在某键 (1, 2)
+* `boolean a.containsValue(value)`判断是否存在某值 (1, 2)
+* `Set<Map.Entry<Key, Value>> a.entrySet()`获取内部键值集合 (1, 2)
+* `Set<Key> a.keySet()`获取键集合 (1， 2)
+* `Value a.put(Key, Value)`添加键值对，返回键之前的值 (1, 2)
+* `a.putAll(b)`添加整个map (1, 2)
+* `Value a.remove(Key)`删除键值对，返回值 (1, 2)
+* `int a.size()`返回键值对个数 (1, 2)
+* `Collection<Value> a.values()`返回值构成的容器 (1, 2)
+* `int a.hashCode()`返回哈希码 (1, 2)
+* `String a.toString()`返回字符串表述 (1, 2)
+* `boolean a.equals(object)`判断对象是否相等 (1, 2)
+* `Comparator<super Key> a.comparator()`返回哈希表的比較器，自然序則null (2)
+* `Map.Entry<Key, Value> a.firstEntry()`返回鍵最小的鍵值對，表空則null (2)
+* `Map.Entry<Key, Value> a.lastEntry()`返回鍵最大的鍵值對，表空則null (2)
+* `Map.Entry<Key, Value> a.floorEntry(Key)`返回鍵小於等於key的最大的鍵值對，表空則null (2)
+* `Map.Entry<Key, Value> a.ceilingEntry(Key)`返回鍵大於等於key的最小的鍵值對，不存在則null (2)
+* `Map.Entry<Key, Value> a.lowerEntry(Key)`返回鍵小於key的最大鍵值對，表空則null (2)
+* `Map.Entry<Key, Value> a.higherEntry(Key)`返回鍵大於key的最小鍵值對，表空則null (2)
+* `Key a.firstKey()`返回最小的鍵，表空則null (2)
+* `Key a.lastKey()`返回最大的鍵，表空則null (2)
+* `Key a.floorKey(Key)`返回小於等於key的最大key，表空則null (2)
+* `Key a.ceilingKey(Key)`返回鍵大於等於key的最小的鍵，不存在則null (2)
+* `Key a.lowerKey(Key)`返回小於key的最大key，表空則null (2)
+* `Key a.higherKey(Key)`返回大於key的最小key，表空則null (2)
+* `Map.Entry<Key, Value> a.pollFirstEntry()`刪除第一個鍵值對並返回 (2)
+* `Map.Entry<Key, Value> a.pollLastEntry()`刪除最後一個鍵值對並返回 (2)
+* `SortedMap<Key, Value> a.headMap(Key)`返回小於等於key的子哈希表引用 (2)
+* `SortedMap<Key, Value> a.tailMap(Key)`返回大於key的子哈希表引用 (2)
+* `SortedMap<Key, Value> a.subMap(Key, Key)`返回key左閉右開區間的子哈希表引用 (2)
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
 
 ## 五、Collections 靜態容器方法
 
-* Collections提供很多對容器 (Collection) 進行操作的靜態方法，常用容器接口 (Collection Interface) 有List, Set, Map, Queue, Deque。
-* `import java.util.Collections` 導入包
+1. **Collections** 提供很多對容器 (Collection) 進行操作的靜態方法，常用容器接口 (Collection Interface) 有List, Set, Map, Queue, Deque。
+2. `import java.util.Collections` 導入包
 
 * `Queue Collections.asLifoQueue(Deque)`雙端隊列轉換爲隊列
 * `boolean Collections.disjoint(Collection, Collection)`容器無交集則true，否則false
@@ -162,14 +228,6 @@
 * `boolean Collections.replaceAll(List, object, object)`List替換對象，不存在則false
 * `Collections.sort(List, Comparator)`容器進行升序，比較器可省去
 * `Collections.swap(List, int, int)`交換指定位置處的對象
-* ``
-* ``
-* ``
-* ``
-* ``
-
-
-
 
 
 備忘：
@@ -180,3 +238,4 @@ Collections.Sort() & Comparator
 Iterator
 String
 Character
+Pair<object, object>

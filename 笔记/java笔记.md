@@ -1,7 +1,19 @@
 ## 一、基本語法
+* `java.lang.*`默認包自動導入
 * `for(Type it : ArrayName) {}`foreach遍歷
+* 基本類型之間用`==`按值比較，對象類型之間用`a.equal(b)`按引用比較
 
-* 抽象類和接口對比
+1.  對象類型與基本類型:
+ 
+|對象類|基本類|對象類|基本類|
+|---|---|---|---|
+|Integer|int|Short|short|
+|Double|double|Float|float|
+|Long|long|Byte|byte|
+|Boolean|boolean|Character|char|
+|String|-|||
+
+2. 抽象類和接口對比
 
 |参数|抽象类|接口|
 |---|---|---|
@@ -155,22 +167,22 @@
 
 * `Map.Entry<Key, Value>`内部泛型接口类型 (1, 2)
 * `Map.Entry(key, value)`内部泛型接口对象 (1, 2)
-* `a.clear()`清空所有对象 (1, 2)
-* `Map a.clone()`返回哈希表浅拷贝 (1, 2)
-* `Value a.get(Key)`按照key获取value，不存在则null (1, 2)
-* `boolean a.isEmpty()`判断哈希表是否为空 (1, 2)
-* `boolean a.containsKey(key)`判断是否存在某键 (1, 2)
-* `boolean a.containsValue(value)`判断是否存在某值 (1, 2)
-* `Set<Map.Entry<Key, Value>> a.entrySet()`获取内部键值集合 (1, 2)
-* `Set<Key> a.keySet()`获取键集合 (1， 2)
-* `Value a.put(Key, Value)`添加键值对，返回键之前的值 (1, 2)
-* `a.putAll(b)`添加整个map (1, 2)
-* `Value a.remove(Key)`删除键值对，返回值 (1, 2)
-* `int a.size()`返回键值对个数 (1, 2)
-* `Collection<Value> a.values()`返回值构成的容器 (1, 2)
-* `int a.hashCode()`返回哈希码 (1, 2)
-* `String a.toString()`返回字符串表述 (1, 2)
-* `boolean a.equals(object)`判断对象是否相等 (1, 2)
+* `a.clear()`清空所有对象 (1, 2, 3)
+* `Map a.clone()`返回哈希表浅拷贝 (1, 2, 3)
+* `Value a.get(Key)`按照key获取value，不存在则null (1, 2, 3)
+* `boolean a.isEmpty()`判断哈希表是否为空 (1, 2, 3)
+* `boolean a.containsKey(key)`判断是否存在某键 (1, 2, 3)
+* `boolean a.containsValue(value)`判断是否存在某值 (1, 2, 3)
+* `Set<Map.Entry<Key, Value>> a.entrySet()`获取内部键值集合 (1, 2, 3)
+* `Set<Key> a.keySet()`获取键集合 (1, 2, 3)
+* `Value a.put(Key, Value)`添加键值对，返回键之前的值 (1, 2, 3)
+* `a.putAll(b)`添加整个map (1, 2, 3)
+* `Value a.remove(Key)`删除键值对，返回值 (1, 2, 3)
+* `int a.size()`返回键值对个数 (1, 2, 3)
+* `Collection<Value> a.values()`返回值构成的容器 (1, 2, 3)
+* `int a.hashCode()`返回哈希码 (1, 2, 3)
+* `String a.toString()`返回字符串表述 (1, 2, 3)
+* `boolean a.equals(object)`判断对象是否相等 (1, 2, 3)
 * `Comparator<super Key> a.comparator()`返回哈希表的比較器，自然序則null (2)
 * `Map.Entry<Key, Value> a.firstEntry()`返回鍵最小的鍵值對，表空則null (2)
 * `Map.Entry<Key, Value> a.lastEntry()`返回鍵最大的鍵值對，表空則null (2)
@@ -189,21 +201,6 @@
 * `SortedMap<Key, Value> a.headMap(Key)`返回小於等於key的子哈希表引用 (2)
 * `SortedMap<Key, Value> a.tailMap(Key)`返回大於key的子哈希表引用 (2)
 * `SortedMap<Key, Value> a.subMap(Key, Key)`返回key左閉右開區間的子哈希表引用 (2)
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
 
 ## 五、Collections 靜態容器方法
 
@@ -229,13 +226,36 @@
 * `Collections.sort(List, Comparator)`容器進行升序，比較器可省去
 * `Collections.swap(List, int, int)`交換指定位置處的對象
 
+## 六、Character 基本字符類
+
+1. **Character** 類用於對單個字符進行操作
+2. `import java.lang.Character`導入包，也可不加會自動導入
+3. `Character a = new Character('c') / 'c'`定義字符對象
+
+* `char a.charValue()`返回基本類型
+* `Character Character.valueOf(char)`基本類型轉對象類型
+* `int a.compareTo(Character)`返回字典序差值
+* `boolean a.equals(Character)`比較兩字符
+* `boolean Character.isAlphabetic() / isLetter`判斷是否是拉丁字母
+* `boolean Character.isDigit()`判斷是否是數字
+* `boolean Character.isLowerCase()`判斷是否小寫字母
+* `boolean Character.isUpperCase()`判斷是否大寫字母
+* `boolean Character.isLetterOrDigit()`判斷是否是字母或數字
+* `String a.toString()`返回字符串對象
+* `String Character.toString(Char)`返回字符串對象
+* `boolean Character.toTitleCase(char)`首字母大寫
+* `boolean Character.toLowerCase(char)`大寫轉小寫
+* `boolean Character.toUpperCase(char)`小寫轉大寫
 
 備忘：
+
 Scanner
 BigInteger
 BigDecimal
 Collections.Sort() & Comparator
 Iterator
-String
-Character
+String / StringBuilder
+Math
 Pair<object, object>
+正則表達式
+lambda表達式

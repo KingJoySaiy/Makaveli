@@ -226,36 +226,98 @@
 * `Collections.sort(List, Comparator)`容器進行升序，比較器可省去
 * `Collections.swap(List, int, int)`交換指定位置處的對象
 
-## 六、Character 基本字符類
+## 六、常用基本類
 
-1. **Character** 類用於對單個字符進行操作
+### 1. Character 基本字符類
+
+1. **Character** 是基本類型 **char** 的封裝類，用於對單個字符進行操作
 2. `import java.lang.Character`導入包，也可不加會自動導入
 3. `Character a = new Character('c') / 'c'`定義字符對象
 
 * `char a.charValue()`返回基本類型
-* `Character Character.valueOf(char)`基本類型轉對象類型
+* `String a.toString()`返回字符串對象
 * `int a.compareTo(Character)`返回字典序差值
 * `boolean a.equals(Character)`比較兩字符
+* `Character Character.valueOf(char)`基本類型轉對象類型
 * `boolean Character.isAlphabetic() / isLetter`判斷是否是拉丁字母
 * `boolean Character.isDigit()`判斷是否是數字
 * `boolean Character.isLowerCase()`判斷是否小寫字母
 * `boolean Character.isUpperCase()`判斷是否大寫字母
 * `boolean Character.isLetterOrDigit()`判斷是否是字母或數字
-* `String a.toString()`返回字符串對象
 * `String Character.toString(Char)`返回字符串對象
 * `boolean Character.toTitleCase(char)`首字母大寫
 * `boolean Character.toLowerCase(char)`大寫轉小寫
 * `boolean Character.toUpperCase(char)`小寫轉大寫
 
+### 2. Integer 基本整數類
+
+1. **Integer** 是基本類型 **int** 的封裝類，用於對整數的基本操作
+2. `import java.lang.Integer`導入包，也可不加會自動導入
+3. `Integer a = new Integer(1) / 1`定義整數對象
+
+* `boolean a.equals(Integer)`比較兩個對象是否相等
+* `double a.doubleValue()`返回double數值
+* `int a.intValue()`返回int數值
+* `long a.longValue()`返回long數值
+* `short a.shortValue()`返回short數值
+* `String a.toString()`整型轉爲字符串
+* `int Integer.praseInt(String)`字符串轉爲整型
+* `int Integer.bitCount(a)`返回二進制數中1的個數
+* `String Integer.toBinaryString(int)`int轉爲二進制字符串
+* `String Integer.toString(int)`整型轉爲字符串
+
+### 3. String 字符串類
+
+1. **String** 類提供字符串的基本操作
+2. `import java.lang.String`導入包，也可不加會自動導入
+3. `String a = new String()`定義字符串對象
+
+* `char a.charAt(int)`返回指定位置處的字符
+* `int a.compareTo(String)`返回第一個不同字符的字典序差值
+* `String a.concat(String)`字符串串聯到最後
+* `boolean a.contains(String)`判斷是否是子串
+* `boolean a.equals(String)`判斷字符串是否相等
+* `int a.indexOf(char / String)`返回子串第一次出現的索引，不存在則-1
+* `int a.lastIndexOf(char / String)`返回子串最後一次出現的索引，不存在則-1
+* `boolean a.isEmpty()`判斷是否是空串
+* `int a.length()`返回串長
+* `String a.replace(char, char)`替換字符
+* `String a.replace(String, String)`替換字符串
+* `String a.replaceFirst(String, String)`替換第一個匹配的字符串
+* `String[] a.split(String)`分割字符串
+* `String a.subString(int, int)`返回子串，省去二參數則到串尾
+* `char[] a.toCharArray()`轉換爲字符數組
+* `String a.toLowerCase()`大寫轉小寫
+* `String a.toUpperCase()`小寫轉大寫
+* `String a.clone`返回淺拷貝
+* `String String.valueOf(char[] / double / float/ int)`轉換爲字符串
+* `String String.valueOf(boolean / char / long)`轉換爲字符串
+
+## 七、大整數類
+
+### 1. BigInteger
+
+### 2. BigDecimal
+
+
+
+
 備忘：
 
 Scanner
-BigInteger
-BigDecimal
+
+BigInteger / BigDecimal
+
 Collections.Sort() & Comparator
+
 Iterator
-String / StringBuilder
+
+StringBuilder / StringBuffer
+
 Math
+
 Pair<object, object>
+
 正則表達式
+
 lambda表達式

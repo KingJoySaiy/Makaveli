@@ -297,9 +297,44 @@
 
 ### 1. BigInteger
 
+1. **BigInteger** 類提供對較大的整數的基本操作
+2. `import java.math.BigInteger`導入包
+3. `BigInteger a = new BigInteger(String)`定義大整數對象，字符串必須只包含數字
+
+
 ### 2. BigDecimal
 
+1. **BigDecimal** 類提供對較大的十進制數（包括小數）的基本操作
+2. `import java.math.BigDecimal`導入包
+3. `BigDecimal a = new BigDecimal(int / long / char[] / String / double / BigInteger)`定義大十進制數
 
+* `BigInteger a.abs()`返回絕對值 (1)
+* `boolean a.equals(object)`判斷是否相等 (1, 2)
+* `BigInteger a.add(BigInteger)`加法
+* `BigInteger a.multiply(BigInteger)`乘法
+* `BigInteger a.divide(BigInteger)`除法
+* `BigInteger[] a.divideAndRemainder(BigInteger)`返回商和餘數2個值
+* `BigInteger a.max(BigInteger)`返回較大值
+* `BigInteger a.min(BigInteger)`返回較小值
+* `BigInteger a.mod(BigInteger)`返回餘數
+* `BigInteger a.negate()`返回相反數
+* `BigInteger a.and(BigInteger)`按位與
+* `BigInteger a.andNot(BigInteger)`按位與非
+* `int a.bitCount()`返回二進制數中1的個數
+* `int a.compareTo(BigInteger)`比較大小，返回差值
+* `double a.doubleValue()`轉換爲雙精度浮點數
+* `float a.floatValue()`轉換爲單精度浮點數
+* `int a.intValue()`轉換爲整型
+* `long a.longValue()`轉換爲長整型
+* `BigInteger a.gcd(BigInteger)`返回兩數絕對值的最大公約數gcd
+* `boolean a.isProbablePrime()`判斷是否是素數
+* `BigInteger a.nextProbablePrime()`返回下一個素數
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
 
 
 備忘：

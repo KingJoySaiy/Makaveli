@@ -266,82 +266,103 @@
 * `String Integer.toBinaryString(int)`int轉爲二進制字符串
 * `String Integer.toString(int)`整型轉爲字符串
 
-### 3. String 字符串類
+### 3. String 字符串相關
 
-1. **String** 類提供字符串的基本操作
-2. `import java.lang.String`導入包，也可不加會自動導入
-3. `String a = new String()`定義字符串對象
+* String：不可變字符串對象，每次修改都要生成新對象並改變引用，速度較慢。
+* StringBuffer：線程安全的可變字符序列，可在必要時對一些方法進行同步，在實例上的操作順序與每個線程的方法調用順序一致。
+* StringBuilder：不支持多線程的可變字符序列，比String和StringBuffer快很多，因此被單線程使用時優先採用該類。
 
-* `char a.charAt(int)`返回指定位置處的字符
-* `int a.compareTo(String)`返回第一個不同字符的字典序差值
-* `String a.concat(String)`字符串串聯到最後
-* `boolean a.contains(String)`判斷是否是子串
-* `boolean a.equals(String)`判斷字符串是否相等
-* `int a.indexOf(char / String)`返回子串第一次出現的索引，不存在則-1
-* `int a.lastIndexOf(char / String)`返回子串最後一次出現的索引，不存在則-1
-* `boolean a.isEmpty()`判斷是否是空串
-* `int a.length()`返回串長
-* `String a.replace(char, char)`替換字符
-* `String a.replace(String, String)`替換字符串
-* `String a.replaceFirst(String, String)`替換第一個匹配的字符串
-* `String[] a.split(String)`分割字符串
-* `String a.subString(int, int)`返回子串，省去二參數則到串尾
-* `char[] a.toCharArray()`轉換爲字符數組
-* `String a.toLowerCase()`大寫轉小寫
-* `String a.toUpperCase()`小寫轉大寫
-* `String a.clone`返回淺拷貝
-* `String String.valueOf(char[] / double / float/ int)`轉換爲字符串
-* `String String.valueOf(boolean / char / long)`轉換爲字符串
+#### 1. String 字符類
 
-## 七、大整數類
+1. `import java.lang.String`導入包，也可不加會自動導入
+2. `String a = new String()`定義字符串對象
+
+### 2. StringBuffer 字符串緩衝
+
+1. `import java.lang.StringBuffer`導入包，也可不加會自動導入
+2. `StringBuffer a = new StringBuffer()`定義StringBuffer對象
+
+### 3. StringBuilder 字符串構建
+
+1. `import java.lang.StringBuilder`導入包，也可不加會自動導入
+2. `StringBuffer a = new StringBuilder()`定義StringBuffer對象
+
+* `char a.charAt(int)`返回指定位置處的字符 (1)
+* `int a.compareTo(String)`返回第一個不同字符的字典序差值 (1)
+* `String a.concat(String)`字符串串聯到最後 (1)
+* `boolean a.contains(String)`判斷是否是子串 (1)
+* `boolean a.equals(String)`判斷字符串是否相等 (1)
+* `int a.indexOf(char / String)`返回子串第一次出現的索引，不存在則-1 (1)
+* `int a.lastIndexOf(char / String)`返回子串最後一次出現的索引，不存在則-1 (1)
+* `boolean a.isEmpty()`判斷是否是空串 (1)
+* `int a.length()`返回串長 (1)
+* `String a.replace(char, char)`替換字符 (1)
+* `String a.replace(String, String)`替換字符串 (1)
+* `String a.replaceFirst(String, String)`替換第一個匹配的字符串 (1)
+* `String[] a.split(String)`分割字符串 (1)
+* `String a.subString(int, int)`返回子串，省去二參數則到串尾 (1)
+* `char[] a.toCharArray()`轉換爲字符數組 (1)
+* `String a.toLowerCase()`大寫轉小寫 (1)
+* `String a.toUpperCase()`小寫轉大寫 (1)
+* `String a.clone`返回淺拷貝 (1)
+* `String String.valueOf(char[] / double / float/ int)`轉換爲字符串 (1)
+* `String String.valueOf(boolean / char / long)`轉換爲字符串 (1)
+
+## 七、大數類
+
+* BigInteger：提供對較大的整數的基本操作
+* BigDecimal：類提供對較大的十進制數（包括小數）的基本操作
 
 ### 1. BigInteger
 
-1. **BigInteger** 類提供對較大的整數的基本操作
-2. `import java.math.BigInteger`導入包
-3. `BigInteger a = new BigInteger(String)`定義大整數對象，字符串必須只包含數字
-
+1. `import java.math.BigInteger`導入包
+2. `BigInteger a = new BigInteger(String)`定義大整數對象，字符串必須只包含數字
 
 ### 2. BigDecimal
 
-1. **BigDecimal** 類提供對較大的十進制數（包括小數）的基本操作
-2. `import java.math.BigDecimal`導入包
-3. `BigDecimal a = new BigDecimal(int / long / char[] / String / double / BigInteger)`定義大十進制數
+1. `import java.math.BigDecimal`導入包
+2. `BigDecimal a = new BigDecimal(int / long / char[] / String / double / BigInteger)`定義大十進制數
 
-* `BigInteger a.abs()`返回絕對值 (1)
+* `Object a.abs()`返回絕對值 (1, 2)
 * `boolean a.equals(object)`判斷是否相等 (1, 2)
-* `BigInteger a.add(BigInteger)`加法
-* `BigInteger a.multiply(BigInteger)`乘法
-* `BigInteger a.divide(BigInteger)`除法
-* `BigInteger[] a.divideAndRemainder(BigInteger)`返回商和餘數2個值
-* `BigInteger a.max(BigInteger)`返回較大值
-* `BigInteger a.min(BigInteger)`返回較小值
-* `BigInteger a.mod(BigInteger)`返回餘數
-* `BigInteger a.negate()`返回相反數
-* `BigInteger a.and(BigInteger)`按位與
-* `BigInteger a.andNot(BigInteger)`按位與非
-* `int a.bitCount()`返回二進制數中1的個數
-* `int a.compareTo(BigInteger)`比較大小，返回差值
-* `double a.doubleValue()`轉換爲雙精度浮點數
-* `float a.floatValue()`轉換爲單精度浮點數
-* `int a.intValue()`轉換爲整型
-* `long a.longValue()`轉換爲長整型
-* `BigInteger a.gcd(BigInteger)`返回兩數絕對值的最大公約數gcd
-* `boolean a.isProbablePrime()`判斷是否是素數
-* `BigInteger a.nextProbablePrime()`返回下一個素數
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-
+* `Object a.add(Object)`加法 (1, 2)
+* `Object a.subtract(Object)`減法 (1, 2)
+* `Object a.multiply(Object)`乘法 (1, 2)
+* `Object a.divide(Object)`除法 (1, 2)
+* `Object a.remainder(Object)`取模運算 (1, 2)
+* `Object[] a.divideAndRemainder(Object)`返回商和餘數2個值 (1, 2)
+* `Object a.max(Object)`返回較大值 (1, 2)
+* `Object a.min(Object)`返回較小值 (1, 2)
+* `Object a.mod(Object)`取模運算 (1)
+* `Object a.negate()`返回相反數 (1, 2)
+* `Object a.and(Object)`按位與 (1)
+* `Object a.andNot(Object)`按位與非 (1)
+* `Object a.not()`按位取反 (1)
+* `Object a.or(Object)`按位或 (1)
+* `Object a.xor(Object)`按位抑或 (1)
+* `int a.bitCount()`返回二進制數中1的個數 (1)
+* `int a.compareTo(Object)`比較大小，返回差值 (1, 2)
+* `double a.doubleValue()`轉換爲雙精度浮點數 (1, 2)
+* `float a.floatValue()`轉換爲單精度浮點數 (1, 2)
+* `int a.intValue()`轉換爲整型 (1, 2)
+* `long a.longValue()`轉換爲長整型 (1, 2)
+* `Object a.gcd(Object)`返回兩數絕對值的最大公約數gcd (1)
+* `boolean a.isProbablePrime()`判斷是否是素數 (1)
+* `Object a.nextProbablePrime()`返回下一個素數 (1)
+* `Object a.pow(int)`返回this^x (1, 2)
+* `Object a.shiftLeft(int)`左移若干位 (1)
+* `Object a.shiftRight(int)`右移若干位 (1)
+* `String a.toString()`大整數轉字符串 (1, 2)
+* `Object Object.valueOf(long)`長整型轉大整數 (1, 2)
+* `Object a.clone()`返回淺拷貝 (1)
+* `Object a.divideToIntegralValue()`向下取整 (2)
+* `Object a.movePointLeft()`小數點左移一位 (2)
+* `Object a.movePointRight()`小數點右移一位 (2)
+* `int a.precision()`返回精度 (2)
 
 備忘：
 
 Scanner
-
-BigInteger / BigDecimal
 
 Collections.Sort() & Comparator
 
@@ -356,3 +377,5 @@ Pair<object, object>
 正則表達式
 
 lambda表達式
+
+Swing : JFrame / JTable

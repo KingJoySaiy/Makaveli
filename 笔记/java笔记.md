@@ -287,18 +287,19 @@
 1. `import java.lang.StringBuilder`導入包，也可不加會自動導入
 2. `StringBuffer a = new StringBuilder()`定義StringBuffer對象
 
-* `char a.charAt(int)`返回指定位置處的字符 (1)
+* `char a.charAt(int)`返回指定位置處的字符 (1, 2)
 * `int a.compareTo(String)`返回第一個不同字符的字典序差值 (1)
 * `String a.concat(String)`字符串串聯到最後 (1)
 * `boolean a.contains(String)`判斷是否是子串 (1)
-* `boolean a.equals(String)`判斷字符串是否相等 (1)
-* `int a.indexOf(char / String)`返回子串第一次出現的索引，不存在則-1 (1)
-* `int a.lastIndexOf(char / String)`返回子串最後一次出現的索引，不存在則-1 (1)
+* `boolean a.equals(String)`判斷字符串是否相等 (1, 2)
+* `int a.indexOf(char / String)`返回子串第一次出現的索引，不存在則-1 (1, 2)
+* `int a.lastIndexOf(char / String)`返回子串最後一次出現的索引，不存在則-1 (1, 2)
 * `boolean a.isEmpty()`判斷是否是空串 (1)
-* `int a.length()`返回串長 (1)
+* `int a.length()`返回串長 (1, 2)
 * `String a.replace(char, char)`替換字符 (1)
 * `String a.replace(String, String)`替換字符串 (1)
 * `String a.replaceFirst(String, String)`替換第一個匹配的字符串 (1)
+* `Object a.replace(int, int, String)`替換區間內所有字符 (2)
 * `String[] a.split(String)`分割字符串 (1)
 * `String a.subString(int, int)`返回子串，省去二參數則到串尾 (1)
 * `char[] a.toCharArray()`轉換爲字符數組 (1)
@@ -307,6 +308,30 @@
 * `String a.clone`返回淺拷貝 (1)
 * `String String.valueOf(char[] / double / float/ int)`轉換爲字符串 (1)
 * `String String.valueOf(boolean / char / long)`轉換爲字符串 (1)
+* `Object a.append(boolean / char / char[] / double / float / int / String)`末尾添加字符 (2)
+* `int a.capacity()`返回當前容量 (2)
+* `int a.codePointAt()`返回指定索引處的字符ASCII碼 (2)
+* `int a.codePointBefore()`返回索引之前的字符ASCII碼 (2)
+* `Object a.delete(int, int)`刪除區間內所有字符 (2)
+* `object a.deleteCharAt(int)`刪除某位置字符 (2)
+* `Object a.insert(int, boolean / char / char[] / double / float / int / String)`指定位置插入字符 (2)
+* `Object a.reverse()`逆序字符串 (2)
+* `void a.setCharAt(int, char)`改變某位置字符 (2)
+* `String a.substring(int, int)`獲取子串新對象 (2)
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+
+
+
 
 ## 七、大數類
 
@@ -368,7 +393,7 @@ Collections.Sort() & Comparator
 
 Iterator
 
-StringBuilder / StringBuffer
+StringBuilder
 
 Math
 

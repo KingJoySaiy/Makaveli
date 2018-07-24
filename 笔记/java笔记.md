@@ -1,7 +1,19 @@
 ## 一、基本語法
+* `java.lang.*`默認包自動導入
 * `for(Type it : ArrayName) {}`foreach遍歷
+* 基本類型之間用`==`按值比較，對象類型之間用`a.equal(b)`按引用比較
 
-* 抽象類和接口對比
+1.  對象類型與基本類型:
+ 
+|對象類|基本類|對象類|基本類|
+|---|---|---|---|
+|Integer|int|Short|short|
+|Double|double|Float|float|
+|Long|long|Byte|byte|
+|Boolean|boolean|Character|char|
+|String|-|||
+
+2. 抽象類和接口對比
 
 |参数|抽象类|接口|
 |---|---|---|
@@ -155,22 +167,22 @@
 
 * `Map.Entry<Key, Value>`内部泛型接口类型 (1, 2)
 * `Map.Entry(key, value)`内部泛型接口对象 (1, 2)
-* `a.clear()`清空所有对象 (1, 2)
-* `Map a.clone()`返回哈希表浅拷贝 (1, 2)
-* `Value a.get(Key)`按照key获取value，不存在则null (1, 2)
-* `boolean a.isEmpty()`判断哈希表是否为空 (1, 2)
-* `boolean a.containsKey(key)`判断是否存在某键 (1, 2)
-* `boolean a.containsValue(value)`判断是否存在某值 (1, 2)
-* `Set<Map.Entry<Key, Value>> a.entrySet()`获取内部键值集合 (1, 2)
-* `Set<Key> a.keySet()`获取键集合 (1， 2)
-* `Value a.put(Key, Value)`添加键值对，返回键之前的值 (1, 2)
-* `a.putAll(b)`添加整个map (1, 2)
-* `Value a.remove(Key)`删除键值对，返回值 (1, 2)
-* `int a.size()`返回键值对个数 (1, 2)
-* `Collection<Value> a.values()`返回值构成的容器 (1, 2)
-* `int a.hashCode()`返回哈希码 (1, 2)
-* `String a.toString()`返回字符串表述 (1, 2)
-* `boolean a.equals(object)`判断对象是否相等 (1, 2)
+* `a.clear()`清空所有对象 (1, 2, 3)
+* `Map a.clone()`返回哈希表浅拷贝 (1, 2, 3)
+* `Value a.get(Key)`按照key获取value，不存在则null (1, 2, 3)
+* `boolean a.isEmpty()`判断哈希表是否为空 (1, 2, 3)
+* `boolean a.containsKey(key)`判断是否存在某键 (1, 2, 3)
+* `boolean a.containsValue(value)`判断是否存在某值 (1, 2, 3)
+* `Set<Map.Entry<Key, Value>> a.entrySet()`获取内部键值集合 (1, 2, 3)
+* `Set<Key> a.keySet()`获取键集合 (1, 2, 3)
+* `Value a.put(Key, Value)`添加键值对，返回键之前的值 (1, 2, 3)
+* `a.putAll(b)`添加整个map (1, 2, 3)
+* `Value a.remove(Key)`删除键值对，返回值 (1, 2, 3)
+* `int a.size()`返回键值对个数 (1, 2, 3)
+* `Collection<Value> a.values()`返回值构成的容器 (1, 2, 3)
+* `int a.hashCode()`返回哈希码 (1, 2, 3)
+* `String a.toString()`返回字符串表述 (1, 2, 3)
+* `boolean a.equals(object)`判断对象是否相等 (1, 2, 3)
 * `Comparator<super Key> a.comparator()`返回哈希表的比較器，自然序則null (2)
 * `Map.Entry<Key, Value> a.firstEntry()`返回鍵最小的鍵值對，表空則null (2)
 * `Map.Entry<Key, Value> a.lastEntry()`返回鍵最大的鍵值對，表空則null (2)
@@ -189,21 +201,6 @@
 * `SortedMap<Key, Value> a.headMap(Key)`返回小於等於key的子哈希表引用 (2)
 * `SortedMap<Key, Value> a.tailMap(Key)`返回大於key的子哈希表引用 (2)
 * `SortedMap<Key, Value> a.subMap(Key, Key)`返回key左閉右開區間的子哈希表引用 (2)
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
 
 ## 五、Collections 靜態容器方法
 
@@ -229,13 +226,181 @@
 * `Collections.sort(List, Comparator)`容器進行升序，比較器可省去
 * `Collections.swap(List, int, int)`交換指定位置處的對象
 
+## 六、常用基本類
+
+### 1. Character 基本字符類
+
+1. **Character** 是基本類型 **char** 的封裝類，用於對單個字符進行操作
+2. `import java.lang.Character`導入包，也可不加會自動導入
+3. `Character a = new Character('c') / 'c'`定義字符對象
+
+* `char a.charValue()`返回基本類型
+* `String a.toString()`返回字符串對象
+* `int a.compareTo(Character)`返回字典序差值
+* `boolean a.equals(Character)`比較兩字符
+* `Character Character.valueOf(char)`基本類型轉對象類型
+* `boolean Character.isAlphabetic() / isLetter`判斷是否是拉丁字母
+* `boolean Character.isDigit()`判斷是否是數字
+* `boolean Character.isLowerCase()`判斷是否小寫字母
+* `boolean Character.isUpperCase()`判斷是否大寫字母
+* `boolean Character.isLetterOrDigit()`判斷是否是字母或數字
+* `String Character.toString(Char)`返回字符串對象
+* `boolean Character.toTitleCase(char)`首字母大寫
+* `boolean Character.toLowerCase(char)`大寫轉小寫
+* `boolean Character.toUpperCase(char)`小寫轉大寫
+
+### 2. Integer 基本整數類
+
+1. **Integer** 是基本類型 **int** 的封裝類，用於對整數的基本操作
+2. `import java.lang.Integer`導入包，也可不加會自動導入
+3. `Integer a = new Integer(1) / 1`定義整數對象
+
+* `boolean a.equals(Integer)`比較兩個對象是否相等
+* `double a.doubleValue()`返回double數值
+* `int a.intValue()`返回int數值
+* `long a.longValue()`返回long數值
+* `short a.shortValue()`返回short數值
+* `String a.toString()`整型轉爲字符串
+* `int Integer.praseInt(String)`字符串轉爲整型
+* `int Integer.bitCount(a)`返回二進制數中1的個數
+* `String Integer.toBinaryString(int)`int轉爲二進制字符串
+* `String Integer.toString(int)`整型轉爲字符串
+
+### 3. String 字符串相關
+
+* String：不可變字符串對象，每次修改都要生成新對象並改變引用，速度較慢。
+* StringBuffer：線程安全的可變字符序列，可在必要時對一些方法進行同步，在實例上的操作順序與每個線程的方法調用順序一致。
+* StringBuilder：不支持多線程的可變字符序列，比String和StringBuffer快很多，因此被單線程使用時優先採用該類。
+
+#### 1. String 字符類
+
+1. `import java.lang.String`導入包，也可不加會自動導入
+2. `String a = new String()`定義字符串對象
+
+### 2. StringBuffer 字符串緩衝
+
+1. `import java.lang.StringBuffer`導入包，也可不加會自動導入
+2. `StringBuffer a = new StringBuffer()`定義StringBuffer對象
+
+### 3. StringBuilder 字符串構建
+
+1. `import java.lang.StringBuilder`導入包，也可不加會自動導入
+2. `StringBuffer a = new StringBuilder()`定義StringBuffer對象
+
+* `char a.charAt(int)`返回指定位置處的字符 (1, 2)
+* `int a.compareTo(String)`返回第一個不同字符的字典序差值 (1)
+* `String a.concat(String)`字符串串聯到最後 (1)
+* `boolean a.contains(String)`判斷是否是子串 (1)
+* `boolean a.equals(String)`判斷字符串是否相等 (1, 2)
+* `int a.indexOf(char / String)`返回子串第一次出現的索引，不存在則-1 (1, 2)
+* `int a.lastIndexOf(char / String)`返回子串最後一次出現的索引，不存在則-1 (1, 2)
+* `boolean a.isEmpty()`判斷是否是空串 (1)
+* `int a.length()`返回串長 (1, 2)
+* `String a.replace(char, char)`替換字符 (1)
+* `String a.replace(String, String)`替換字符串 (1)
+* `String a.replaceFirst(String, String)`替換第一個匹配的字符串 (1)
+* `Object a.replace(int, int, String)`替換區間內所有字符 (2)
+* `String[] a.split(String)`分割字符串 (1)
+* `String a.subString(int, int)`返回子串，省去二參數則到串尾 (1)
+* `char[] a.toCharArray()`轉換爲字符數組 (1)
+* `String a.toLowerCase()`大寫轉小寫 (1)
+* `String a.toUpperCase()`小寫轉大寫 (1)
+* `String a.clone`返回淺拷貝 (1)
+* `String String.valueOf(char[] / double / float/ int)`轉換爲字符串 (1)
+* `String String.valueOf(boolean / char / long)`轉換爲字符串 (1)
+* `Object a.append(boolean / char / char[] / double / float / int / String)`末尾添加字符 (2)
+* `int a.capacity()`返回當前容量 (2)
+* `int a.codePointAt()`返回指定索引處的字符ASCII碼 (2)
+* `int a.codePointBefore()`返回索引之前的字符ASCII碼 (2)
+* `Object a.delete(int, int)`刪除區間內所有字符 (2)
+* `object a.deleteCharAt(int)`刪除某位置字符 (2)
+* `Object a.insert(int, boolean / char / char[] / double / float / int / String)`指定位置插入字符 (2)
+* `Object a.reverse()`逆序字符串 (2)
+* `void a.setCharAt(int, char)`改變某位置字符 (2)
+* `String a.substring(int, int)`獲取子串新對象 (2)
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
+
+
+
+
+## 七、大數類
+
+* BigInteger：提供對較大的整數的基本操作
+* BigDecimal：類提供對較大的十進制數（包括小數）的基本操作
+
+### 1. BigInteger
+
+1. `import java.math.BigInteger`導入包
+2. `BigInteger a = new BigInteger(String)`定義大整數對象，字符串必須只包含數字
+
+### 2. BigDecimal
+
+1. `import java.math.BigDecimal`導入包
+2. `BigDecimal a = new BigDecimal(int / long / char[] / String / double / BigInteger)`定義大十進制數
+
+* `Object a.abs()`返回絕對值 (1, 2)
+* `boolean a.equals(object)`判斷是否相等 (1, 2)
+* `Object a.add(Object)`加法 (1, 2)
+* `Object a.subtract(Object)`減法 (1, 2)
+* `Object a.multiply(Object)`乘法 (1, 2)
+* `Object a.divide(Object)`除法 (1, 2)
+* `Object a.remainder(Object)`取模運算 (1, 2)
+* `Object[] a.divideAndRemainder(Object)`返回商和餘數2個值 (1, 2)
+* `Object a.max(Object)`返回較大值 (1, 2)
+* `Object a.min(Object)`返回較小值 (1, 2)
+* `Object a.mod(Object)`取模運算 (1)
+* `Object a.negate()`返回相反數 (1, 2)
+* `Object a.and(Object)`按位與 (1)
+* `Object a.andNot(Object)`按位與非 (1)
+* `Object a.not()`按位取反 (1)
+* `Object a.or(Object)`按位或 (1)
+* `Object a.xor(Object)`按位抑或 (1)
+* `int a.bitCount()`返回二進制數中1的個數 (1)
+* `int a.compareTo(Object)`比較大小，返回差值 (1, 2)
+* `double a.doubleValue()`轉換爲雙精度浮點數 (1, 2)
+* `float a.floatValue()`轉換爲單精度浮點數 (1, 2)
+* `int a.intValue()`轉換爲整型 (1, 2)
+* `long a.longValue()`轉換爲長整型 (1, 2)
+* `Object a.gcd(Object)`返回兩數絕對值的最大公約數gcd (1)
+* `boolean a.isProbablePrime()`判斷是否是素數 (1)
+* `Object a.nextProbablePrime()`返回下一個素數 (1)
+* `Object a.pow(int)`返回this^x (1, 2)
+* `Object a.shiftLeft(int)`左移若干位 (1)
+* `Object a.shiftRight(int)`右移若干位 (1)
+* `String a.toString()`大整數轉字符串 (1, 2)
+* `Object Object.valueOf(long)`長整型轉大整數 (1, 2)
+* `Object a.clone()`返回淺拷貝 (1)
+* `Object a.divideToIntegralValue()`向下取整 (2)
+* `Object a.movePointLeft()`小數點左移一位 (2)
+* `Object a.movePointRight()`小數點右移一位 (2)
+* `int a.precision()`返回精度 (2)
 
 備忘：
+
 Scanner
-BigInteger
-BigDecimal
+
 Collections.Sort() & Comparator
+
 Iterator
-String
-Character
+
+StringBuilder
+
+Math
+
 Pair<object, object>
+
+正則表達式
+
+lambda表達式
+
+Swing : JFrame / JTable

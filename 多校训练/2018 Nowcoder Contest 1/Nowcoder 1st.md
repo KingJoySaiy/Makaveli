@@ -137,4 +137,138 @@ int main() {
 }
 ```
 ## E. Removal （DP）
-## F. Sum of Maximum （拉格朗日插值）
+* **题目大意** ： 给定长度为n的序列，问删去m个数后有多少种不同序列。
+* **大体思路** ： 典型DP题，考虑`dp[i][j]`为前i个数中删去j个数后的不同序列数，显然`0 ≤ j ≤ min(i, m)`。若序列中无重复数字则`dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]`表示第i个数删和不删2种情况。先现考虑有重复的序列，例如`12343`这个序列`dp[3][0]`和`dp[5][2]`种都有`123`这个序列，则可看出若删数个数j大于a[i]距上一个等于a[i]的长度则可出现这种重复情况，所以需要`dp[5][2] -= dp[2][0]`，表示删除前2个数已选好，第3个数因为重复必须要删除。综上所述，递推式为：
+<img src="_image/E_1.gif" width="500" height="50" />
+其中`pre[i]`表示上一个等于`a[i]`的数的下标(如果存在的话)。
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+
+const int mod = int(1e9 + 7);
+const int maxn = int(1e5 + 5);
+
+int a[maxn], pre[maxn], las[maxn];
+LL dp[maxn][15];
+int n, m, k;
+
+void solve() {
+
+    memset(pre, 0, sizeof(pre));
+    memset(las, 0, sizeof(las));
+    memset(dp, 0, sizeof(dp));
+    for (int i = 1; i <= n; i++) {
+        cin >> a[i];
+        pre[i] = las[a[i]];
+        las[a[i]] = i;
+        dp[i][0] = 1;
+    }
+
+    for (int i = dp[0][0] = 1; i <= n; i++) {
+        for (int j = 0; j <= min(i, m); j++) {
+            (dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]) %= mod;
+            if (pre[i] and pre[i] + j >= i) {
+                (dp[i][j] -= dp[pre[i] - 1][pre[i] + j - i] - mod) %= mod;
+            }
+        }
+    }
+    cout << dp[n][m] << endl;
+}
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    while (cin >> n >> m >> k) solve();
+
+    return 0;
+}
+```
+## F. Sum of Maximum （拉格朗日插值 + 逆元 + 快速幂 + 容斥原理 + 伯努利数）
+* **题目大意** ： 如下图
+
+<img src="_image/F_1.jpg" width="300" height="120" />
+
+* **大体思路** ： 由于a的顺序对结果没有影响，所以a按升序排序，两两之间计算。只需`x∈{a[i - 1], a[i]}`对答案的贡献，推导过程好长不写了 （ 其实还没有完全学会 ）， 直接上答案。因为`a[i] ≤ 1e9`比较大，所以求该处的n次多项式用常规地推办法必然超时，用 **拉格朗日插值定理** 即可求出任意一点的函数值。
+<img src="_image/F_2.jpg" width="400" height="130" />
+
+```c++
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+
+const int mod = int(1e9 + 7);
+const int maxn = 1020;
+
+LL b[maxn][maxn], c[maxn][maxn];
+LL a[maxn], d[2][maxn];
+LL n, k, res;
+
+LL mod_pow(LL x, LL n) {
+
+    LL res = 1;
+    while (n) {
+        if (n & 1) res = res * x % mod;
+        x = x * x % mod;
+        n >>= 1;
+    }
+    return res;
+}
+LL cal(LL n, LL k) {
+
+    if (n <= 0) return 0;
+    if (n <= k + 1) return c[k][n];
+    LL res = 0;
+    d[0][0] = d[1][k + 1] = 1;      //d[0][i] -> (0 ~ i)前缀积, d[1][i] -> (k + 1 ~ i)后缀积
+    for (LL i = 1; i <= k + 1; i++) d[0][i] = d[0][i - 1] * (n - i + 1) % mod;
+    for (LL i = k; i >= 0; i--) d[1][i] = d[1][i + 1] * (n - i - 1) % mod;
+    for (LL i = 0; i <= k + 1; i++) {
+        (res += (d[0][i] * d[1][i] % mod) * (b[k][i] * c[k][i] % mod) % mod) %= mod;
+    }
+    return res;
+}
+void ini() {
+
+    for (int i = 1; i <= 1005; i++) {
+        c[i][0] = 0;
+        for (int j = 1; j <= i + 1; j++)
+            c[i][j] = (c[i][j - 1] + mod_pow(j, i)) % mod;  //c[i] -> j ^ (1 ~ i) 前缀和
+
+        for (int j = 0; j <= i; j++) {
+            if (i == 1) {
+                b[i][0] = mod_pow(2, mod - 2);
+                b[i][1] = mod_pow(-1, mod - 2);
+            } else {
+                b[i][j] = b[i - 1][j] * mod_pow(j - (i + 1), mod - 2) % mod;
+            }
+        }
+        b[i][i + 1] = 1;
+        for (int j = 0; j <= i; j++) b[i][i + 1] = b[i][i + 1] * (i + 1 - j) % mod;
+        b[i][i + 1] = mod_pow(b[i][i + 1], mod - 2);     //b[i] -> mod下 (-1 ~ i + 1) 前缀积的逆元
+    }
+}
+void solve() {
+
+    for (int i = 1; i <= n; i++) cin >> a[i];
+    sort(a + 1, a + 1 + n);
+    a[0] = res = 0;
+    LL vv = 1;
+    for (int i = 1; i <= n; i++) {
+        k = n - i + 1;      //从大到小分段计算
+        LL vv2 = (mod_pow(a[i], k + 1) - mod_pow(a[i - 1], k + 1) - cal(a[i] - 1, k) + cal(a[i - 1] - 1, k)) % mod;
+        (res += vv * vv2 % mod) %= mod;
+        (vv *= a[i]) %= mod;
+    }
+    while (res < 0) res += mod;
+    cout << res << endl;
+}
+int main() {
+    
+    ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    ini();
+    while (cin >> n) solve();
+
+    return 0;
+}
+```

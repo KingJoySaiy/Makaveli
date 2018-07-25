@@ -1,5 +1,5 @@
 # 一、小技巧
-1. `#include<bits/stdc++.h>`包含大多数常用头文件 
+1. `#include<bits/stdc++.h>`包含大多数常用头文件
 2. windows输入EOF	`Enter --> Ctrl+Z --> Enter`
 3. 获得程序运行时间：`(double)clock()/CLOCKS_PER_SEC`（在time.h里）
 4. 文件输入输出`freopen(“input.txt”,”r”,stdin)；freopen(“output.txt”,”w”,stdout)；`
@@ -7,7 +7,8 @@
 6. c/c++里的64位整型不兼容问题 win下VC6.0声明用 **_int64** ，输出用 **%I64d** ；linux下的gcc/g++声明用 **long long** ，输出用 **%lld** 。win下的其他IDE（包括高版本Visual Studio），声明用以上两种均可，输出用%I64d。
 7. STL中vector删除重复元素，并把堆在末尾的重复元素移除（要先排序）`a.erase(unique(a.begin(),a.end()),a.end());`
 8. 	`assert(x)` x为0时异常终止程序并提示原因，要加头文件`#include<assert.h>`
-9. `template<class Any>` 声明模板Any，可表示任意类型
+9. `template<class Any>` 声明模板Any，可表示任意类型。
+10. `#pragma comment(linker, "/STACK:1024000000,1024000000")`栈内存不够大时可以手动扩栈。
 
 # 二、string.h	 字符数组
 char a[],b[]

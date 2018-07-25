@@ -10,7 +10,8 @@ We ride or die.
 * [python笔记](/笔记/python笔记.md)
 
 ## 二、多校训练
-* [Nowcoder-1st](/多校训练/2018%20Nowcoder%20Contest%201/Nowcoder%201st.md)
+* [牛客多校-1st](/多校训练/2018%20Nowcoder%20Contest%201/Nowcoder%201st.md)
+* [杭电多校-1st](/多校训练/2018%20Multi-University%20Contest%201/Multi-University%201st)
 
 ## 三、数据结构
 * [排序](/Data%20Structure/Sort)

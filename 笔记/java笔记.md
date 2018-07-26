@@ -277,29 +277,29 @@
 1. `import java.lang.String`導入包，也可不加會自動導入
 2. `String a = new String()`定義字符串對象
 
-### 2. StringBuffer 字符串緩衝
+#### 2. StringBuffer 字符串緩衝
 
 1. `import java.lang.StringBuffer`導入包，也可不加會自動導入
 2. `StringBuffer a = new StringBuffer()`定義StringBuffer對象
 
-### 3. StringBuilder 字符串構建
+#### 3. StringBuilder 字符串構建
 
 1. `import java.lang.StringBuilder`導入包，也可不加會自動導入
 2. `StringBuffer a = new StringBuilder()`定義StringBuffer對象
 
-* `char a.charAt(int)`返回指定位置處的字符 (1, 2)
+* `char a.charAt(int)`返回指定位置處的字符 (1, 2, 3)
 * `int a.compareTo(String)`返回第一個不同字符的字典序差值 (1)
 * `String a.concat(String)`字符串串聯到最後 (1)
 * `boolean a.contains(String)`判斷是否是子串 (1)
-* `boolean a.equals(String)`判斷字符串是否相等 (1, 2)
-* `int a.indexOf(char / String)`返回子串第一次出現的索引，不存在則-1 (1, 2)
-* `int a.lastIndexOf(char / String)`返回子串最後一次出現的索引，不存在則-1 (1, 2)
+* `boolean a.equals(String)`判斷字符串是否相等 (1, 2, 3)
+* `int a.indexOf(char / String)`返回子串第一次出現的索引，不存在則-1 (1, 2, 3)
+* `int a.lastIndexOf(char / String)`返回子串最後一次出現的索引，不存在則-1 (1, 2, 3)
 * `boolean a.isEmpty()`判斷是否是空串 (1)
-* `int a.length()`返回串長 (1, 2)
+* `int a.length()`返回串長 (1, 2, 3)
 * `String a.replace(char, char)`替換字符 (1)
 * `String a.replace(String, String)`替換字符串 (1)
 * `String a.replaceFirst(String, String)`替換第一個匹配的字符串 (1)
-* `Object a.replace(int, int, String)`替換區間內所有字符 (2)
+* `Object a.replace(int, int, String)`替換區間內所有字符 (2, 3)
 * `String[] a.split(String)`分割字符串 (1)
 * `String a.subString(int, int)`返回子串，省去二參數則到串尾 (1)
 * `char[] a.toCharArray()`轉換爲字符數組 (1)
@@ -308,30 +308,35 @@
 * `String a.clone`返回淺拷貝 (1)
 * `String String.valueOf(char[] / double / float/ int)`轉換爲字符串 (1)
 * `String String.valueOf(boolean / char / long)`轉換爲字符串 (1)
-* `Object a.append(boolean / char / char[] / double / float / int / String)`末尾添加字符 (2)
-* `int a.capacity()`返回當前容量 (2)
-* `int a.codePointAt()`返回指定索引處的字符ASCII碼 (2)
-* `int a.codePointBefore()`返回索引之前的字符ASCII碼 (2)
-* `Object a.delete(int, int)`刪除區間內所有字符 (2)
-* `object a.deleteCharAt(int)`刪除某位置字符 (2)
-* `Object a.insert(int, boolean / char / char[] / double / float / int / String)`指定位置插入字符 (2)
-* `Object a.reverse()`逆序字符串 (2)
-* `void a.setCharAt(int, char)`改變某位置字符 (2)
-* `String a.substring(int, int)`獲取子串新對象 (2)
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
-* ``
+* `Object a.append(boolean / char / char[] / double / float / int / String)`末尾添加字符 (2, 3)
+* `int a.capacity()`返回當前容量 (2, 3)
+* `int a.codePointAt()`返回指定索引處的字符ASCII碼 (2, 3)
+* `int a.codePointBefore()`返回索引之前的字符ASCII碼 (2, 3)
+* `Object a.delete(int, int)`刪除區間內所有字符 (2, 3)
+* `object a.deleteCharAt(int)`刪除某位置字符 (2, 3)
+* `Object a.insert(int, boolean / char / char[] / double / float / int / String)`指定位置插入字符 (2, 3)
+* `Object a.reverse()`逆序字符串 (2, 3)
+* `void a.setCharAt(int, char)`改變某位置字符 (2, 3)
+* `String a.substring(int, int)`獲取子串新對象 (2, 3)
+* `String a.toString()`轉爲字符串 (2, 3)
 
+### 4. Scanner 讀入類
+1. `import java.util.Scanner`導入包
+2. `Scanner in = new Scanner(Systen.in / new File("...") / String)`定義讀入類
 
-
+* `a.close()`關閉讀入
+* `boolean a.hasNext()`判斷是否還能讀入
+* `boolean a.hasNextBigDecimal()`判斷下一讀入能否作爲BigDecimal
+* `boolean a.hasNextBigInteger()`判斷下一讀入能否作爲BigInteger
+* `a.hasNextBoolean / Double / Float / Int / Long / Short / Byte ()`判斷能否繼續讀取基本類型
+* `boolean a.hasNextLine()`判斷能否再讀取一行
+* `String a.next()`返回下一個整串
+* `BigDecimal a.nextBigDecimal()`返回下一個大十進制數
+* `BigInteger a.nextBigInteger()`返回下一個大整數
+* `Object a.nextBoolean / Double / Float / Int / Long / Short / Byte ()`返回下一個基本類型
+* `String a.nextLine()`返回下一行
+* `String a.toString()`轉爲字符串
+* `boolean a.equals(object)`判斷是否相等
 
 ## 七、大數類
 
@@ -385,15 +390,14 @@
 * `Object a.movePointRight()`小數點右移一位 (2)
 * `int a.precision()`返回精度 (2)
 
+## 八、Comparator 比較器
+
+
+
+
 備忘：
 
-Scanner
-
-Collections.Sort() & Comparator
-
 Iterator
-
-StringBuilder
 
 Math
 

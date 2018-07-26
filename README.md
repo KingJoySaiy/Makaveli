@@ -11,6 +11,7 @@ We ride or die.
 
 ## 二、多校训练
 * [牛客多校-1st](/多校训练/2018%20Nowcoder%20Contest%201/Nowcoder%201st.md)
+* [牛客多校-2nd](/多校训练/2018%20Nowcoder%20Contest%202/Nowcoder%202nd.md)
 * [杭电多校-1st](/多校训练/2018%20Multi-University%20Contest%201/Multi-University%201st.md)
 
 ## 三、数据结构

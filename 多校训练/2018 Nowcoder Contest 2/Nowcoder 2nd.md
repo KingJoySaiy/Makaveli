@@ -155,7 +155,99 @@ int main() {
 }
 ```
 
-## G. transform
-## H. travel
+## G. transform （二分 + 尺取法）
+（占坑）
+
 ## I. car （模拟）
-## J. farm （随机化）
+
+* **题目大意** ：在n*n的方格中右m个障碍，从角落放车以相同速度行驶（中途不能相撞），问最多能放的小车数目。
+* **大体思路** ：先考虑没有障碍，为了让小车不相撞，四条边上分别放`n / 2`辆车，这样最多能放`2 * n`辆，但是n为奇数时在`2 / n`行或列上放2辆速度相同的车会导致相撞，故只能放1辆，从而答案为`res = 2 * n - n % 2`。如果有障碍，则用2个长度为n的布尔数组标记一下即可。
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int maxn = int(1e5 + 5);
+int a[maxn], b[maxn];
+int n, m, x, y;
+
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    cin >> n >> m;
+    while (m--) {
+        cin >> x >> y;
+        a[x - 1] = b[y - 1] = true;
+    }
+
+    int res = 2 * n;
+    for (int i = 0; i < n; i++) res -= a[i] + b[i];
+    if (n % 2 and !a[n / 2] and !b[n / 2]) res--;
+    cout << res << endl;
+
+    return 0;
+}
+```
+
+## J. farm （随机化 / 二维线段树 / 大模拟）
+
+* **题目大意** ：给定n*m个数，t次修改把`(x1, y1)(x2, y2)`为对角线的矩阵内所有数改为k，问最后与初始数不同的个数。
+* **大体思路** ：大致三种解题思路 **随机化** , **二维线段树** , **大模拟**。第三者更容易理解和实现，每个数最大`1e6`所以分别维护每个数前21位的 **矩阵前缀和** ，问题转换成01问题，数字不改变当且仅当所有二进制位都不改变。根据矩阵前缀和可以快速求出`(i, j)`位置处第ct位0或1变化次数，若有一个改变则该位置的数字坏掉。开一个布尔数组标记，最后坏掉的数求和一下即可。
+```c++
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+const int maxn = int(2e6 + 5);
+int a[maxn], num[2][maxn];
+int x1[maxn], y1[maxn], x2[maxn], y2[maxn], k[maxn];
+bool bad[maxn];
+int n, m, t, res;
+
+bool find(int x, int ct) {  //x二进制下从右往左第ct位
+
+    while (--ct) x >>= 1;
+    return bool(x % 2);
+}
+void work() {
+
+    for (int ct = 1, id; ct < 22; ct++) {   //1e6维护二进制下21位即可
+        memset(num, 0, sizeof(num));
+        for (int i = 0; i < t; i++) {       //更新前缀和
+            id = find(k[i], ct);
+            num[id][(x2[i] + 1) * m + y2[i] + 1]++;
+            num[id][x1[i] * m + y1[i]]++;
+            num[id][(x2[i] + 1) * m + y1[i]]--;
+            num[id][x1[i] * m + y2[i] + 1]--;
+        }
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                int _0 = 0, _1 = 0;
+                find(a[i * m + j], ct) ? (_1++) : (_0++);   //第ct位0和1出现个数
+                num[0][i * m + j] += num[0][(i - 1) * m + j] + num[0][i * m + j - 1] - num[0][(i - 1) * m + j - 1];
+                num[1][i * m + j] += num[1][(i - 1) * m + j] + num[1][i * m + j - 1] - num[1][(i - 1) * m + j - 1];
+                _0 += num[0][i * m + j], _1 += num[1][i * m + j];
+                bad[i * m + j] |= (_0 > 0 and _1 > 0);      //0或1有一个改变则坏掉
+            }
+        }
+    }
+}
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    cin >> n >> m >> t;
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= m; j++) cin >> a[i * m + j];
+
+    for (int i = 0; i < t; i++)
+        cin >> x1[i] >> y1[i] >> x2[i] >> y2[i] >> k[i];
+
+    work();
+    for (int i = 0; i < maxn; i++) res += bad[i];
+    cout << res << endl;
+
+    return 0;
+}
+```

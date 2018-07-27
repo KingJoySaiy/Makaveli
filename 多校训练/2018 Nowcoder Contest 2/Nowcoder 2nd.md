@@ -157,6 +157,70 @@ int main() {
 
 ## G. transform （二分 + 尺取法）
 （占坑）
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+
+const int maxn = int(5e5 + 5);
+LL dis[maxn], ct[maxn], cost[maxn], all, n;
+
+LL costL(LL l, LL r) {
+
+    return cost[r] - cost[l - 1] - dis[l] * (ct[r] - ct[l - 1]);
+}
+LL costR(LL l, LL r) {
+
+    return (ct[r] - ct[l - 1]) * (dis[r] - dis[l]) - costL(l, r);
+}
+bool check(LL x) {
+
+    LL l, r, m, mid = x / 2 + 1;     //中位数
+    l = r = m = 1;
+    while (true) {
+        while (r <= n and ct[r] - ct[l - 1] < x) r++;
+        while (m <= n and ct[m] - ct[l - 1] < mid) m++;
+        if (r > n or m > r) break;
+        if (costR(l, m) + costL(m, r) - (dis[r] - dis[m]) * (ct[r] - ct[l - 1] - x) <= all) return true;
+        l++;
+    }
+    l = r = m = n;
+    while (true) {
+        while (l >= 1 and ct[r] - ct[l - 1] < x) l--;
+        while (m >= 2 and ct[r] - ct[m - 1] < mid) m--;
+        if (l < 1 or m < l) break;
+        if (costR(l, m) + costL(m, r) - (dis[m] - dis[l]) * (ct[r] - ct[l - 1] - x) <= all) return true;
+        r--;
+    }
+    return false;
+}
+
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    cin >> n >> all, all /= 2;
+    for (int i = 1; i <= n; i++) cin >> dis[i];
+    for (int i = 1; i <= n; i++) {
+        cin >> ct[i];
+        cost[i] = cost[i - 1] + dis[i] * ct[i];
+        ct[i] += ct[i - 1];
+    }
+//    for (int i = 1; i <= n; i++) {
+//        cout << dis[i] << ' ' << ct[i] << ' ' << cost[i] << endl;
+//    }
+
+    LL l = -1, r = ct[n] + 1, m;
+    while (r - l > 1) {
+        m = (l + r) / 2;
+        if (check(m)) l = m;
+        else r = m;
+    }
+    cout << l << endl;
+
+    return 0;
+}
+```
 
 ## I. car （模拟）
 

@@ -37,9 +37,78 @@ int main() {
 }
 ```
 
-## C. message （凸包 + dp + 二分）
-* **题目大意** ： 
-* **大体思路** ： 
+## C. message （凸包 + 三分）
+* **题目大意** ： 坐标系内有n条直线`y = a * x + b`，ab都给出。对于m次查询`y = c * x + d`，求直线与上述直线集合交点的大于0的横坐标最大值。
+* **大体思路** ： 这题很考验思维啊，两直线交点横坐标为`(d - b) / (a - c)`，要求大于0的横坐标最大值即为求`(a, b), (c, d)`两点构成直线斜率相反数最大值，亦即斜率小于0的最小值。然后对于`(a, b)`点集用凸包维护，对于每个`(c, d)`可以在凸包中 **三分** 斜率最小值，由于三分的是 **离散型** 的索引值，所以不是比较三等分点而是比较`cost[mid]`和`cost[mid + 1]`，然后让`left`和`right`向中间聚拢即可。
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int maxn = int(1e5 + 5);
+int n, m;
+
+struct data {
+
+    double x, y, res;
+    int id;
+    bool operator < (data t) {
+        return x < t.x or x == t.x and y < t.y;
+    }
+    double K(data t) {
+        return (y - t.y) / (x - t.x);
+    }
+    double cross(data a,data b) {    //t->a cross t->b
+        return (a.x - x) * (b.y - y) - (a.y - y) * (b.x - x);
+    }
+} a[maxn], s[maxn];
+
+inline bool cmp(data a, data b) {
+
+    return a.id < b.id;
+}
+void graham() {
+
+    for (int i = 0, top = 0; i < m; i++) {
+        if (!a[i].id) {      //id -> 0 ~ n - 1，加入凸包
+            while (top > 1 and s[top - 2].cross(a[i], s[top - 1]) <= 0) top--;
+            s[top++] = a[i];
+        } else {              //id -> n ~ m - 1，在凸包中三分斜率最小值
+            if (!top) continue;
+            int l = 0, r = top - 1, m;
+            while (l < r) {
+                m = (l + r) / 2;
+                if (a[i].K(s[m]) < a[i].K(s[m + 1])) r = m;
+                else l = m + 1;
+            }
+            a[i].res = min(a[i].res, a[i].K(s[l]));
+        }
+    }
+}
+int main() {
+
+    cin >> n;
+    for (int i = 0; i < n; i++) scanf("%lf%lf", &a[i].x, &a[i].y);
+    cin >> m;
+    m += n;
+    for (int i = n; i < m; i++)
+        scanf("%lf%lf", &a[i].x, &a[i].y), a[i].id = i;
+
+    sort(a, a + m);
+    graham();
+    reverse(a, a + m);
+    graham();
+    sort(a, a + m, cmp);
+
+    for (int i = n; i < m; i++) {
+        if (a[i].res < 0) printf("%.12f\n", -1 * a[i].res);
+        else puts("No cross");
+    }
+
+    return 0;
+}
+```
 
 ## D. money （模拟）
 * **题目大意** ： 给定n个数，从左往右可以花a[i]物品+1，可以物品-1获得a[i]，也可跳过。求最最大利润和最小操作次数。

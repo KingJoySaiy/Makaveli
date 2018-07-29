@@ -28,12 +28,8 @@ namespace Merge {
                 right++; m--;
             }
         }
-        if (n > 0) {
-            while (n--) res[ct++] = left[n];
-        }
-        if (m > 0) {
-            while (m--) res[ct++] = right[m];
-        }
+        while (n--) res[ct++] = *(left++);
+        while (m--) res[ct++] = *(right++);
         return res;
     }
 }

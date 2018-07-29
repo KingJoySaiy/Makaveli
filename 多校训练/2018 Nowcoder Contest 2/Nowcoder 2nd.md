@@ -208,10 +208,6 @@ int main() {
         cost[i] = cost[i - 1] + dis[i] * ct[i];
         ct[i] += ct[i - 1];
     }
-//    for (int i = 1; i <= n; i++) {
-//        cout << dis[i] << ' ' << ct[i] << ' ' << cost[i] << endl;
-//    }
-
     LL l = -1, r = ct[n] + 1, m;
     while (r - l > 1) {
         m = (l + r) / 2;

@@ -62,8 +62,69 @@ int main() {
 }
 ```
 
-## 1006. Matrix
-（占坑）
+## 1006. Matrix （容斥原理 + 编程风格）
+* **题目大意** ： 在n*m的矩阵中染黑色或白色，求全黑的行数至少为a，全黑的列数至少为b的方案数。
+* **大体思路** ： 只考虑全黑的行数的话，所有情况是`C{n}{i} * 2 ^ (n - i)`，设 **容斥系数** 为`fa(n)`表示有n行全黑，那么染色方案数如下：
+
+<img src="_image/1006_1.jpg" width="240" height="100" />
+
+* 对于任何小于全黑行数i的k，`fa(i)`都出现在`fa(k)`中出现过`C{i}{k}`次，所以容斥系数必须减去所有多求的答案次数，容斥系数递推式如下：
+
+<img src="_image/1006_2.jpg" width="240" height="100" />
+
+* 然后将行与列整合起来得到答案如下。其中`fa(i)`，`fb(j)`和前面的系数都可以在 **O(n^2)** 时间内预处理出来，再用相同的复杂度即可求出答案，但是这题卡时间卡的特别死，需要点优秀的 **C语言程风格** 以及良好的 **心理承受能力** 。
+
+<img src="_image/1006_3.jpg" width="460" height="100" />
+
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+const LL mod = 998244353;
+#define maxn 3005
+LL c[maxn][maxn], g[maxn][maxn];
+LL fa[maxn], fb[maxn];
+LL bin[maxn * maxn], res;
+int n, m, a, b, i, j;
+
+int main() {
+
+    bin[0] = 1;
+    for (i = 1; i < 9000005; i++) bin[i] = bin[i - 1] * 2 % mod;
+    for (i = 0; i < maxn; i++) c[i][0] = 1;
+    for (n = 1; n < maxn; n++) {
+        for (i = 1; i <= n; i++) c[n][i] = (c[n - 1][i - 1] + c[n - 1][i]) % mod;
+    }
+
+    while (scanf("%d%d%d%d", &n, &m, &a, &b) != -1) {
+
+        for (i = a; i <= n; i++) {
+            fa[i] = 1;
+            for (j = a; j < i; j++) fa[i] = (fa[i] - c[i][j] * fa[j]) % mod;
+        }
+        for (i = b; i <= m; i++) {
+            fb[i] = 1;
+            for (j = b; j < i; j++) fb[i] = (fb[i] - c[i][j] * fb[j]) % mod;
+        }
+        for (i = a; i <= n; i++) {
+            for (j = b; j <= m; j++) {
+                g[i][j] = c[n][i] * c[m][j] % mod * bin[(n - i) * (m - j)] % mod;
+            }
+        }
+        res = 0;
+        for (i = a; i <= n; i++) {
+            for (j = b; j <= m; j++) {
+                res = (res + fa[i] * fb[j] % mod * g[i][j]) % mod;
+            }
+        }
+        printf("%lld\n", (res + mod) % mod);
+    }
+
+    return 0;
+}
+```
 
 ## 1010. Swaps and Inversions （树状数组 / 逆序数）
 * **题目大意** ： 每次支付x或y交换相邻两数使数组升序，求最小支付多少。

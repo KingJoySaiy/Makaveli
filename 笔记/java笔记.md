@@ -1,6 +1,7 @@
 ## 一、基本語法
 * `java.lang.*`默認包自動導入
 * `for(Type it : ArrayName) {}`foreach遍歷
+* `@override`出現在方法前表示重寫，常用在子類中從而覆蓋父類方法
 * 基本類型之間用`==`按值比較，對象類型之間用`a.equal(b)`按引用比較
 
 1.  對象類型與基本類型:
@@ -390,12 +391,71 @@
 * `Object a.movePointRight()`小數點右移一位 (2)
 * `int a.precision()`返回精度 (2)
 
-## 八、Comparator 接口
+## 八、Comparable / Comparator 接口
 
+* Comparable接口一般由子類通過implements關鍵字實現，直接修改實體類的比較方式，繼而在比較或排序時不需要傳入比較器參數。
+* Comparator接口提供重寫容器的排序方法與分組方式，無需實現Comparable接口，無需改變實體類的內容，只需新建比較器對象作爲方法參數傳入即可。
 
-* `import java.util.Comparator`导入包
+1. `import java.util.Comparator`导入包
+2. Comparable接口的實現如下，通過重寫compareTo方法而修改實體類的比較方式。
 
+```
+class object implements Comparable<object> {
+    public int value;
+    @Override
+    public int compareTo(object t) {
+        return value - t.value;
+    }
+}
+```
 
+3. Comparator比較器對象定義如下，修改compare方法即可，可以在`Collections.sort`或`Arrays.sort`中作爲參數使用。
+
+```
+    Comparator<object> comparator = new Comparator<>() {
+        @Override
+        public int compare(object o1, object o2) {
+            return o1.value - o2.value;
+        }
+    };
+    Collections.sort(objects, comparator);
+```
+
+4. 其中`compareTo`和`compare`方法返回值都是int，若爲負數則左對象在右對象前，爲0則兩視爲對象相等，正數同理。
+
+## 九、 Math 數學相關方法
+
+* `java.lang.Math`包會自動導入，提供了基本的數學相關的靜態方法，處理的類型有`double, float, int, long, short`。
+
+* `num Math.abs(x)`返回絕對值
+* `num Math.acos(x)`返回反餘弦值
+* `num Math.asin(x)`返回反正弦值
+* `num Math.atan(x)`返回反正切值
+* `num Math.atan2(x, y)`向量與x軸正方向的相對夾角，範圍(-pi ~ pi)
+* `num Math.cos(x)`返回餘弦值
+* `num Math.cosh(x)`返回雙曲餘弦值`cosh(x) = (e^x + e^(-x)) / 2`
+* `num Math.sin(x)`返回正弦值
+* `num Math.sinh(x)`返回雙曲正弦值`sinh(x) = (e^x - e^(-x)) / 2`
+* `num Math.tan(x)`返回正切值
+* `num Math.tanh(x)`返回雙曲正切值`tanh(x) = sinh(x) / cosh(x) = (e^x - e^(-x)) / (e^x + e^(-x))`
+* `num Math.addExact(x, y)`返回兩數之和
+* `num Math.exp(x)`返回歐拉數的x次冪`e^x`
+* `num Math.ceil(x)`向上取整
+* `num Math.floor(x)`向下取整
+* `num Math.floorDiv(x, y)`返回 x/y 向下取整
+* `num Math.floorMod(x, y)`返回 x%y 向下取整
+* `num Math.hypot(x, y)`返回點到原點的距離`sqrt(x^2 + y^2)`
+* `num Math.log(x)`返回以歐拉數e爲底的對數
+* `num Math.log10(x)`返回以10爲底的對數
+* `num Math.max(x, y)`返回較大值
+* `num Math.min(x, y)`返回較小值
+* `num Math.multiplyExact(x, y)`返回兩數的乘積，溢出則拋出異常
+* `num Math.negateExact(x)`返回相反數
+* `num Math.pow(x, y)`返回`x ^ y`
+* `num Math.random()`返回[0, 1)之間的隨機數
+* `num Math.round(x)`四捨五入
+* `num Math.signum(x)`處理浮點誤差，0返回0，正數返回1，負數返回-1
+* `num Math.sqrt(x)`開根號
 
 備忘：
 

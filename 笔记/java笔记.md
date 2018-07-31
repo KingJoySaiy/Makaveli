@@ -390,8 +390,10 @@
 * `Object a.movePointRight()`小數點右移一位 (2)
 * `int a.precision()`返回精度 (2)
 
-## 八、Comparator 比較器
+## 八、Comparator 接口
 
+
+* `import java.util.Comparator`导入包
 
 
 

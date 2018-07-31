@@ -1,6 +1,66 @@
 * [nowcoder contest 4](https://www.nowcoder.com/acm/contest/142#question)
 
-## A. Ternary String
+## A. Ternary String （打表找规律 + 快速幂 + 欧拉降幂）
+* **题目大意** : 给定由012构成的字符串，每次将2后添1，1后添0并删去首字符，问成为空串的时间。
+* **大体思路** : 设`f(n)`表示当前时间为n，删掉下一个数及其产生的所有数字所花的时间，易知`f0(n) = n + 1`， `f1(n) = 2 * n + 2`，而`f2(n)`比较难求，打表222就会爆。可以发现`n + 1`秒后才会删除2，此时2后面产生了`n + 1`个1，并且每个1后面分别由`0, 1, 2...n`个0，可以将后面几个1 **打表**， 令`a[n]`表示删除第n个数及其产生的0所花的时间，由递推式`a[n] = 2 * a[n - 1] + 1`，用 **迭代法** 求得数列通项公式为`a[n] = 3 * 2^n - 1`，前n项和`s[n] = 6 * 2^n - n - 4` （下标从0开始），加上前面花的`n + 1`时间，得到`f2(n) = 6 * 2^n - 3`。这样就能从最后一个数字往前依次递归，但是f2中n出现在指数上，比较大又不能直接取模，所以要用到如下的 **欧拉降幂公式** :
+<img src="_image/A_1.jpg" width="500" height="60" />
+
+* 需要预处理可能用到的 **欧拉函数** 表，否则会超时。此外由于每次取模不一样，mod尽量别定义全局变量，不然可能会因为莫名其妙的原因wa到哭。
+
+```c++
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+
+LL mmp = LL(1e9 + 7), ct = mmp;
+map<LL, LL> phi;
+string a;
+
+LL mod_pow(LL x, LL n, LL mod) {
+
+    LL res = 1;
+    while (n) {
+        if (n % 2) (res *= x) %= mod;
+        (x *= x) %= mod;
+        n >>= 1;
+    }
+    return res;
+}
+LL eular(LL n) {
+
+    LL res = n;
+    for (int i = 2; i * i <= n; i++)
+        if (n % i == 0) {
+            res -= res / i;
+            while (n % i == 0) n /= i;
+        }
+    return n > 1 ? (res - res / n) : res;
+}
+LL work(int id, LL mod) {
+
+    if (id == -1) return 0;
+    if (a[id] == '0') return work(id - 1, mod) + 1;
+    if (a[id] == '1') return (work(id - 1, mod) * 2 + 2) % mod;
+    return ((6 * mod_pow(2, work(id - 1, phi[mod]), mod) - 3) % mod + mod) % mod;
+}
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    while (ct != 1) ct = phi[ct] = eular(ct);
+    phi[1] = 1;
+
+    cin >> ct;
+    while (ct--) {
+        cin >> a;
+        cout << work(a.length() - 1, mmp) << endl;
+    }
+
+    return 0;
+}
+```
+
+## C. Chiaki Sequence Reloaded （找规律 + 数位dp）
 （占坑）
 
 ## D. Another Distinct Values (打表找规律 + 构造)
@@ -121,7 +181,72 @@ int main() {
 }
 ```
 
+## J. Hash Function （拓扑排序 / 线段树 /  优先队列 + 并查集）
+* **题目大意** ： 给定用数组存储的 **哈希表** ， **线性探测法** 处理 **哈希冲突** ，要求构造字典序最小的插入顺序。
+* **大体思路** ： 易知对于没有哈希冲突的数 (即`a[i] % n = i`)，其插入顺序任意，而其他有哈希冲突的数必须等待带插入位置`a[i] % n`到最终位置都填好数后才能插入。想到用一个 **最小堆** (即 **优先队列** ) 维护当前能以任意顺序插入的数，一开始所有没有哈希冲突的数都应该压入优先队列中。然后不妨用 **并查集** 的父节点维护当前节点出现哈希冲突后能插入的位置，每次取出无哈希冲突的数并找到下一个能插入的位置，若该位置是有待插入的数则压入优先队列，这样从最小堆中一个个取数，最后的结果必然字典序最小。其 **并查集** 维护的复杂度为`O(n)`，比用 **拓扑排序构图** 和 **线段树维护** 的`O(nlogn)`方法更优。
 
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+const int maxn = int(2e5 + 5);
+struct data {
+
+    int x, id;
+    data (int x = 0, int id = 0) : x(x), id(id) {}
+    bool operator < (const data &t) const {
+        return x > t.x;
+    }
+};
+int a[maxn], fa[maxn], res[maxn];
+int ct, n;
+
+int find(int x) {
+
+    return fa[x] == x ? x : fa[x] = find(fa[x]);
+}
+void solve() {
+
+    priority_queue<data> all;
+    cin >> n;
+    int ct = 0, has = 0, id;
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+        fa[i] = i;
+        ct += a[i] != -1;
+        if (a[i] % n == i) {        //无冲突的元素
+            all.push(data(a[i], i));
+            a[i] = -1;              //标记不可填入
+        }
+    }
+
+    data t;
+    while (!all.empty()) {
+        t = all.top(); all.pop();
+        res[has++] = t.x;
+        id = fa[find(t.id)] = find((t.id + 1) % n);      //合并为下一个能放的索引
+        if (a[id] != -1 and find(a[id] % n) == id) {     //将能安放的数压入最小堆
+            all.push(data(a[id], id));
+            a[id] = -1;
+        }
+    }
+
+    if (!ct) cout << endl;
+    else if (has < ct) cout << "-1" << endl;
+    else {
+        for (int i = 0; i < has; i++)
+            cout << res[i] << " \n"[i == has - 1];
+    }
+}
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    cin >> ct;
+    while (ct--) solve();
+
+    return 0;
+}
+```
 
 
 

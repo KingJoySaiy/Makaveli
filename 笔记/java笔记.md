@@ -399,7 +399,7 @@
 1. `import java.util.Comparator`导入包
 2. Comparable接口的實現如下，通過重寫compareTo方法而修改實體類的比較方式。
 
-```
+```java
 class object implements Comparable<object> {
     public int value;
     @Override
@@ -411,7 +411,7 @@ class object implements Comparable<object> {
 
 3. Comparator比較器對象定義如下，修改compare方法即可，可以在`Collections.sort`或`Arrays.sort`中作爲參數使用。
 
-```
+```java
     Comparator<object> comparator = new Comparator<>() {
         @Override
         public int compare(object o1, object o2) {

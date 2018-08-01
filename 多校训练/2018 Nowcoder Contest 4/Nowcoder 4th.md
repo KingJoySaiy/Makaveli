@@ -61,7 +61,61 @@ int main() {
 ```
 
 ## C. Chiaki Sequence Reloaded （找规律 + 数位dp）
-（占坑）
+* **题目大意** : 对于给定的如下公式，求前n项绝对值之和。
+
+<img src="_image/C_1.jpg" width="300" height="80" />
+
+* **大体思路** ：先观察`(-1) ^ n*(n+1)/2` (设为`s[n]`) 发现周期为4，n对4取模为0或3则为1，否则为-1，进而理解为`s[n]`只和n的二进制后2为有关，后两位相同则+1，否则-1。而原数列可以经过如下 **迭代展开** :
+```
+a[n] = s[n] + a[n / 2] = s[n] + s[n / 2] + a[n / 4]...
+= s[n] + s[n / 2] + s[n / 4] ... + s[1] + a[1]
+```
+
+* 又因为`a[1] = 0`，所以`a[n]`直接与`s[n]`有关。n每次判断二进制后2为是否相等并右移一位，可以理解为n转为二进制数后相邻相等次数减相邻不等的次数。然后就用到 **数位dp** ，从第一个1开始往右扫，注意每次只能往小于等于n的方向上填数即可。
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+
+const int mod = int(1e9 + 7);
+const int maxn = 70;
+int dp[maxn][2 * maxn][3], a[maxn], len, ct;
+LL n;
+
+int dfs(int id, int ct, int pre, bool flag) {
+
+    if (id == -1) return abs(ct - maxn);
+    if (!flag and dp[id][ct][pre] != -1) return dp[id][ct][pre];
+
+    int up = flag ? a[id] : 1, res = 0;
+    for (int i = 0; i <= up; i++) {
+        if (pre == 2) res += dfs(id - 1, ct, i == 1 ? i : pre, flag and i == up);
+        else res += dfs(id - 1, ct + (i == pre ? 1 : -1), i, flag and i == up);
+    }
+    if (!flag) dp[id][ct][pre] = res % mod;
+    return res % mod;
+}
+void work() {
+
+    cin >> n;
+    len = 0;
+    while (n) {
+        a[len++] = int(n % 2);
+        n >>= 1;
+    }
+    cout << dfs(len - 1, maxn, 2, true) << endl;
+}
+int32_t main() {
+
+    ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    memset(dp, -1, sizeof(dp));
+    for (cin >> ct; ct; ct--) work();
+
+    return 0;
+}
+```
 
 ## D. Another Distinct Values (打表找规律 + 构造)
 * **题目大意** ： 构造一个n*n的矩阵，只能填入`-1, 0, 1`，使得每行总和与每列总和的`2 * n`个数互不相同。

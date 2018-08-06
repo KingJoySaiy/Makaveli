@@ -1,7 +1,49 @@
 * [Multi-University contest 3](http://acm.hdu.edu.cn/userloginex.php?cid=804)
 
-## 1001. Ascending Rating
-（占坑）
+## 1001. Ascending Rating （单调双端队列）
+* **题目大意** ： 长度为n的序列的长度为m的子序列中，分别求最大值和起始下标的异或和，最大值改变次数和起始下标的异或和。
+* **大体思路** ： 前k项直接给出，后面的可以通过给定的递推式求出。易知，对于子序列中的最大值前面的数，之后不可能用到，故可以再也不考虑。而之后比该数大的数会影响到最大值改变次数，故正向处理不可取。尝试用 **双端队列** 记录最大值集合的索引，反向处理从而下标降序。每插入一个数，将队尾的`(序列中在该数前的)`小于等于该数的删去，故队列中的值也是降序的。这样就能维护每个 **子序列最大值** ，最大值改变次数即为双端队列中元素个数。本题很 **友好** 的不卡STL，可以不用数组模拟。
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+
+const int maxn = int(1e7 + 5);
+LL a[maxn], p, q, r, mod, res1, res2;
+deque<LL> que;
+int ct, n, m, k;
+
+void solve() {
+
+    cin >> n >> m >> k >> p >> q >> r >> mod;
+    for (int i = 1; i <= n; i++) {
+        if (i > k) a[i] = (p * a[i - 1] + q * i + r) % mod;
+        else cin >> a[i];
+    }
+
+    que.clear();
+    res1 = res2 = 0;
+    for (int i = n; i >= 1; i--) {
+        while (!que.empty() and a[i] >= a[que.back()]) que.pop_back();
+        que.push_back(i);
+        while (!que.empty() and que.front() > i + m - 1) que.pop_front();
+        if (i <= n - m + 1) {
+            res1 += a[que.front()] xor i;
+            res2 += que.size() xor i;
+        }
+    }
+    cout << res1 << ' ' << res2 << endl;
+}
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    cin >> ct;
+    while (ct--) solve();
+
+    return 0;
+}
+```
 
 ## 1004. Euler Function (欧拉函数 + 打表找规律)
 * **题目大意** ： 对于 **欧拉函数** `φ(n) = x`，若x是和数则将n添到序列中，求序列中第k个数。
@@ -24,9 +66,39 @@ int main() {
 }
 ```
 
-## 1006. Grab The Tree （线性积）
-（占坑）
+## 1006. Grab The Tree （博弈论 / 线性积 / 树形dp）
+* **题目大意** ： 给定一个带权树，Alice（开玩笑）选不相邻的若干节点，剩下的是Bob的。分别求异或和，问最后胜者。
+* **大体思路** ：一道很好的思维题，用 **线性积** 或 **树形dp** 就想复杂了。先考虑所有数异或和为0，先手不管怎么选都是平局；若异或和非零，设异或和 **最高非零位** 为`id`，则先手只需选`id`位为1的某一个数就能赢了，因为其余高位异或和为0，而`id`位由于改变 **奇偶性** ，其异或和也为0，故剩余数的异或和必然比该数小。
+```c++
+#include <bits/stdc++.h>
 
+using namespace std;
+
+int n, t, x, ct, res;
+
+void solve() {
+
+    cin >> n;
+    res = 0, t = n;
+    while (t--) {
+        cin >> x;
+        res ^= x;
+    }
+    while (--n) cin >> x >> t;
+    cout << (res ? 'Q' : 'D') << endl;
+}
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    cin >> ct;
+    while (ct--) solve();
+
+    return 0;
+}
+```
+
+## 1007. Interstellar Travel （凸包面积 + 单调栈 + 转角法）
+（占坑）
 
 ## 1012. Visual Cube （大模拟）
 * **题目大意** ： 给定立方体的长宽高，画出3D视图。

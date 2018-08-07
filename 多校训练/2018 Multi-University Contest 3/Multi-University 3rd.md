@@ -97,8 +97,57 @@ int main() {
 }
 ```
 
-## 1007. Interstellar Travel （凸包面积 + 单调栈 + 转角法）
-（占坑）
+## 1007. Interstellar Travel （凸包 + 单调栈）
+* **题目大意** ： 给定n个点的坐标，从1出发到n，每次花费两点叉积。在花费最小情况下，输出字典序最小的路径。
+* **大体思路** ： 考虑到 **两点坐标叉积** 的几何意义是该两点与圆点围成的三角形面积2倍，若OA **斜率** 小于OB则叉积表示面积的-2倍。为了让叉积和最小，每次选的点必须大于前者斜率才能让每次叉积值为负，即路线是沿着 **凸包的上凸壳** 行走的。若出现 **多点共线** 的情况，则只要选下标最小的点，用一个 **单调栈** 维护相对斜率即可。
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+
+const int maxn = int(2e5 + 5);
+struct data {
+
+    int id;
+    LL x, y;
+    bool operator < (const data &t) const {
+        return x < t.x or (x == t.x and y > t.y) or (x == t.x and y == t.y and id < t.id);
+    }
+} a[maxn];
+int s[maxn], top, n, ct;
+LL tt;
+
+inline bool check(int A, int B, int p) {
+
+    return (tt = (a[p].y - a[A].y) * (a[B].x - a[A].x) - (a[p].x - a[A].x) * (a[B].y - a[A].y)) > 0
+        or !tt and a[p].id < a[B].id;
+}
+void solve() {
+
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cin >> a[i].x >> a[i].y;
+        a[i].id = i;
+    }
+    sort(a, a + n);
+    s[top = 1] = a[0].id;
+    for (int i = 1; i < n; i++) {
+        if (a[i].x == a[i - 1].x and a[i].y == a[i - 1].y) continue;
+        while (top > 1 and check(s[top - 2], s[top - 1], i)) top--;
+        s[top++] = i;
+    }
+    for (int i = 0; i < top; i++) cout << a[s[i]].id + 1 << " \n"[i == top -1];
+}
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    cin >> ct;
+    while (ct--) solve();
+
+    return 0;
+}
+```
 
 ## 1012. Visual Cube （大模拟）
 * **题目大意** ： 给定立方体的长宽高，画出3D视图。

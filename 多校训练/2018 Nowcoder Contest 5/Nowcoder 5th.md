@@ -1,6 +1,6 @@
 * [nowcoder contest 5](https://www.nowcoder.com/acm/contest/143#question)
 
-## A. gpa （01分数规划）
+## A. gpa （01分数规划 + 二分）
 * **题目大意** ：给定数组s和c，分别删掉k个数。求`sigma(s[i] * c[i]) / sigma(s[i])`最大值。 
 * **大体思路** ：简单的 **01分数规划** 问题，设答案为res，则有`sigma(s[i] * c[i]) = res * sigma(s[i])`，进一步转化为`sigma(s[i] * (c[i] - res)) = 0`。从而可以 **二分** 答案，每次取前`n - k`大的数，若小于0则res取大了，否则取小了。
 ```c++
@@ -35,7 +35,35 @@ int main() {
 
 ```
 
-## G. max
+## E. room (二分图匹配 + 费用流)
+（占坑）
+
+## F. take （线段树 + 逆元 + 数学期望）
+（占坑）
+
+## G. max （gcd）
+* **题目大意** ：给定n和k，求`[1, n]`中2数gcd位k的乘积最大值。
+* **大体思路** ：显然问题可以转化为`[1, n / k]`中2个 **互质数** 的乘积最大值乘以k平方。若有解必然k要小于n，要满足2数乘积最大且互质，若`n / k == 1`则这2数都是1，否则必然是`n / k - 1, n / k`。
+
+```c++
+#include <bits/stdc++.h>
+using namespace std;
+long long n, k, t, res;
+
+int main() {
+
+    cin >> k >> n;
+    if (k >= n) {
+        puts("-1");
+        return 0;
+    }
+    t = n / k;
+    res = k * k;
+    cout << (t == 1 ? res : res * t * (t - 1)) << endl;
+
+    return 0;
+}
+```
 
 ## J. plan （模拟）
 * **题目大意** ：n个人订房，双人间价格p2，三人间价格p3，求最小花费。

@@ -119,10 +119,112 @@ int main() {
 ```
 
 ## J. Distance to Work
-* **题目大意** ： 给定多边形和多边形内的圆心，求半径使得相交面积占多边形面积的`1 - p / q`。
-* **大体思路** ： 二分圆的半径，套用多边形与圆的面积交判断是否等于`1 - p / q`即可。
-（整理模板ing， 占坑）
+* **题目大意** ： 给定简单多边形各个顶点和圆心坐标, 多边形面积为s2, 圆面积为s1, 求圆半径使之满足`(s2 - s1) / s2 = p / q`。
+* **大体思路** ： 易知`s1 = s2 * (1 - p / q)`, 二分圆的半径, 套用多边形与圆面积交的模板即可。（实践证明kuang斌的计算几何模板只能过样例=_=）
+```c++
+#include<bits/stdc++.h>
 
+using namespace std;
+const double pi = acos(-1);
+const int maxn = 205;
+const double eps = 1e-12;
+
+struct Point {
+
+    double x, y;
+    Point(double x = 0, double y = 0) : x(x), y(y) {}
+    Point operator + (const Point &b) const {       //向量+向量
+        return Point(x + b.x, y + b.y);
+    }
+    Point operator - (const Point &b) const {        //向量-向量 or 点-点
+        return Point(x - b.x, y - b.y);
+    }
+    double operator ^ (const Point &b) const {       //向量的叉积
+        return x * b.y - y * b.x;
+    }
+    double operator * (const Point &b) const {       //向量的点积
+        return x * b.x + y * b.y;
+    }
+    Point operator * (const double t) const {        //向量乘浮点数
+        return Point(t * x, t * y);
+    }
+    Point operator / (const double &t) const {       //向量除以浮点数
+        return Point(x / t, y / t);
+    }
+    double dis(Point &t) {  //返回2点之间距离
+        return hypot(x - t.x, y - t.y);
+    }
+} a[maxn];
+
+int n, m;
+double x, y, p, q;
+double s2;
+
+inline double dis2(Point A, Point B) { 
+
+    return (A.x - B.x) * (A.x - B.x) + (A.y - B.y) * (A.y - B.y); 
+}
+double DisLine(Point P, Point A, Point B) {       //点P到直线AB距离
+
+    return fabs((B - A) ^ (P - A)) / A.dis(B);
+}
+Point minPoint(Point P, Point s, Point e) {     //点到直线最近的点
+
+    Point v = e - s;
+    return s + v * (((P - s) * v) / (v * v));
+}
+double cal(Point A, Point B, Point P, double R) {
+
+    double h = DisLine(P, A, B);
+    if (dis2(P, A) <= R * R and dis2(P, B) <= R * R) return fabs((A - P) ^ (B - P)) / 2;//A B两点均在圆内
+    if (dis2(P, A) > R * R)swap(A, B);
+    if (dis2(P, A) <= R * R and dis2(P, B) > R * R) {                               //A B两点有一点在圆内
+        double ang = (dis2(P, A) + dis2(A, B) - dis2(P, B)) / (2 * A.dis(P) * A.dis(B));
+        ang = acos(ang);
+        double C = ang + asin(sin(ang) * P.dis(A) / R);
+        double len = sin(C) * R / sin(ang);
+        ang = (dis2(P, A) + dis2(P, B) - dis2(A, B)) / (2 * P.dis(A) * P.dis(B));
+        ang = acos(ang) - (pi - C);
+        return len * h / 2 + ang * R * R / 2;
+    }
+    double ang = (dis2(P, A) + dis2(P, B) - dis2(A, B)) / (2 * P.dis(A) * P.dis(B));    //A B两点均在圆外
+    double area = acos(ang) * R * R / 2;
+    Point PP = minPoint(P, A, B);
+    if (h >= R or ((PP - P) ^ (A - P)) * ((PP - P) ^ (B - P)) > 0)return area;            //线段AB与圆不相交
+    return area - (2 * acos(h / R) * R * R / 2 - h * sqrt(R * R - h * h));                //线段AB与圆相交
+}
+void solve() {
+
+    scanf("%lf%lf%lf%lf", &x, &y, &p, &q);
+    Point pp(x, y);
+    double l = 0, r = 1e9, m, s1, ss = s2 * (1 - p / q);
+    while (fabs(r - l) > eps) {
+        m = (l + r) / 2;
+        s1 = 0;
+        for (int i = 0; i < n; i++) {
+            if (((a[i] - pp) ^ (a[(i + 1) % n] - pp)) == 0) continue;
+            double area = cal(a[i], a[(i + 1) % n], pp, m);
+            if (((a[i] - pp) ^ (a[(i + 1) % n] - pp)) > 0) s1 += area;
+            else s1 -= area;
+        }
+        s1 = fabs(s1);
+        if (s1 < ss) l = m;
+        else r = m;
+    }
+    printf("%.8f\n", l);
+}
+int main() {
+
+    cin >> n;
+    for (int i = 0; i < n; i++) scanf("%lf%lf", &a[i].x, &a[i].y);
+    for (int i = 0; i < n; i++) s2 += a[i] ^ (a[(i + 1) % n]);
+    s2 = fabs(s2) / 2;
+    cin >> m;
+    while (m--) solve();
+
+    return 0;
+}
+```
 
 
 

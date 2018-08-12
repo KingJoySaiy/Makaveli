@@ -156,6 +156,9 @@ string a,b,c;
 
 
 ## 具体实现:
+* `max_element(a.begin(), a.end())`区间最大值迭代器(3, 10)
+* `min_element(a.begin(), a.end())`区间最小值迭代器(3, 10)
+* `nth_element(a.begin(), a.begin() + k, a.end())`按升序第k个数划分，左边都小，右边都大，但不保证升序（3, 10）
 * `a.push_back()`				末尾添加元素（3, 10）
 * `a.push()`				末尾添加元素（1，2）
 * `a.size()	`					返回队列中元素的个数（1，2，3，4，6，7，9，10）

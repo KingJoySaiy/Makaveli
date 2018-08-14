@@ -1,6 +1,56 @@
 * [Multi-University contest 5](http://acm.hdu.edu.cn/userloginex.php?cid=806)
 
-## 1002. Beautiful Now
+## 1002. Beautiful Now（暴力 + 剪枝）
+* **题目大意** ： 给定数字，每次交换2位数（可以同位），求k次交换后最大值和最小值。
+* **大体思路** ： （贪心wa到哭，逐位与取后面的最后一个最大值/最小值交换的 **贪心是错的**，反例如`970979`交换2次，贪心最大值是`999077`，答案为`999770`）由于数字最多只有9位，故想到全排列下标 **暴力枚举** 一下，每次判断是否可以通过小于等于k次交换到，若可以则更新最大值和最小值。易知 **逐位交换** （类似于 **选择排序** ）所需的交换次数为`len - 1`，其中len表示位数，对于每个分块都求一遍最后求和即可得到总的交换次数。
+```c++
+#include<bits/stdc++.h>
+
+using namespace std;
+
+string s;
+int id[10], res1, res2;
+int len, k, ct, num;
+bool book[10];
+
+bool check() {
+
+    memset(book, 0, sizeof(book));
+    int res = 0;
+    for (int i = 0, ct; i < len; i++) {
+        if (book[i]) continue;
+        for (ct = 0; !book[i]; i = id[i]) book[i] = true, ct++;
+        res += ct - 1;
+        if (res > k) return false;
+    }
+    return true;
+}
+void solve() {
+
+    cin >> s >> k;
+    len = s.length();
+    num = atoi(s.c_str());
+    for (int i = 0; i < len; i++) id[i] = i;
+    res1 = res2 = num;
+    do {
+        if (s[id[0]] != '0' and check()) {
+            num = 0;
+            for (int i = 0; i < len; i++) num = num * 10 + s[id[i]] - '0';
+            res1 = min(res1, num);
+            res2 = max(res2, num);
+        }
+    } while (next_permutation(id, id + len));
+    cout << res1 << ' ' << res2 << endl;
+}
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    cin >> ct;
+    while (ct--) solve();
+
+    return 0;
+}
+```
 
 ## 1005. Everything Has Changed （平面几何 / 解析几何）
 * **题目大意** ： 给定圆心位于圆点的大园，和若干不内含大圆且互不相交的小圆，求大圆与校园相交的如下红色弧的长度。
@@ -46,6 +96,9 @@ int main() {
 }
 ```
 
-## 1007. Glad You Came
+## 1007. Glad You Came （线段树）
+（占坑）
 
-## 1008. Hills And Valleys
+## 1008. Hills And Valleys （dp）
+（占坑）
+

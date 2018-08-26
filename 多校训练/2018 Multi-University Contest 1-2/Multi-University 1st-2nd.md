@@ -1,5 +1,7 @@
 * [Multi-University contest 1](http://acm.hdu.edu.cn/userloginex.php?cid=802)
-## 1001. Maximum Multiple （打表找规律）
+* [Multi-University contest 2](http://acm.hdu.edu.cn/userloginex.php?cid=803)
+
+## 1_1001. Maximum Multiple （打表找规律）
 * **题目大意** ： 给定n，求n的3个因子乘积最大值，满足3个因子的和为n。
 * **大体思路** ： 只知道这三个因子要尽量接近`n / 3`，没想太多直接打表找规律了。结论是： 若n是3的倍数则`n ^ 3 / 27`，若是4的倍数则`n ^ 3 / 32`，否则不存在。
 ```c++
@@ -21,7 +23,7 @@ int main() {
 }
 ```
 
-## 1002. Balanced Sequence （排序 + 贪心）
+## 1_1002. Balanced Sequence （排序 + 贪心）
 * **题目大意** ： 给定n个只含小括号的字符串，以任意顺序拼接并删除多余的括号后，求剩余匹配的括号字符串最大长度。
 * **大体思路** ： 预处理每个字符串，分别记录内部已经匹配的括号个数，多出的`(`个数，多出的`)`个数。然后考虑如何排序，贪心的大体意图是尽量让`(`多的优先，因为这样可以和之后的多出的`)`匹配。若一个`(`较多另一个较少则前者优先，反之后者优先； 若`(`都比`)`多时，要让`)`数量少的优先； 若`(`都少则要让`(`数量大的优先。最后模拟一下即可。
 
@@ -79,7 +81,7 @@ int main() {
 }
 ```
 
-## 1003. Triangle Partition （计算几何）
+## 1_1003. Triangle Partition （计算几何）
 * **题目大意** ： 给定3n个点的坐标，保证三点不共线，求如何构建n个不相交的三角形。
 * **大体思路** ： 因为三点不共线，按坐标升序排序，每次输出3个索引即可。
 ```c++
@@ -119,7 +121,7 @@ int main() {
 }
 ```
 
-## 1004. Distinct Values （贪心）
+## 1_1004. Distinct Values （贪心）
 * **题目大意** ： 构造长度为n的字典序最小序列，条件是m个`[l, r]`区间内不能有重复数字。
 * **大体思路** ： 典型贪心题，要字典序最小则每次填入尽量小的数。记录每个位置最前的不能重复的索引，用set维护能填入的最小数，每次将这个区间前面的已填好的较小数添进set，每次填入set中最小数并从set中删除即可。
 ```c++
@@ -162,10 +164,10 @@ int main() {
 }
 ```
 
-## 1007. Chiaki Sequence Revisited （打表找规律 + 二分）
+## 1_1007. Chiaki Sequence Revisited （打表找规律 + 二分）
 * **题目大意** ： 给定如下函数递推式，求前n项和(n ≤ 1e18)。
 
-<img src="_image/1007_1.jpg" width="220" height="60" />
+<img src="_image/1_1007_1.jpg" width="220" height="60" />
 
 * **大体思路** ： 打表找规律，可以发现除去第一项的1之外，每个数出现次数规律如下：
 
@@ -232,7 +234,7 @@ int main() {
 }
 
 ```
-## 1011. Time Zone （模拟）
+## 1_1011. Time Zone （模拟）
 * **题目大意** ： 给定24时制时间和时区，求东八区时间。
 * **大体思路** ： 确定时区符号，小时转分钟，特判负数，前缀0，浮点数+0.1，这些都注意到就好了。
 ```c++
@@ -255,6 +257,191 @@ int main() {
 
     cin >> ct;
     while (ct--) solve();
+
+    return 0;
+}
+```
+
+
+## 2_1004. Game （博弈论 / 规律）
+* **题目大意** ： 2人删除从`1~n`的数字，每次删一个数并删除其所有因子，2人都采取最优策略，问先手是赢是输。
+* **大体思路** ： 这题先手要么必胜要么必输，因为1是任何数的因子，先删其他任何数都将把1删掉。假设后手必胜，那么先手只需先把1删掉即可变成先手必胜。其实打出20个表发现全是`Yes`也应该大胆猜一下先手稳赢。
+
+```c++
+#include <bits/stdc++.h>
+
+int main() {
+    
+    for (int n; std::cin >> n; puts("Yes"));
+    
+    return 0;
+}
+```
+
+## 1005. Hack It （数论 + 构造）
+* **题目大意** ： 构造一个n*n`(1 ≤ n ≤ 2000)`的01方阵，要求1个数大于85000且任意子矩阵4个对角不能都为1。
+* **大体思路** ： 一种数论构造方法是先让1尽量出现在同一列，再在之后每一列保证每一列只出现1次，例如`n = 5`如下所示：
+```
+10000 01000 00100 00010 00001 
+10000 00100 00001 01000 00010 
+10000 00010 01000 00001 00100 
+10000 00001 00010 00100 01000 
+10000 10000 10000 10000 10000
+
+01000 00100 00010 00001 10000 
+01000 00010 10000 00100 00001 
+01000 00001 00100 10000 00010 
+01000 10000 00001 00010 00100 
+01000 01000 01000 01000 01000 
+...
+```
+
+* 这样构成了一个`n * (n * n)`的矩阵，考虑将都矩阵中的5个小方阵向右移动一列，即列序号加1取模。这样就构成不一样的新矩阵（如上图），同理构造剩余矩阵即可满足条件。因为涉及到取模运算，方阵中每个小方阵都唯一的充要条件是n是素数。尝试多个素数后发现`n = 47`时能让`2000 * 2000`的方阵中1的次数为`85105`满足题意。
+
+```c++
+#include<bits/stdc++.h>
+
+using namespace std;
+
+const int maxn = 2500;
+int a[maxn][maxn], n = 47, m = n * n, res = 2000;
+
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(), cout.tie();
+
+    cout << res << endl;
+    for (int k = 0; k < m; k++) {
+        for (int i = 0; i < n; i++) {
+            a[k][i * n + ((k % n + 1) * i + k / n) % n] = 1;
+        }
+    }
+    for (int i = 0; i < res; i++) {
+        for (int j = 0; j < res; j++) {
+            cout << a[i][j];
+        } cout << endl;
+    }
+
+    return 0;
+}
+```
+
+## 2_1006. Matrix （容斥原理 + 编程风格）
+* **题目大意** ： 在n*m的矩阵中染黑色或白色，求全黑的行数至少为a，全黑的列数至少为b的方案数。
+* **大体思路** ： 只考虑全黑的行数的话，所有情况是`C{n}{i} * 2 ^ (n - i)`，设 **容斥系数** 为`fa(n)`表示有n行全黑，那么染色方案数如下：
+
+<img src="_image/2_1006_1.jpg" width="240" height="100" />
+
+* 对于任何小于全黑行数i的k，`fa(i)`都出现在`fa(k)`中出现过`C{i}{k}`次，所以容斥系数必须减去所有多求的答案次数，容斥系数递推式如下：
+
+<img src="_image/2_1006_2.jpg" width="240" height="100" />
+
+* 然后将行与列整合起来得到答案如下。其中`fa(i)`，`fb(j)`和前面的系数都可以在 **O(n^2)** 时间内预处理出来，再用相同的复杂度即可求出答案，但是这题卡时间卡的特别死，需要点优秀的 **C语言程风格** 以及良好的 **心理承受能力** 。
+
+<img src="_image/2_1006_3.jpg" width="460" height="100" />
+
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+const LL mod = 998244353;
+#define maxn 3005
+LL c[maxn][maxn], g[maxn][maxn];
+LL fa[maxn], fb[maxn];
+LL bin[maxn * maxn], res;
+int n, m, a, b, i, j;
+
+int main() {
+
+    bin[0] = 1;
+    for (i = 1; i < 9000005; i++) bin[i] = bin[i - 1] * 2 % mod;
+    for (i = 0; i < maxn; i++) c[i][0] = 1;
+    for (n = 1; n < maxn; n++) {
+        for (i = 1; i <= n; i++) c[n][i] = (c[n - 1][i - 1] + c[n - 1][i]) % mod;
+    }
+
+    while (scanf("%d%d%d%d", &n, &m, &a, &b) != -1) {
+
+        for (i = a; i <= n; i++) {
+            fa[i] = 1;
+            for (j = a; j < i; j++) fa[i] = (fa[i] - c[i][j] * fa[j]) % mod;
+        }
+        for (i = b; i <= m; i++) {
+            fb[i] = 1;
+            for (j = b; j < i; j++) fb[i] = (fb[i] - c[i][j] * fb[j]) % mod;
+        }
+        for (i = a; i <= n; i++) {
+            for (j = b; j <= m; j++) {
+                g[i][j] = c[n][i] * c[m][j] % mod * bin[(n - i) * (m - j)] % mod;
+            }
+        }
+        res = 0;
+        for (i = a; i <= n; i++) {
+            for (j = b; j <= m; j++) {
+                res = (res + fa[i] * fb[j] % mod * g[i][j]) % mod;
+            }
+        }
+        printf("%lld\n", (res + mod) % mod);
+    }
+
+    return 0;
+}
+```
+
+## 2_1010. Swaps and Inversions （树状数组 / 逆序数）
+* **题目大意** ： 每次支付x或y交换相邻两数使数组升序，求最小支付多少。
+* **大体思路** ： 显然交换顺序与结果无关，只需求出逆序数为res，答案即为`res * min(x, y)`，在归并排序时顺便求一下逆序数即可。
+
+```c++
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+
+const int maxn = int(1e5 + 7);
+int a[maxn], b[maxn], num[maxn];
+int n, x, y;
+LL res;
+
+void Merge(int l, int m, int r) {
+
+    int id1 = 0, id2 = 0;
+    int n1 = 0, n2 = 0;
+    for (int i = l; i < m; i++) a[n1++] = num[i];
+    for (int i = m; i < r; i++) b[n2++] = num[i];
+
+    for (int i = l; i < r; i++) {
+        if (id1 == n1) {    //a取完了
+            num[i] = b[id2++];
+            continue;
+        }
+        if (id2 == n2) {    //b取完了
+            num[i] = a[id1++];
+            continue;
+        }
+        if (a[id1] <= b[id2]) num[i] = a[id1++];
+        else num[i] = b[id2++], res += n1 - id1;    //若a>b，加上逆序数
+    }
+}
+void MergeSort(int l, int r) {
+
+    if (l == r - 1) return;
+    int m = (l + r) / 2;
+    MergeSort(l, m);
+    MergeSort(m, r);
+    Merge(l, m, r);
+}
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(), cout.tie();
+    while (cin >> n >> x >> y) {
+        for (int i = 0; i < n; i++) cin >> num[i];
+        res = 0;
+        MergeSort(0, n);
+        cout << res * min(x, y) << endl;
+    }
 
     return 0;
 }

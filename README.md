@@ -10,13 +10,10 @@ We ride or die.
 * [python笔记](/笔记/python笔记.md)
 
 ## 二、多校训练
-* [杭电多校-1st](/多校训练/2018%20Multi-University%20Contest%201/Multi-University%201st.md)
-* [杭电多校-2nd](/多校训练/2018%20Multi-University%20Contest%202/Multi-University%202nd.md)
-* [杭电多校-3rd](/多校训练/2018%20Multi-University%20Contest%203/Multi-University%203rd.md)
-* [杭电多校-4th](/多校训练/2018%20Multi-University%20Contest%204/Multi-University%204th.md)
-* [杭电多校-5th](/多校训练/2018%20Multi-University%20Contest%205/Multi-University%205th.md)
-* [杭电多校-6th](/多校训练/2018%20Multi-University%20Contest%206/Multi-University%206th.md)
-* [杭电多校-7th](/多校训练/2018%20Multi-University%20Contest%207/Multi-University%207th.md)
+* [杭电多校-1st-2nd](/多校训练/2018%20Multi-University%20Contest%201/Multi-University%201st-2nd.md)
+* [杭电多校-3rd-4th](/多校训练/2018%20Multi-University%20Contest%203/Multi-University%203rd-4th.md)
+* [杭电多校-5th-6th](/多校训练/2018%20Multi-University%20Contest%205/Multi-University%205th-6th.md)
+* [杭电多校-7th-8th](/多校训练/2018%20Multi-University%20Contest%207/Multi-University%207th-8th.md)
 * [牛客多校-1st](/多校训练/2018%20Nowcoder%20Contest%201/Nowcoder%201st.md)
 * [牛客多校-2nd](/多校训练/2018%20Nowcoder%20Contest%202/Nowcoder%202nd.md)
 * [牛客多校-3rd](/多校训练/2018%20Nowcoder%20Contest%203/Nowcoder%203rd.md)

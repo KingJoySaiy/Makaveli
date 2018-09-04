@@ -115,7 +115,7 @@ int main() {
 }
 ```
 
-## 7_J. Sudoku Subrectangles
+## 7_J. Sudoku Subrectangles （思维 / dp）
 * **题目大意** ： 给定n*m的 **字符矩阵** ，求有多少个 **数独矩阵**（每行每列字符都不相同），保证字符是英文字符。
 * **大体思路** ： 直接暴力肯定不行，考虑枚举数独矩阵的左上角，再求出最大满足条件的矩阵大小。可以先预处理从某位置开始向右最长距离，和向下最长距离，满足字符互不相同。然后针对枚举的每个位置（作为左上角），逐行加上可以作为数独矩阵右下角的个数即可，从而复杂度降到`52 * n * m`。
 ```c++
@@ -162,8 +162,36 @@ int main() {
 ## 8_B. Filling pools
 （占坑）
 
-## 8_E. Touring cities
-（占坑）
+## 8_E. Touring cities （找规律）
+* **题目大意** ： 在n*m矩阵中从`(1, 1)`出发再回到圆点，让每个点都走过，求最小步数。每次可到相邻点或k个直达路径。
+* **大体思路** ： 首先发现若n和m中有一个是偶数，则不用考虑直达情况，可以直接走`n * m`步。考虑都是奇数的情况，问题转换为 **棋盘染色问题** ，对于x和y同奇偶的染白色，否则染黑色，发现白棋比黑棋多一个，则若存在两不同白棋连通（即存在直达路径），则视为两者为整体，从而白棋和黑棋个数相等，存在这样的一个 **汉密尔顿回路** 。
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int a, b, c, d, n, m, k, ct;
+bool flag;
+
+void solve() {
+
+    cin >> n >> m >> k;
+    flag = n % 2 and m % 2;
+    while (k--) {
+        cin >> a >> b >> c >> d;
+        if ((a != c or b != d) and (a + b) % 2 == 0 and (c + d) % 2 == 0) flag = false;
+    }
+    cout << n * m + flag << endl;
+}
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(), cout.tie();
+    cin >> ct;
+    while (ct--) solve();
+
+    return 0;
+}
+```
 
 ## 8_G. Counting regions （欧拉公式 + 组合数学）
 * **题目大意** ： 有n个顶点的正多边形顶点两两相连，求多边形内部区域个数。

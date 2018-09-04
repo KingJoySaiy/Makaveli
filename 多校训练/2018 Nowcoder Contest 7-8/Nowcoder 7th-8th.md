@@ -64,11 +64,100 @@ int main() {
 }
 ```
 
-## 7_E. Counting 4-Cliques
-（占坑）
+## 7_E. Counting 4-Cliques (构造 + 暴力)
+* **题目大意** ： 定义G图为有4个节点的 **无向完全图**（无重边和自环），试构造有k个G图的无向图，满足节点数不超过75。
+* **大体思路** ： 在完全图中G图的个数为`c[t][4]`，考虑在此基础上在加上若干节点和边，使得再多出`k - c[t][4]`个G图，其中t表示满足`c[i][4] ≤ k`的最大i。不难证明对于新节点，设其度为x，则增加了`c[x][3]`个G图。由于`c[72][4]`才大于1e6，故t最大值为71，考虑枚举4个点会WA，说明4个点无法枚举所有情况。从而令t最大为70，枚举5个点，若能得到`k - c[t][4]`则直接输出即可。
+```c++
+#include <bits/stdc++.h>
+#define pri(x, y) cout << x << ' ' << y << endl
+
+using namespace std;
+
+const int maxn = 80;
+int ok[int(1e5)], c3[maxn], c4[maxn];
+int res[5], t = 4, k, sum;
+
+void work() {
+
+    pri(t + 5, t * (t - 1) / 2 + res[0] + res[1] + res[2] + res[3] + res[4]);
+    for (int i = 1; i <= t; i++) {
+        for (int j = i + 1; j <= t; j++) pri(i, j);
+    }
+    for (int i = 0; i < 5; i++) {
+        for (int j = 1; j <= res[i]; j++) pri(j, t + i + 1);
+    }
+}
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(), cout.tie();
+    for (int i = 2; i < 71; i++) c3[i] = i * (i - 1) * (i - 2) / 6, ok[c3[i]] = i;
+    for (int i = 4; i < maxn; i++) c4[i] = i * (i - 1) * (i - 2) * (i - 3) / 24;
+    cin >> k;
+    while (c4[t] <= k) t++; t--;
+    k -= c4[t = min(t, 70)];
+    for (int a = 2; a <= t; a++) {
+        for (int b = a; b <= t; b++) {
+            for (int c = b; c <= t; c++) {
+                for (int d = c; d <= t; d++) {
+                    sum = c3[a] + c3[b] + c3[c] + c3[d];
+                    if (sum > k) break;
+                    if (bool(res[4] = ok[k - sum])) {
+                        res[0] = a, res[1] = b, res[2] = c, res[3] = d;
+                        work();
+                        return 0;
+                    }
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+```
 
 ## 7_J. Sudoku Subrectangles
-（占坑）
+* **题目大意** ： 给定n*m的 **字符矩阵** ，求有多少个 **数独矩阵**（每行每列字符都不相同），保证字符是英文字符。
+* **大体思路** ： 直接暴力肯定不行，考虑枚举数独矩阵的左上角，再求出最大满足条件的矩阵大小。可以先预处理从某位置开始向右最长距离，和向下最长距离，满足字符互不相同。然后针对枚举的每个位置（作为左上角），逐行加上可以作为数独矩阵右下角的个数即可，从而复杂度降到`52 * n * m`。
+```c++
+#include <bits/stdc++.h>
+#define right rr
+
+using namespace std;
+const int maxn = 1005;
+int right[maxn][maxn], down[maxn][maxn], h[maxn], k;
+int flag[150], id, n, m;
+char s[maxn][maxn];
+long long res;
+
+int main() {
+
+    ios::sync_with_stdio(false), cin.tie(), cout.tie();
+    cin >> n >> m;
+    for (int i = 0; i < n; i++) cin >> s[i];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            for (id++, k = j; k < m and flag[s[i][k]] != id; k++) flag[s[i][k]] = id;
+            right[i][j] = k - j;
+            for (id++, k = i; k < n and flag[s[k][j]] != id; k++) flag[s[k][j]] = id;
+            down[i][j] = k - i;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            for (h[j] = down[i][j], k = j + 1; k < j + right[i][j]; k++) h[k] = min(h[k - 1], down[i][k]);
+            for (id = i + 1, k = j + right[i][j] - 1; id < i + down[i][j]; id++) {
+                for (k = min(k, j + right[id][j] - 1); k >= j and h[k] < id - i + 1;) k--;
+                if (k < j) break;
+                res += k - j + 1;
+            }
+            res += right[i][j];
+        }
+    }
+    cout << res << endl;
+
+    return 0;
+}
+```
 
 ## 8_B. Filling pools
 （占坑）

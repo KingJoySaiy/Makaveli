@@ -18,6 +18,7 @@ We ride or die.
 * [牛客多校-3rd-4th](/多校训练/2018%20Nowcoder%20Contest%203-4/Nowcoder%203rd-4th.md)
 * [牛客多校-5th-6th](/多校训练/2018%20Nowcoder%20Contest%205-6/Nowcoder%205th-6th.md)
 * [牛客多校-7th-8th](/多校训练/2018%20Nowcoder%20Contest%207-8/Nowcoder%207th-8th.md)
+* [牛客多校-9th-10th](/多校训练/2018%20Nowcoder%20Contest%209-10/Nowcoder%209th-10th.md)
 
 ## 三、数据结构
 * [排序](/Data%20Structure/Sort)

@@ -14,6 +14,7 @@ We ride or die.
 * [杭电多校-3rd-4th](/多校训练/2018%20Multi-University%20Contest%203-4/Multi-University%203rd-4th.md)
 * [杭电多校-5th-6th](/多校训练/2018%20Multi-University%20Contest%205-6/Multi-University%205th-6th.md)
 * [杭电多校-7th-8th](/多校训练/2018%20Multi-University%20Contest%207-8/Multi-University%207th-8th.md)
+* [杭电多校-9th-10th](/多校训练/2018%20Multi-University%20Contest%209-10/Multi-University%209th-10th.md)
 * [牛客多校-1st-2nd](/多校训练/2018%20Nowcoder%20Contest%201-2/Nowcoder%201st-2nd.md)
 * [牛客多校-3rd-4th](/多校训练/2018%20Nowcoder%20Contest%203-4/Nowcoder%203rd-4th.md)
 * [牛客多校-5th-6th](/多校训练/2018%20Nowcoder%20Contest%205-6/Nowcoder%205th-6th.md)

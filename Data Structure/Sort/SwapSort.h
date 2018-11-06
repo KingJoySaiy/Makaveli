@@ -18,8 +18,9 @@ namespace Swap {
 
         if (left >= right) return;
         int i = left, j = right;
-        T tmp = a[i];
+        T tmp;
         while (i < j) {
+            tmp = a[i];
             while (i < j and a[j] >= tmp) j--;
             a[i] = a[j];
             while (i < j and a[i] <= tmp) i++;

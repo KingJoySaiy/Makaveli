@@ -28,9 +28,10 @@ We ride or die.
 * [Stack](/Data%20Structure/Stack.h)
 * [Queue](/Data%20Structure/Queue.h)
 * [String](/Data%20Structure/String.h)
-* [课设备份](/Data%20Structure/课设备份)
 
 ## 四、其他
 * [一个pygame半成品](/其他/一个pygame半成品)
 * [oop小练](/其他/oop小练.md)
 * [java连接mysql](/其他/java连接mysql)
+* [java课设](/其他/java课设)
+* [数据结构课设](/其他/数据结构课设)

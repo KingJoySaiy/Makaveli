@@ -2,6 +2,7 @@ package Connect;
 
 import SQLSyntax.buyer;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class buyerServer implements JDBCServer {
@@ -22,7 +23,7 @@ public class buyerServer implements JDBCServer {
         return JDBC.SQLexcute(new buyer().modify(data));
     }
 
-    public ArrayList<String> query(String... data) {   //buyerId
+    public ArrayList<String> query(String... data) throws SQLException {   //buyerId
         if (data.length != 1) return null;
         return JDBC.SQLQuery(new buyer().query(data));
     }

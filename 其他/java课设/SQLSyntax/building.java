@@ -3,8 +3,9 @@ package SQLSyntax;
 public class building implements SQLSyntax { //对楼盘表增删改查
 
     private static final String now = "CommercialHouse.building";
-    public String insert(String... data) {   //buildingId, sellerId, location, count
-        return "insert into " + now + " values ('" + data[0] + "', '" + data[1] + "', '" + data[2] + "', '" + data[3] + "')";
+    public String insert(String... data) {   //buildingId, buildingName, sellerId, location, count
+        return "insert into " + now + " values ('" + data[0] + "', '" + data[2] + "', '"
+                + data[1] + "', '" + data[3] + "', '" + data[4] + "')";
     }
 
     public String delete(String... data) {   //buildingId, sellerId
@@ -17,6 +18,8 @@ public class building implements SQLSyntax { //对楼盘表增删改查
     }
 
     public String query(String... data) {   //buildingId, sellerId
+        System.out.println(data.length);
+//        System.out.println("select * from " + now + " where (buildingId = '" + data[0] + "' and sellerId = '" + data[1] + "')");
         return "select * from " + now + " where (buildingId = '" + data[0] + "' and sellerId = '" + data[1] + "')";
     }
 

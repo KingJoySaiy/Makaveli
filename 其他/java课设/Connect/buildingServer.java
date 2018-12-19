@@ -2,13 +2,22 @@ package Connect;
 
 import SQLSyntax.building;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class buildingServer implements JDBCServer {
 
-    public boolean insert(String... data) {   //buildingId, sellerId, location, count
-        if (data.length != 4) return false;
-        return JDBC.SQLexcute(new building().insert(data));
+    public boolean insert(String... data) {   //buildingId, buildingName, sellerId, location, count
+        if (data.length != 5) return false;
+        boolean ok = true;
+        try {
+            if (!JDBC.SQLexcute(new building().insert(data))) ok = false;
+            if (!new roomServer().insertAll(data[0], Math.random() > 0.5, Integer.valueOf(data[4]))) ok = false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            return ok;
+        }
     }
 
     public boolean delete(String... data) {   //buildingId, sellerId
@@ -16,14 +25,14 @@ public class buildingServer implements JDBCServer {
         return JDBC.SQLexcute(new building().delete(data));
     }
 
-    public boolean modify(String... data) {  //buildingId, sellerId, newLocation, newCount
-        if (data.length != 4) return false;
+    public boolean modify(String... data) {  //buildingId, sellerId, newBuildingName, newLocation, newCount
+        if (data.length != 5) return false;
         return JDBC.SQLexcute(new building().modify(data));
     }
 
-    public ArrayList<String> query(String... data) {   //buildingId, sellerId
+    public ArrayList<String> query(String... data) throws SQLException {   //buildingId, sellerId
         if (data.length != 2) return null;
-        return JDBC.SQLQuery(new building().query());
+        return JDBC.SQLQuery(new building().query(data));
     }
 
     public boolean insertDefault(String buildingId, String sellerId, String location) {   //默认插入（套房数量100）

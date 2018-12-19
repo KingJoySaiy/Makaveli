@@ -18,7 +18,7 @@ public class buyer implements SQLSyntax {   //对卖家表增删改查
     }
 
     public String query(String... data) {   //buyerId
-
+        System.out.println("select * from " + now + " where buyerId = '" + data[0] + "'");
         return "select * from " + now + " where buyerId = '" + data[0] + "'";
     }
 

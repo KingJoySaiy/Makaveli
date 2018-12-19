@@ -5,7 +5,10 @@ import java.util.*;
 
 public class JDBC {
 
-    private static final String sql_url = "jdbc:mysql://localhost:3306/CommercialHouse?useUnicode=true&characterEncoding=utf-8";    //数据库路径
+    private static final String sql_url = "jdbc:mysql://localhost:3306/CommercialHouse?" +
+            "useUnicode=true&useJDBCCompliantTimezoneShift=true" +
+            "&useLegacyDatetimeCode=false&serverTimezone=UTC" +
+            "&characterEncoding=utf-8";    //数据库路径
     private static final String name = "root";        //用户名
     private static final String password = "233";    //密码
     private static Connection conn = null;
@@ -14,7 +17,7 @@ public class JDBC {
     private static Connection GetConn() {       //获取Connection接口
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");     //加载驱动
+            Class.forName("com.mysql.cj.jdbc.Driver");     //加载驱动
             conn = DriverManager.getConnection(sql_url, name, password);       //连接数据库
         } catch (Exception e) {
             e.printStackTrace();
@@ -31,20 +34,6 @@ public class JDBC {
         return currentRow;
     }
 
-    public static ArrayList<String> SQLQuery(String sql) {  //执行按主键查询语句
-
-        ArrayList<String> res = null;
-        try {
-            conn = GetConn();
-            preparedStatement = conn.prepareStatement(sql);
-            ResultSet result1 = preparedStatement.executeQuery();
-            res = getNextRow(result1, result1.getMetaData());
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return res;
-    }
     public static boolean SQLexcute(String sql) {   //执行增删改语句
 
         int ok = 0;
@@ -59,9 +48,21 @@ public class JDBC {
         return ok > 0;
     }
 
-    public static ArrayList<ArrayList> getTable(String table) throws SQLException {  //获取表数据，返回二维表向量
+    public static ArrayList<String> SQLQuery(String sql) throws SQLException {  //执行按主键查询语句
 
-        table = "select * from " + table;
+        ArrayList<String> res = null;
+        conn = GetConn();
+        preparedStatement = conn.prepareStatement(sql);
+        ResultSet result1 = preparedStatement.executeQuery();
+        ResultSetMetaData rsmd = result1.getMetaData();
+        if (result1.next()) res = getNextRow(result1, rsmd);
+        conn.close();
+        return res;
+    }
+
+    public static ArrayList<ArrayList> getTable(String table, boolean isSQL) throws SQLException {  //获取表数据，返回二维表向量
+
+        if(!isSQL) table = "select * from " + table;
         conn = GetConn();
         preparedStatement = conn.prepareStatement(table);
         ResultSet result1 = preparedStatement.executeQuery();

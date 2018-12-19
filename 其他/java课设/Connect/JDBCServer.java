@@ -10,5 +10,5 @@ interface JDBCServer {
 
     boolean modify(String... data);
 
-    ArrayList<String> query(String... data);
+    ArrayList<String> query(String... data) throws Exception;
 }

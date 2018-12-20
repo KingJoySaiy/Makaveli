@@ -35,15 +35,19 @@ public class buildingServer implements JDBCServer {
         return JDBC.SQLQuery(new building().query(data));
     }
 
-    public boolean insertDefault(String buildingId, String sellerId, String location) {   //默认插入（套房数量100）
-        return JDBC.SQLexcute(new building().insertDefault(buildingId, sellerId, location));
+    public boolean insertDefault(String buildingId, String buildingName, String sellerId, String location) {   //默认插入（套房数量100）
+        return JDBC.SQLexcute(new building().insertDefault(buildingId, buildingName, sellerId, location));
     }
 
-    public boolean modifyCount(String buildingId, String sellerId, int newCount) {    //只修改该楼盘剩余房数
-        return JDBC.SQLexcute(new building().modifyCount(buildingId, sellerId, newCount));
+    public boolean modifyCount(String buildingId, int newCount) {    //只修改该楼盘剩余房数
+        return JDBC.SQLexcute(new building().modifyCount(buildingId, newCount));
     }
 
-    public boolean modifyLocation(String buildingId, String sellerId, String location) { //只修改位置
-        return JDBC.SQLexcute(new building().modifyLocation(buildingId, sellerId, location));
+    public boolean modifyLocation(String buildingId, String location) { //只修改位置
+        return JDBC.SQLexcute(new building().modifyLocation(buildingId, location));
+    }
+
+    public boolean modifyName(String buildingId, String buildingName) { //只修改楼盘名
+        return JDBC.SQLexcute(new building().modifyName(buildingId, buildingName));
     }
 }

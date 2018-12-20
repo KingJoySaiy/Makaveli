@@ -3,6 +3,7 @@ package SQLSyntax;
 public class order implements SQLSyntax {  //对订单表增删改查
 
     private static final String now = "CommercialHouse.list";
+
     public String insert(String... data) {   //orderId, buyerId, buildingId, roomId, date
         return "insert into " + now + " values ('" + data[0] + "', '" + data[1]
                 + "', '" + data[2] + "', '" + data[3] + "', '" + data[4] + "')";
@@ -23,8 +24,21 @@ public class order implements SQLSyntax {  //对订单表增删改查
                 data[1] + "' and buildingId = '" + data[2] + "' and roomId = '" + data[3] + "')";
     }
 
-    public String queryOrderId(String orderId) {
+    public String deleteOrderId(String orderId) {   //按照订单号删除
 
-        return "select * form " + now + " where orderId = " + orderId;
+        return "delete from " + now + " where orderId = '" + orderId + "'";
+    }
+
+    public String queryOrderId(String orderId) {    //按照订单号查询(listId, buyerId, buildingId, buildingName, location)
+
+        return "select list.listId, buyer.buyerId, building.buildingId, building.buildingName, building.location from list, buyer, building "
+                + "where list.buyerId = Buyer.buyerId and list.buildingId = building.buildingId and list.listId = '" + orderId + "'";
+    }
+
+    public static String queryAll() {   //查询(listId, sellerId, buyerId, buildingId, buildingName)全部信息
+
+        return "select list.listId, seller.sellerId, buyer.buyerId, building.buildingId, building.buildingName, " +
+                "building.location from list, seller, buyer, building where list.buildingId = Building.buildingId " +
+                "and list.buyerId = Buyer.buyerId and building.sellerId = seller.sellerId";
     }
 }

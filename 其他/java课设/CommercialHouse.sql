@@ -1,4 +1,4 @@
--- drop database CommercialHouse;
+-- drop schema CommercialHouse;
 -- 商品房管理系统库，字符编码指定utf-8
 create database CommercialHouse
   charset utf8
@@ -8,7 +8,7 @@ use CommercialHouse;
 -- 创建卖家表，卖家编号主键
 create table seller (
   sellerId varchar(10) primary key,
-  password varchar(10),
+  password varchar(10) not null,
   name     varchar(10)
 );
 
@@ -17,8 +17,8 @@ create table Building (
   buildingId   varchar(10),
   sellerId     varchar(10),
   buildingName varchar(10),
-  count        int check (count >= 0),
-  location     varchar(10),
+  location     varchar(10) not null,
+  count        int         not null check (count >= 0),
   primary key (buildingId, sellerId),
   foreign key (sellerId) references seller (sellerId)
 );
@@ -26,9 +26,9 @@ create table Building (
 -- 创建买家表，买家编号主键
 create table Buyer (
   buyerId  varchar(10) primary key,
-  id       varchar(18) unique,
+  id       varchar(18) unique check (length(id) = 18),
   name     varchar(10),
-  phone    varchar(11) unique,
+  phone    varchar(11) unique check (length(phone = 11)),
   password varchar(10)
 );
 
@@ -36,8 +36,8 @@ create table Buyer (
 create table room (
   roomId     varchar(10),
   buildingId varchar(10),
-  category   varchar(10),
-  cost       double,
+  category   varchar(10) not null,
+  cost       double      not null,
   primary key (roomId, buildingId),
   foreign key (buildingId) references Building (buildingId)
 );
@@ -48,12 +48,13 @@ create table list (
   buyerId    varchar(10),
   buildingId varchar(10),
   roomId     varchar(10),
-  data       varchar(30),
+  date       varchar(30) default date_format(now(), '%y-%m-%d'),
   primary key (listId, buyerId, buildingId, roomId),
   foreign key (buyerId) references Buyer (buyerId),
-  foreign key (buildingId) references Building (buildingId),
+  foreign key (buildingId) references room (buildingId),
   foreign key (roomId) references room (roomId)
 );
+-- drop table list;
 
 -- 1、根据订单号查询(查询需要内容：订单号，买家id，楼盘id，楼盘name,楼盘位置)
 -- 2、查询整张表(需要内容：订单号，卖家id，买家id，楼盘id，楼盘name,楼盘位置)
@@ -64,3 +65,13 @@ create table list (
 
 -- select list.listId, buyer.buyerId, Building.buildingId, building.buildingName, building.location from list, buyer, building
 -- where list.buyerId = Buyer.buyerId and list.buildingId = building.buildingId and list.listId = 'listId';
+
+-- 根据buildingName求平均cost
+-- select seller.sellerId, building.buildingId, building.buildingName, room.category, format(avg(room.cost), 2)
+--   from seller, Building, room where seller.sellerId = Building.sellerId and room.buildingId = Building.buildingId
+--   group by Building.buildingId;
+--
+-- select seller.sellerId, building.buildingId, building.buildingName, room.category, format(avg(room.cost), 2)
+--   from seller, Building, room where Building.BuildingName = '东方府居' and seller.sellerId = Building.sellerId and room.buildingId = Building.buildingId
+--   group by Building.buildingId;
+

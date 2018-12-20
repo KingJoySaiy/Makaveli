@@ -28,11 +28,11 @@ public class roomServer implements JDBCServer {
         return JDBC.SQLQuery(new room().query(data));
     }
 
-    public boolean insertAll(String buildingId, boolean catogory, int count) throws SQLException {
+    public boolean insertAll(String buildingId, boolean category, int count) throws SQLException {
 
         for (int i = 1; i <= count; i++) {
-            if(!insert(String.format("%02d", (i - 1) / 10 + 1) + String.format("%02d", (i - 1) % 10 + 1),
-                    buildingId, catogory ? "新房" : "二手房", String.valueOf((int)(100 * (Math.random() * 9 + 1)))))
+            if (!insert(String.format("%02d", (i - 1) / 10 + 1) + String.format("%02d", (i - 1) % 10 + 1),
+                    buildingId, category ? "新房" : "二手房", String.valueOf((int) (100 * (Math.random() * 9 + 1)))))
                 return false;
         }
         return true;

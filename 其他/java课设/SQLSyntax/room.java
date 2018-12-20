@@ -3,6 +3,7 @@ package SQLSyntax;
 public class room implements SQLSyntax {    //对商品房表增删改查
 
     private static final String now = "CommercialHouse.room";
+
     public String insert(String... data) {   //roomId, buildingId, category, cost
         return "insert into " + now + " values ('" + data[0] + "', '" +
                 data[1] + "', '" + data[2] + "', '" + data[3] + "')";

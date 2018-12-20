@@ -3,6 +3,7 @@ package Connect;
 import SQLSyntax.*;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,7 +13,8 @@ public class listServer implements JDBCServer {
         if (data.length != 4) return false;
         String[] all = new String[data.length + 1];
         for (int i = 0; i < data.length; i++) all[i] = data[i];
-        all[data.length] = "(" + new Date().toString() + ")";   //获取当前时间
+        all[data.length] = "(" + new SimpleDateFormat("yyyy MM dd hh mm").format(new Date()) + ")";   //获取当前时间
+        if (!JDBC.SQLexcute(new building().modifyCount(data[2], -1))) return false;
         return JDBC.SQLexcute(new order().insert(all));
     }
 
@@ -21,8 +23,8 @@ public class listServer implements JDBCServer {
         return JDBC.SQLexcute(new order().delete(data));
     }
 
-    public boolean deleteList(String listId) {
-        return JDBC.SQLexcute("delete from list where listId = '" + listId + "'");
+    public boolean deleteList(String orderId) {  //按照订单号删除
+        return JDBC.SQLexcute(new order().deleteOrderId(orderId));
     }
 
     public boolean modify(String... data) {  //listId, buyerId, buildingId, roomId, newDate
@@ -35,16 +37,13 @@ public class listServer implements JDBCServer {
         return JDBC.SQLQuery(new order().query(data));
     }
 
-    public ArrayList<String> queryList(String listId) throws SQLException {
+    public ArrayList<String> queryList(String orderId) throws SQLException {    //按照订单号查询(listId, buyerId, buildingId, buildingName, location)
 
-        return JDBC.SQLQuery("select list.listId, buyer.buyerId, building.buildingId, building.buildingName, building.location from list, buyer, building "
-                + "where list.buyerId = Buyer.buyerId and list.buildingId = building.buildingId and list.listId = '" + listId + "'");
+        return JDBC.SQLQuery(new order().queryOrderId(orderId));
     }
 
-    public ArrayList<ArrayList> queryAll() throws SQLException {
+    public ArrayList<ArrayList> queryAll() throws SQLException {    //查询(listId, sellerId, buyerId, buildingId, buildingName)全部信息
 
-        return JDBC.getTable("select list.listId, seller.sellerId, buyer.buyerId, building.buildingId, building.buildingName, " +
-                "building.location from list, seller, buyer, building where list.buildingId = Building.buildingId " +
-                "and list.buyerId = Buyer.buyerId and building.sellerId = seller.sellerId", true);
+        return JDBC.getTable(order.queryAll(), true);
     }
 }

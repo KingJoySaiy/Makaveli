@@ -5,10 +5,7 @@ import java.util.*;
 
 public class JDBC {
 
-    private static final String sql_url = "jdbc:mysql://localhost:3306/CommercialHouse?" +
-            "useUnicode=true&useJDBCCompliantTimezoneShift=true" +
-            "&useLegacyDatetimeCode=false&serverTimezone=UTC" +
-            "&characterEncoding=utf-8";    //数据库路径
+    private static final String sql_url = "jdbc:mysql://localhost:3306/CommercialHouse?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&characterEncoding=utf-8";    //数据库路径
     private static final String name = "root";        //用户名
     private static final String password = "233";    //密码
     private static Connection conn = null;
@@ -62,7 +59,7 @@ public class JDBC {
 
     public static ArrayList<ArrayList> getTable(String table, boolean isSQL) throws SQLException {  //获取表数据，返回二维表向量
 
-        if(!isSQL) table = "select * from " + table;
+        if (!isSQL) table = "select * from " + table;
         conn = GetConn();
         preparedStatement = conn.prepareStatement(table);
         ResultSet result1 = preparedStatement.executeQuery();

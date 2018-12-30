@@ -106,7 +106,7 @@ string a,b,c;
 * `a.find(b)`					在a中查找子串b第一次出现的位置，查找失败返回std::string::npos，强制转化为int值-1
 * `a.rfind(b)`					在a 中查找子串b 最后一次出现的位置，查找失败返回-1，需要强制转化
 * `a.find_first_of(b)`			在a中查找b中任一字符第一次出现的位置
-* `a.find_first_of(b)`			在a中查找b中任一字符最后一次出现的位置
+* `a.find_last_of(b)`			在a中查找b中任一字符最后一次出现的位置
 * `a.compare(b)`				类似于strcmp，比较字符
 * `a.assign(b,x,y)`			把char *b的下标自x开始宽为y的字符赋给a
 * `a.append(b,x,y)`			把b下标自x开始宽为y的字符接在a后面

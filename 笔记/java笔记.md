@@ -97,7 +97,6 @@
 * `a.empty()`判斷是否棧空 (3)
 
 ## 三、Set 接口
-
 * HashSet: 通過哈希表實現的有序集合，其對象并没有以某种特定顺序来存放。
 * TreeSet: 通過樹形結構實現的有序集合，其對象以升序顺序存储，访问和遍历的时间很快。
 * LinkedHashSet: 以元素插入的顺序来维护集合的链接表，以插入的顺序在集合中迭代；  
@@ -203,7 +202,51 @@
 * `SortedMap<Key, Value> a.tailMap(Key)`返回大於key的子哈希表引用 (2)
 * `SortedMap<Key, Value> a.subMap(Key, Key)`返回key左閉右開區間的子哈希表引用 (2)
 
-## 五、Collections 靜態容器方法
+## 五、Queue、Deque接口
+* Queue接口与List, Set一样继承自Collection接口，支持队列的常见操作。常用的实现类有LinkedList和PriorityQueue。
+* Deque是Queue的子接口，用于实现双端队列，同时也能实现栈。
+
+### 1. PriorityQueue(Queue)
+1. `import java.util.Queue`导入 **Queue** 接口
+2. `import java.util.PriorityQueue`导入包
+3. `Queue<Integer> a = new PriorityQueue<>()`定义优先队列（默认最小堆）
+4. 利用Comparable对象创建优先队列排序规则，如下：
+```java
+Queue<MyClass> a = new PriorityQueue<>(new Comparable<MyClass>(){
+    @Override
+    public int compare(Myclass o1, MyClass o2) {
+        return o1 - o2;
+    }
+});
+```
+
+### 2. ArrayDeque(Queue, Deque)
+1. `import java.util.ArrayQueue`导入包
+2. `Deque<Integer> a = new ArrayQueue<>()`定义双端队列
+
+### 3. LinkerList(List, Queue, Deque)
+（二、List接口）
+
+* `boolean a.offer(object)`入队操作，返回是否成功(1, 2, 3)
+* `object a.poll()`出队并返回(1, 2, 3)
+* `object a.peek()`获取队首(1, 2, 3)
+* `boolean a.contains(object)`队列中是否有某元素(1, 2, 3)
+* `void a.clear()`清空队列(1, 2, 3)
+* `boolean a.equals(objeact)`判断两队列是否对象数值相等(1, 2, 3)
+* `boolean a.isEmpty()`判断队列是否为空(1, 2, 3)
+* `int a.size()`返回队列大小(1, 2, 3)
+* `boolean a.remove(object)`按值删除对象(1, 2, 3)
+* `object[] a.toArray()`返回对象数组(1, 2, 3)
+* `void a.offerFirst(object)`在队首位置添加对象(2, 3)
+* `void a.offerLast(object)`在队尾位置添加(2, 3)
+* `object a.peekFirst()`获取队首(2, 3)
+* `object a.peekLast()`获取队尾(2, 3)
+* `object a.pollFirst()`弹出队首(2, 3)
+* `object a.pollLast()`弹出队尾(2, 3)
+* `object a.pop()`出栈/弹出队尾(2, 3)
+* `void a.push(object)`入栈/添加队尾(2, 3)
+
+## 六、Collections 靜態容器方法
 
 1. **Collections** 提供很多對容器 (Collection) 進行操作的靜態方法，常用容器接口 (Collection Interface) 有List, Set, Map, Queue, Deque。
 2. `import java.util.Collections` 導入包
@@ -227,7 +270,7 @@
 * `Collections.sort(List, Comparator)`容器進行升序，比較器可省去
 * `Collections.swap(List, int, int)`交換指定位置處的對象
 
-## 六、常用基本類
+## 七、常用基本類
 
 ### 1. Character 基本字符類
 
@@ -339,7 +382,7 @@
 * `String a.toString()`轉爲字符串
 * `boolean a.equals(object)`判斷是否相等
 
-## 七、大數類
+## 八、大數類
 
 * BigInteger：提供對較大的整數的基本操作
 * BigDecimal：類提供對較大的十進制數（包括小數）的基本操作
@@ -391,7 +434,7 @@
 * `Object a.movePointRight()`小數點右移一位 (2)
 * `int a.precision()`返回精度 (2)
 
-## 八、Comparable / Comparator 接口
+## 九、Comparable / Comparator 接口
 
 * Comparable接口一般由子類通過implements關鍵字實現，直接修改實體類的比較方式，繼而在比較或排序時不需要傳入比較器參數。
 * Comparator接口提供重寫容器的排序方法與分組方式，無需實現Comparable接口，無需改變實體類的內容，只需新建比較器對象作爲方法參數傳入即可。
@@ -423,7 +466,7 @@ class object implements Comparable<object> {
 
 4. 其中`compareTo`和`compare`方法返回值都是int，若爲負數則左對象在右對象前，爲0則兩視爲對象相等，正數同理。
 
-## 九、 Math 數學相關方法
+## 十、 Math 數學相關方法
 
 * `java.lang.Math`包會自動導入，提供了基本的數學相關的靜態方法，處理的類型有`double, float, int, long, short`。
 
@@ -459,11 +502,7 @@ class object implements Comparable<object> {
 
 備忘：
 
-Queue接口，PriorityQueue类！！
-
 Iterator
-
-Math
 
 Pair<object, object>
 

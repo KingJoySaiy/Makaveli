@@ -459,6 +459,8 @@ class object implements Comparable<object> {
 
 備忘：
 
+Queue接口，PriorityQueue类！！
+
 Iterator
 
 Math

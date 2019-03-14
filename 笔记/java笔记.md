@@ -212,7 +212,7 @@
 3. `Queue<Integer> a = new PriorityQueue<>()`定义优先队列（默认最小堆）
 4. 利用Comparable对象创建优先队列排序规则，如下：
 ```java
-Queue<MyClass> a = new PriorityQueue<>(new Comparable<MyClass>(){
+Queue<MyClass> a = new PriorityQueue<>(new Comparator<MyClass>(){
     @Override
     public int compare(Myclass o1, MyClass o2) {
         return o1 - o2;

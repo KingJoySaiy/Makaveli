@@ -34,4 +34,4 @@ We ride or die.
 * [java课设](/其他/java课设)
 * [数据结构课设](/其他/数据结构课设)
 * [RSA加密解密](/其他/RSA加密解密)
-* [选课系统-ssh](/其他/选课系统-ssh)
+* [SelectCourseSystem](/其他/SelectCourseSystem)

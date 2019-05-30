@@ -86,7 +86,7 @@ SUBTRACT:       ; 减法运算
     MOV BH,CL   ; 结果为负数
     MOV CL,'-'
     CALL PRINT_CL
-    MOV CL,'9'+1     ; CL的相反数 = 10-(10+CL)
+    MOV CL,'9'+1     ; CL的相反数 = '10'-(CL+10-'0')
     ADD BH,10
     SUB BH,'0'      ; BH = CL+10-'0'
     SUB CL,BH
@@ -127,9 +127,11 @@ PRINT_END:  ; 输出结束
 
 DIVIDE:     ; 除法运算
     CALL PRINT_EQUAL_SIGN
-    SUB CL,'0'                      ; TO USE THE REAL VALUE OF CL NOT '0'+VALUE
-    SUB CH,'0'                     ; TO USE THE REAL VALUE OF CH NOT '0'+VALUE
-    MOV AH,0                    ; CLEAR AH TO USE AX IN DIVISION
+    CMP CH '0'  ; 除以0则异常退出
+    JE ERROR_QUIT
+    SUB CL,'0' 
+    SUB CH,'0'
+    MOV AH,0 
     MOV AL,CL
     MOV BL,CH
     DIV BL  ; AX = AL/BL

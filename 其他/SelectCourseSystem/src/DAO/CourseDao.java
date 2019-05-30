@@ -1,12 +1,14 @@
 package DAO;
 
 import Table.TCourse;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CourseDao {
 
@@ -23,7 +25,7 @@ public class CourseDao {
         return res;
     }
 
-    public ArrayList<TCourse> addCourse(int cId, String cName, String teacher) {    //课程信息录入
+    public boolean addCourse(int cId, String cName, String teacher) {    //课程信息录入
 
         Session session = sessionFactory.openSession();
         Transaction ts = session.beginTransaction();
@@ -31,12 +33,25 @@ public class CourseDao {
         course.setcId(cId);
         course.setcName(cName);
         course.setTeacher(teacher);
-        session.save(course);   //保存新的课程对象
-        ts.commit();
 
-        String hql = "from TCourse";    //查询新的课程记录
-        Query query = session.createQuery(hql);
-        ArrayList<TCourse> res = (ArrayList<TCourse>) query.list();
+        ArrayList<TCourse> now = showCourse();
+        for (TCourse p : now) {
+            if (p.getcId() == course.getcId()) {
+                session.close();
+                return false;
+            }
+        }
+        session.save(course);   //保存新的课程对象（保存成功则返回主键序列化对象）
+        ts.commit();
+        session.close();
+        return true;
+    }
+
+    public ArrayList<TCourse> showCourse() { //查询所有课程记录
+
+        Session session = sessionFactory.openSession();
+        Criteria tmp = session.createCriteria(TCourse.class);
+        ArrayList<TCourse> res = (ArrayList<TCourse>) tmp.list();
         session.close();
         return res;
     }

@@ -6,25 +6,35 @@
     <bean class="DAO.CourseDao" name="courseDao">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-
     <bean class="Action.queryCourseByWordAction" name="queryCourse">
         <property name="courseDao" ref="courseDao"/>
     </bean>
-
     <bean class="Action.addCourseAction" name="addCourse">
         <property name="courseDao" ref="courseDao"/>
     </bean>
+
+    <bean class="DAO.CourseDemoDao" name="courseDemoDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean class="Action.addCourseDemoAction" name="addCourseDemo">
+        <property name="courseDemoDao" ref="courseDemoDao"/>
+    </bean>
+
+    <bean class="DAO.StudentDao" name="studentDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean class="Action.loginStudentAction" name="loginStudent">
+        <property name="studentDao" ref="studentDao"/>
+    </bean>
+
 
     <bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" name="sessionFactory">
         <property name="dataSource" ref="dataSource"/>
         <property name="mappingResources" value="hibernate.cfg.xml"/>
         <property name="mappingLocations" value="classpath:Table/TCourse.hbm.xml"/>
-        <!--<property name="mappingLocations" value="classpath:Table/TBook.hbm.xml"/>-->
     </bean>
-
     <bean class="org.apache.commons.dbcp2.BasicDataSource" name="dataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <!--<property name="url" value="jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8"/>-->
         <property name="url" value="jdbc:mysql://localhost:3306/selectCourse?characterEncoding=UTF-8"/>
         <property name="username" value="root"/>
         <property name="password" value="233"/>

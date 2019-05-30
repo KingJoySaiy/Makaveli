@@ -61,7 +61,7 @@
     <p style="color:grey;font-size: 15px;text-align:center">
         Copyright © 2011常州大学教务处All rights reserved.<br>
         地 址：江苏省常州市科教城常州大学文正楼邮编：213164<br>
-        Visual Designer：艺术系廖丰丰
+        Visual Designer：KingJoySaiy
     </p>
 </div>
 </body>

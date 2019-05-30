@@ -11,6 +11,7 @@ public class TCourse {
     private String teacher;
     
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CID")
     public int getcId() {
         return cId;

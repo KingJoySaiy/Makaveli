@@ -15,10 +15,8 @@ public class addCourseAction {
     private CourseDao courseDao;
 
     public String execute() {
-        ArrayList<TCourse> list = courseDao.addCourse(cId, cName, teacher);
-        Map session = ActionContext.getContext().getSession();
-        session.put("list", list);
-        return "success";
+        boolean ok = courseDao.addCourse(cId, cName, teacher);
+        return ok ? "success" : "failure";
     }
 
     public int getcId() {

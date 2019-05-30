@@ -43,4 +43,7 @@
         Visual Designer：KingJoySaiy
     </p>
 </div>
+<script type="text/javascript" language="javascript">
+    alert("Add Course Successful!"); <!--提示添加成功，并继续添加-->
+</script>
 <body>

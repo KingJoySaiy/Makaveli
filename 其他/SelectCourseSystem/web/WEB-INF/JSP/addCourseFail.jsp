@@ -43,4 +43,7 @@
         Visual Designer：KingJoySaiy
     </p>
 </div>
+<script type="text/javascript" language="javascript">
+    alert("Add Course Fail! Please Try Again!"); <!--课程添加失败-->
+</script>
 <body>

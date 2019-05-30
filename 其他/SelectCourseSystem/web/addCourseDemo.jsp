@@ -26,11 +26,15 @@
 <div class="middle">
     <div class="middle1">
         <div style="text-align: center;">
-            <form action="addCourse.action" method="post">
-                请输入课程相关属性：<br>
-                课 程 号: <input class="middle3" type="text" name="cId" value=""/><br>
-                课 程 名: <input class="middle3" type="text" name="cName" value=""/><br>
-                教师名: <input class="middle3" type="text" name="teacher" value=""/><br>
+            <form action="addCourseDemo.action" method="post">
+                请输入课程具体属性：<br>
+                课程号: <input class="middle3" type="text" name="cId" value=""/><br>
+                开始周[1-20]: <input class="middle3" type="text" name="sWeek" value=""/><br>
+                结束周[1-20]: <input class="middle3" type="text" name="eWeek" value=""/><br>
+                星期几[1-7]: <input class="middle3" type="text" name="day" value=""/><br>
+                上课地点: <input class="middle3" type="text" name="location" value=""/><br>
+                时间[1-10]: <input class="middle3" type="text" name="sTime" value=""/><br>
+                连上时间[1-3]: <input class="middle3" type="text" name="length" value=""/><br>
                 <input class="middle4" type="submit" name="submit" value="确定"/>
             </form>
         </div>

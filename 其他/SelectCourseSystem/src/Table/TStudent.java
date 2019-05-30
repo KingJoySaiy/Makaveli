@@ -12,6 +12,7 @@ public class TStudent {
     private String sClass;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "SID")
     public String getsId() {
         return sId;

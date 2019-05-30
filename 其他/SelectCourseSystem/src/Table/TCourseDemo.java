@@ -11,19 +11,6 @@ public class TCourseDemo {
     private String location;
     private int sTime, length;
 
-//    public TCourseDemo(Object a) {
-//        cId = (int)a.get(0);
-//        sWeek = (int)a.get(1);
-//        eWeek = (int)a.get(2);
-//        day = (int)a.get(3);
-//        location = (String)a.get(4);
-//        sTime = (int)a.get(5);
-//        length = (int)a.get(6);
-//    }
-
-//    public TCourseDemo() {
-//    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CID")

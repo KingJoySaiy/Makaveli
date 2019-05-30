@@ -31,7 +31,7 @@
     <bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" name="sessionFactory">
         <property name="dataSource" ref="dataSource"/>
         <property name="mappingResources" value="hibernate.cfg.xml"/>
-        <property name="mappingLocations" value="classpath:Table/TCourse.hbm.xml"/>
+        <property name="mappingLocations" value="classpath:Table/Table.hbm.xml"/>
     </bean>
     <bean class="org.apache.commons.dbcp2.BasicDataSource" name="dataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>

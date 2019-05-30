@@ -10,22 +10,24 @@ import java.util.Map;
 
 public class loginStudentAction {
 
-    private String Id;
+    private String sId;
     private String password;
-    private String password1;
     private StudentDao studentDao;
 
     public String execute() {
-        boolean ok = studentDao.login(Id, password, password1);
+        String res = studentDao.login(sId, password);
+        if (res == null) return "failure";
+        Map session = ActionContext.getContext().getSession();
+        session.put("studentId", res);
         return "success";
     }
 
-    public String getId() {
-        return Id;
+    public String getsId() {
+        return sId;
     }
 
-    public void setId(String Id) {
-        this.Id = Id;
+    public void setsId(String sId) {
+        this.sId = sId;
     }
 
     public String getPassword() {
@@ -34,14 +36,6 @@ public class loginStudentAction {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPassword1(String password1) {
-        return password1;
-    }
-
-    public void setPassword1(String password1) {
-        this.password1 = password1;
     }
 
     public StudentDao getStudentDao() {

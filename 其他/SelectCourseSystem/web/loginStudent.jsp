@@ -34,17 +34,17 @@
 <div class="a2">
     <div class="c3"><img src="${pageContext.request.contextPath}/image0/p1.jpg" align="left"/></div>
     <div class="b2">
-        <div class="d1">
-            账号:<br><br>
-            密码：
-        </div>
+        <%--<div class="d1">--%>
+            <%--账号:<br><br>--%>
+            <%--密码：--%>
+        <%--</div>--%>
         <div class="d2">
             <form action="loginStudent.action" method="post">
-                <input class="t1" type="text" name="account" value="请输入您的学号"/><br><br>
-                <input class="t1" type="password" name="password" value=""/><br><br><br>
+                <input class="t1" type="text" name="sId" value="这里输入学号"/><br><br>
+                <input class="t1" type="text" name="password" value="这里输入密码"/><br><br><br>
                 <input class="t2" type="submit" value="登录"/>
             </form>
-            <form name="loginform"><input class="t2" type="submit" value="重置" onclick="login()"/></form>
+            <%--<form name="loginform"><input class="t2" type="submit" value="重置" onclick="login()"/></form>--%>
         </div>
         <div class="d3">
             <br>

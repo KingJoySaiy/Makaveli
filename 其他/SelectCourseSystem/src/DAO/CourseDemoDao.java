@@ -45,6 +45,7 @@ public class CourseDemoDao {
         String hql = "from TCourseDemo";
         Query query = session.createQuery(hql);
         ArrayList<TCourseDemo> res = (ArrayList<TCourseDemo>) query.list();
+
         session.close();
         return res;
     }

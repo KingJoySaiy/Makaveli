@@ -9,13 +9,9 @@
         <!--<property name="dialect">org.hibernate.dialect.MySQLDialect</property>-->
 
         <mapping class="Table.TCourseDemo"/>
-        <mapping resource="Table/TCourseDemo.hbm.xml"/>
-
         <mapping class="Table.TCourse"/>
-        <mapping resource="Table/TCourse.hbm.xml"/>
-
+        <mapping resource="Table/Table.hbm.xml"/>
         <mapping class="Table.TStudent"/>
-        <mapping resource="Table/TStudent.hbm.xml"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
     </session-factory>

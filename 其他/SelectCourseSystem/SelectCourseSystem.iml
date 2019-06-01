@@ -27,6 +27,7 @@
         <datasource-map>
           <unit-entry name="hibernate.cfg.xml" value="0044be7d-ebf2-49e7-b824-b324290babef" />
           <unit-entry name="noname-applicationContext.xml@1217" />
+          <unit-entry name="noname-applicationContext.xml@1343" />
           <unit-entry name="noname-applicationContext.xml@684" value="0044be7d-ebf2-49e7-b824-b324290babef" />
         </datasource-map>
         <naming-strategy-map />

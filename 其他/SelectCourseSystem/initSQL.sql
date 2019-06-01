@@ -38,3 +38,7 @@ create table selected (
 -- （4）选课功能。其中，（1）用户登录每个人都要实现，
 -- 另外三个模块每人选做一个。
 -- 数据库表格的设计合作完成。
+
+-- int sWeek, eWeek, day;  //起始周，结束周，星期几
+-- String cName, location; //课程名，上课地点
+-- int sTime, length;      //上课时间，连上几节

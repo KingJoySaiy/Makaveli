@@ -11,7 +11,4 @@ public class constantData {
     public static final String originFilePath = "C:\\KingJoySaiy\\data";    //初始待加密的文件目录
     public static final String ciperFilePath = "C:\\KingJoySaiy\\cipherFile";   //加密后的密文存储位置
     public static final String plainFilePath = "C:\\KingJoySaiy\\plainFile";    //解密后的明文存储位置
-
-    public static BigInteger counter = BigInteger.ONE;  //CTR分组工作方式中用到的累加器
-    public static boolean modeFlag = true;              //选择分组工作方式
 }

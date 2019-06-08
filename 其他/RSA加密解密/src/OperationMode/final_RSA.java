@@ -1,7 +1,6 @@
 package OperationMode;
 
 import RSA.RSADemo;
-import Constants.constantData;
 import java.math.BigInteger;
 import java.util.LinkedList;
 
@@ -9,39 +8,42 @@ public class final_RSA implements RSAMode {
 
     private RSADemo rsa;
     private BigInteger counter;
-    private boolean flag;
+    private boolean modeFlag;   //选择分组工作方式
     public final_RSA() {
 
-        counter = constantData.counter;
-        flag = constantData.modeFlag;
         rsa = new RSADemo();
     }
     public LinkedList<BigInteger> encryptBlock(LinkedList<BigInteger> plainTexts) {
 
+        modeFlag = false;
+        counter = BigInteger.ONE;
         LinkedList<BigInteger> res = new LinkedList<>();
-        for (int i = 0; i < plainTexts.size(); i++) {
-            if (!flag) {
-                res.add(rsa.encrypt(plainTexts.get(i)));
+        for (BigInteger p : plainTexts) {
+            if (modeFlag) {
+                res.add(rsa.encrypt(p));
             } else {
-                res.add(rsa.encrypt(plainTexts.get(i)).xor(counter));
+                res.add(rsa.encrypt(counter).xor(p));
                 counter = counter.add(BigInteger.ONE);
             }
-            flag = !flag;
+            modeFlag = !modeFlag;
         }
         return res;
     }
     public LinkedList<BigInteger> decryptBlock(LinkedList<BigInteger> cipherTexts) {
 
+        modeFlag = false;
+        counter = BigInteger.ONE;
         LinkedList<BigInteger> res = new LinkedList<>();
-        for (int i = cipherTexts.size() - 1; i >= 0; i--) {
-            if (flag) {
-                res.addFirst(rsa.decrypt(cipherTexts.get(i)));
+        for (BigInteger p : cipherTexts) {
+            if (modeFlag) {
+                res.add(rsa.decrypt(p));
             } else {
-                counter = counter.subtract(BigInteger.ONE);
-                res.addFirst(rsa.decrypt(cipherTexts.get(i).xor(counter)));
+                res.add(rsa.encrypt(counter).xor(p));
+                counter = counter.add(BigInteger.ONE);
             }
-            flag = !flag;
+            modeFlag = !modeFlag;
         }
+
         return res;
     }
 }

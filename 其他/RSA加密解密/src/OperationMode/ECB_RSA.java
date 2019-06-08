@@ -14,7 +14,7 @@ public class ECB_RSA implements RSAMode{
     public LinkedList<BigInteger> encryptBlock(LinkedList<BigInteger> plainTexts) {
 
         LinkedList<BigInteger> res = new LinkedList<>();
-        for (BigInteger p : plainTexts) {
+        for (BigInteger p : plainTexts) {   //对于每个分组依次加密
             res.add(rsa.encrypt(p));
         }
         return res;
@@ -22,7 +22,7 @@ public class ECB_RSA implements RSAMode{
     public LinkedList<BigInteger> decryptBlock(LinkedList<BigInteger> cipherTexts) {
 
         LinkedList<BigInteger> res = new LinkedList<>();
-        for (BigInteger p : cipherTexts) {
+        for (BigInteger p : cipherTexts) {  //对于每个分组依次解密
             res.add(rsa.decrypt(p));
         }
         return res;

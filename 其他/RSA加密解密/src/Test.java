@@ -20,10 +20,10 @@ class Test {
         LinkedList<BigInteger> a = randData.randData();
         LinkedList<BigInteger> tmp = mode.encryptBlock(a);
         LinkedList<BigInteger> b = mode.decryptBlock(tmp);
-//        if (a.size() != b.size()) return false;
-//        for (int i = 0; i < a.size(); i++) {
-//            if (!a.get(i).equals(b.get(i))) return false;
-//        }
+        if (a.size() != b.size()) return false;
+        for (int i = 0; i < a.size(); i++) {
+            if (!a.get(i).equals(b.get(i))) return false;
+        }
         show(a);
 //        show(tmp);
         show(b);
@@ -31,8 +31,8 @@ class Test {
     }
     public static void main(String[] args) {
 
-        RSAMode ecb = new ECB_RSA("264474015");
-        RSAMode ctr = new CTR_RSA("264474015");
+        RSAMode ecb = new ECB_RSA();
+        RSAMode ctr = new CTR_RSA();
         System.out.println(test(ecb));
         System.out.println(test(ctr));
     }

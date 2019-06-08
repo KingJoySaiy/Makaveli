@@ -7,9 +7,9 @@ import java.util.LinkedList;
 public class ECB_RSA implements RSAMode{
 
     private RSADemo rsa;
-    public ECB_RSA(String Key) {
+    public ECB_RSA() {
 
-        rsa = new RSADemo(Key);
+        rsa = new RSADemo();
     }
     public LinkedList<BigInteger> encryptBlock(LinkedList<BigInteger> plainTexts) {
 

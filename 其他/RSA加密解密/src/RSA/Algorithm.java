@@ -1,6 +1,7 @@
 package RSA;
 
 import java.math.BigInteger;
+import constants.constantData;
 
 class Algorithm {
 
@@ -33,12 +34,6 @@ class Algorithm {
         return GCD(b, a.mod(b));
     }
 
-    boolean checkPublicKey(BigInteger E) {    //判断公钥E是否合法 (1<E<φ[n], E与φ[n]互质)
-
-        return E.compareTo(BigInteger.ONE) > 0
-                && E.compareTo(EulerN) < 0
-                && GCD(E, EulerN).equals(BigInteger.ONE);
-    }
     BigInteger getPrivateKey(BigInteger publicKey) {    //公钥求私钥 (二者在模φ[n]下互为逆元)
 
         return inverse(publicKey, EulerN, BigInteger.ONE, BigInteger.ZERO);
@@ -49,10 +44,7 @@ class Algorithm {
     }
     Algorithm() {
 
-        BigInteger p = new BigInteger("10000019");   //约定该RSA算法中p=10000019, q=10000079
-        BigInteger q = new BigInteger("10000079");
-        //(p-1)*(q-1)的质因子为： 2 7 11 23 67 1523 19763
-        //可令公钥为 (15 * 13 * 13 * 17 * 17 * 19 * 19) = 264474015
+        BigInteger p = constantData.P, q = constantData.Q;
         n = p.multiply(q);      //根据P和Q将n和φ[n]初始化
         EulerN = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
     }

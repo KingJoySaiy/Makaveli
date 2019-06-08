@@ -1,16 +1,9 @@
 package RSA;
 
 import java.math.BigInteger;
-import java.util.regex.Pattern;
+import constants.constantData;
 
 public class RSADemo {
-
-    class invalidKeyException extends Exception {   //公钥非法异常类
-
-        invalidKeyException() {
-            super("非法公钥！");
-        }
-    }
 
     private Algorithm AL;
     private BigInteger publicKey;
@@ -25,20 +18,9 @@ public class RSADemo {
         return AL.modPow(cipherText, AL.getPrivateKey(publicKey), AL.getN());
     }
 
-    public RSADemo(String Key) {    //传入公钥
+    public RSADemo() {
 
-        try {
-            if (!Pattern.compile("[0-9]*").matcher(Key).matches()) {    //正则表达式判断Key是否都是数字
-                throw new invalidKeyException();
-            }
-            publicKey = new BigInteger(Key);    //将公钥和AL对象初始化
-            AL = new Algorithm();
-
-            if (!AL.checkPublicKey(publicKey)) {    //若公钥不合法也抛出异常
-                throw new invalidKeyException();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        publicKey = constantData.publicKey;
+        AL = new Algorithm();
     }
 }

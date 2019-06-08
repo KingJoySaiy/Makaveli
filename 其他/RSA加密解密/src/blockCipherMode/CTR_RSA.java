@@ -2,7 +2,6 @@ package blockCipherMode;
 
 import java.math.BigInteger;
 import java.util.LinkedList;
-import java.util.Collections;
 
 import RSA.RSADemo;
 
@@ -10,10 +9,10 @@ public class CTR_RSA implements RSAMode {
 
     private RSADemo rsa;
     private BigInteger counter;
-    public CTR_RSA(String Key) {
+    public CTR_RSA() {
 
         counter = BigInteger.ONE;
-        rsa = new RSADemo(Key);
+        rsa = new RSADemo();
     }
     public LinkedList<BigInteger> encryptBlock(LinkedList<BigInteger> plainTexts) {
 

@@ -1,4 +1,4 @@
-package blockCipherMode;
+package OperationMode;
 
 import RSA.RSADemo;
 import java.math.BigInteger;

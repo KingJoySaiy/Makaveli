@@ -1,11 +1,14 @@
-import RSA.*;
+package Test;
+
+import OperationMode.CTR_RSA;
+import OperationMode.ECB_RSA;
+import OperationMode.RSAMode;
+import OperationMode.final_RSA;
 
 import java.math.BigInteger;
 import java.util.LinkedList;
 
-import blockCipherMode.*;
-
-class Test {
+public class simpleTest {
 
     private static void show(LinkedList<BigInteger> x) {
 
@@ -29,11 +32,14 @@ class Test {
         show(b);
         return true;
     }
-    public static void main(String[] args) {
+
+    public static void run() {
 
         RSAMode ecb = new ECB_RSA();
         RSAMode ctr = new CTR_RSA();
+        RSAMode fin = new final_RSA();
         System.out.println(test(ecb));
         System.out.println(test(ctr));
+        System.out.println(test(fin));
     }
 }

@@ -1,4 +1,4 @@
-package blockCipherMode;
+package OperationMode;
 
 import java.math.BigInteger;
 import java.util.LinkedList;

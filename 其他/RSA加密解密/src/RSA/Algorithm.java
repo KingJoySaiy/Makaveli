@@ -1,7 +1,7 @@
 package RSA;
 
 import java.math.BigInteger;
-import constants.constantData;
+import Constants.constantData;
 
 class Algorithm {
 

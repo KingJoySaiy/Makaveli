@@ -7,7 +7,7 @@ import java.io.*;
 import java.math.BigInteger;
 import java.util.LinkedList;
 
-public class fileTest {
+public class fileTest { //文件测试
 
     public static void fileTest() {
 

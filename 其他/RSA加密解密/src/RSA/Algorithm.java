@@ -7,7 +7,7 @@ class Algorithm {
 
     private BigInteger n, EulerN;   //公共模n，欧拉函数第n项
 
-    BigInteger modPow(BigInteger x, BigInteger n, BigInteger mod) { //快速幂取模
+    BigInteger modPow(BigInteger x, BigInteger n, BigInteger mod) { //快速幂算法求 x^n % mod
 
         BigInteger res = BigInteger.ONE, two = new BigInteger("2");
         while (n.compareTo(BigInteger.ZERO) > 0) {
@@ -19,7 +19,7 @@ class Algorithm {
         }
         return res;
     }
-    private static BigInteger inverse(BigInteger a, BigInteger b, BigInteger x, BigInteger y) {    //扩展欧几里得求逆元
+    private static BigInteger inverse(BigInteger a, BigInteger b, BigInteger x, BigInteger y) {    //扩展欧几里得求逆元，x和y初始值为1和0
 
         BigInteger res = x.subtract(a.divide(b).multiply(y));
         if (a.mod(b).equals(BigInteger.ONE)) {
@@ -28,13 +28,8 @@ class Algorithm {
             return inverse(b, a.mod(b), y, res);
         }
     }
-    private BigInteger GCD(BigInteger a, BigInteger b) {    //最大公约数
 
-        if(b.equals(BigInteger.ZERO)) return a;
-        return GCD(b, a.mod(b));
-    }
-
-    BigInteger getPrivateKey(BigInteger publicKey) {    //公钥求私钥 (二者在模φ[n]下互为逆元)
+    BigInteger getPrivateKey(BigInteger publicKey) {    //根据公钥求私钥 (二者在模φ[n]下互为逆元)
 
         return inverse(publicKey, EulerN, BigInteger.ONE, BigInteger.ZERO);
     }

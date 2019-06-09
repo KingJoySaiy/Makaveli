@@ -3,7 +3,7 @@ package RSA;
 import java.math.BigInteger;
 import Constants.constantData;
 
-public class RSADemo {
+public class RSADemo {  //对单个消息进行加密解密
 
     private Algorithm AL;
     private BigInteger publicKey;

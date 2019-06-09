@@ -3,12 +3,12 @@ package Test;
 import OperationMode.CTR_RSA;
 import OperationMode.ECB_RSA;
 import OperationMode.RSAMode;
-import OperationMode.final_RSA;
+import OperationMode.mixed_RSA;
 
 import java.math.BigInteger;
 import java.util.LinkedList;
 
-public class simpleTest {
+public class simpleTest {   //对随机数进行测试
 
     private static void show(LinkedList<BigInteger> x) {
 
@@ -37,7 +37,7 @@ public class simpleTest {
 
         RSAMode ecb = new ECB_RSA();
         RSAMode ctr = new CTR_RSA();
-        RSAMode fin = new final_RSA();
+        RSAMode fin = new mixed_RSA();
         System.out.println(test(ecb));
         System.out.println(test(ctr));
         System.out.println(test(fin));

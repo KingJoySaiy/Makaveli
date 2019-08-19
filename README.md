@@ -8,6 +8,7 @@ We ride or die.
 * [MySQL笔记](/笔记/MySQL笔记.md)
 * [Vim笔记](/笔记/Vim笔记.md)
 * [python笔记](/笔记/python笔记.md)
+* [English Grammar](/笔记/English%20Grammar.md)
 
 ## 二、多校训练
 * [杭电多校-1st-2nd](/多校训练/2018%20Multi-University%20Contest%201-2/Multi-University%201st-2nd.md)

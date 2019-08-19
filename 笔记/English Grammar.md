@@ -10,7 +10,7 @@
 
 ### 2.1 Emphasis
 
-* [It is...that / who...]
+* <u>It is...that / who...</u>
 
 eg. It was not until the 19th century that the newspaper became the dominant pre-electronic medium.
 
@@ -32,7 +32,7 @@ eg. It was not until the 19th century that the newspaper became the dominant pre
 
 ### 3.1 Invert completely
 
-* [There be + n. + prep.]
+* <u>There be + n. + prep.</u>
 
 eg. There is no gap between mind and matter.
 
@@ -44,7 +44,7 @@ eg. Not only did they develop such a device but by the turn of the millennium th
 
 * "Only" locates at the beginning of the sentence
 
-eg. **Only** over the past 30 years have scholars examined history from the bottom up.
+eg. Only over the past 30 years have scholars examined history from the bottom up.
 
 * Virtual statement without "if"
 
@@ -72,15 +72,15 @@ eg. If circumstances always determined the life and prospects of people, then hu
 
 ### 5.1 Object clause
 
-* [v. + object clause]
+* <u>v. + object clause</u>
 
 eg. Scientists **believe** that intelligence can expand and fluctuate according to mental effort.
 
-* [prep. + object clause]
+* <u>prep. + object clause</u>
 
 eg. This and other similar cases raise the question **of** whether there is still a line between the court politics.
 
-* [Non-predicate v. + object clause]
+* <u>Non-predicate v. + object clause</u>
 
 eg. You might even be tempted to assume that humanity has little future to look forward to.
 
@@ -102,7 +102,7 @@ eg. What was done in the experiment did not matter.
 
 => It did not matter what was done in the experiment.
 
-* [It be done that...] / [It be adj. / n. that...]
+* <u>It be done that...</u> / <u>It be adj. / n. that...</u>
 
 ### 5.4  Appositive clause
 
@@ -123,19 +123,117 @@ idea, opinion, fact, evidence, question, doubt, reason, theory, belief, possibil
 | sb.                                 | who / whom (sb. is object) / that |
 | (sth. / sb.) has "own relationship" | whose                             |
 | time                                | when                              |
+| location                            | where                             |
+| reason                              | why                               |
 
+### 6.2 Attention
 
+* The relational word must used as a part of the sentence **including "that"**  .
 
+* If relational word were used as object, it could be removed.
 
+eg. Are humans actually aware of the world they live in?
 
+* whereby = by which
 
+eg. The definition also excludes the majority of teachers, despite the fact that teaching has traditionally been the method **whereby** many intellectuals earn their living.
 
+## Ⅶ . Adverbial clause
 
-## Ⅶ .
+### 7.1 **Time**
 
-## Ⅷ .
+* <u>when / while / as / before / after / since / until...</u>
 
-## Ⅸ .
+eg. As the brain fades, we refer to these occurrences as "senior moments".
+
+* <u>as soon as / by the time...</u>
+
+eg. By the time 100 percent of the evidence is in, it may be too late.
+
+### 7.2 **Reason**
+
+* <u>because / since / as / now that...</u>
+
+eg. Now that you have developed a topic into a tentative thesis, you can assemble your notes and begin to flesh out whatever outline you have made.
+
+### 7.3 **result**
+
+* <u>so / such ...that...] / [...so that...</u>
+
+eg. Transition should connect one paragraph to the next **so that** there are no abrupt or confusing shifts.
+
+### 7.4 **condition**
+
+* <u>if / unless / once] / [as / so long as</u>
+
+eg. Once a discovery claim becomes public, the discovery receives intellectual credit.
+
+### 7.5 **Concession**
+
+* <u>although / though / even though / even if / while...</u>
+
+eg. The defining term of intelligence in humans still seems to be the IQ score even though IQ tests are not given as often as they used to be.
+
+### 7.6 Other unimportant type of adverbial clause
+
+* **Location** : <u>where...</u>
+* **Intention** : <u>so that / in order that...</u>
+* **Comparison** : <u>as ... as... / -er than / more...than</u>
+* **Manner** : <u>as / as if...(means "similar to")</u>
+
+### 7.7 usage of "as"
+
+* means <u>"when / while"</u> in time adverbial clause (important)
+* means <u>"because"</u> in reason adverbial clause (important)
+* means <u>"compare to"</u> in comparison adverbial clause
+* means <u>"in the manner of"</u> in manner adverbial clause
+* means <u>"although"</u> in  concession adverbial clause
+
+## Ⅷ . Break complex sentence
+
+### 8.1 Find conjunction
+
+* parallel conjunction: <u>and / but / or...</u>
+* subordinate conjunction : <u>because / if / while / although...</u>
+*  Relational conjunction : <u>that / how / what / who / where / which / why...</u>
+
+### 8.2 Find the position of the clause's end
+
+* clause ends at punctuation
+
+eg. One of the reasons <u>why the appointment came as such a surprise</u>, **however,** <u>is that Gilbert is comparatively little known</u>.
+
+* clause ends at the next conjunction
+
+eg. That whispered message, half invitation and half forcing, is <u>**what** most of us think of **when** we hear the words "peer pressure".</u>
+
+* clause ends before the second predicate
+
+eg. The majority of people <u>who use networked computers to upload</u> **are** not even aware of the significance of <u>what they are doing.</u>
+
+### 8.3 Analyze subject and predicate
+
+* sub. + pred. + sub. + pred.
+
+eg. **Allen's contribution** <u>was to take an assumption</u> **we** <u>all share</u>...and reveal its erroneous nature.
+
+* sub. + sub. + pred. + pred.
+
+eg. **The way consumers** now <u>approach</u> the process of making purchase decisions <u>means</u> that marketing's impact stems from a broad range of factors beyond conventional paid media.
+
+## Ⅸ .Simplify complex sentence
+
+### 9.1 Find predicate verb
+
+### 9.2 Remove decorations and find the core
+
+* core part: <u>subject / predicate verb / object / complement...</u>
+
+* unimportant part: <u>adjective / adverb / prepositional phrase / inserted phrase...</u>
+
+eg. **The decision** <u>of the New York Philharmonic</u> <u>to hire Alan Gilbert</u> <u>as its next music director</u> **has been the talk** <u>of the classical-music world</u> <u>ever since the sudden announcement of his appointment in 2009.</u>
+
+eg. A string of **accidents**, <u>including the partial collapse of a cooling tower in 2007 and the discovery of an underground pipe system leakage</u>, **raised serious questions** <u>about both Vermont Yankee's safety and Entergy's management</u> -- **especially** <u>after the company made misleading statements</u> **about the pipe**.
 
 ## Ⅹ .
 

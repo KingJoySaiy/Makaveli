@@ -9,6 +9,7 @@ We ride or die.
 * [Vim笔记](/笔记/Vim笔记.md)
 * [python笔记](/笔记/python笔记.md)
 * [English Grammar](/笔记/English%20Grammar.md)
+* [数学笔记](/笔记/数学笔记.md)
 * [数学技巧公式](/笔记/数学技巧公式.md)
 
 ## 二、多校训练

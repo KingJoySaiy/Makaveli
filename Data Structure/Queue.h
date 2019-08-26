@@ -90,76 +90,7 @@ public:
 
 
 
-template <class T>
-struct Node {        //定义循環隊列類的节点类型
 
-    T data;
-    Node *next = nullptr;
-    Node() {}
-    Node(T x) : data(x) {}
-};
-
-template <class T>
-class Queue2 {       //定义循環队列类（只設尾指針，不設頭指針）
-
-private:
-    Node<T> *back;
-public:
-    Queue2() {       //構造函數
-        back = new Node<T>;
-    }
-    Queue2 *Create() {       //創建循環隊列
-
-        Queue2 *t = new Queue2;
-        t->back->next = t->back;    //創建頭結點
-        return t;
-    }
-    bool empty() {           //判斷隊列是否為空
-
-        return back->next == back;
-    }
-    void push(T x) {       //入隊操作
-
-        Node<T> *t = new Node<T>(x);
-        t->next = back->next;
-        back = back->next = t;
-    }
-    T pop() {              //出隊操作
-
-        if (empty()) return ERROR;    //空隊無法彈出
-        Node<T> *t = back->next->next;
-        T res = t->data;
-        if (t == back) {      //隊列只有一個元素時隊尾指針指向頭結點
-            back = back->next;
-            back->next = back;
-        } else back->next->next = t->next;
-        delete t;
-        return res;
-    }
-    T top() {
-        if (empty()) return ERROR;  //空隊則報錯
-        return back->next->next->data;
-    }
-    void pop_all() {         //置空队列
-
-        back = back->next;
-        Node<T> *t;
-        while (back != back->next) {
-            t = back->next;
-            back->next = t->next;
-            delete t;
-        }
-    }
-    void show() {           //輸出完整的隊列
-
-        Node<T> *t = back->next->next;
-        while (t != back->next) {
-            cout << t->data << ' ';
-            t = t->next;
-        }
-        cout << endl;
-    }
-};
 
 
 #endif //INC_233_Queue_H

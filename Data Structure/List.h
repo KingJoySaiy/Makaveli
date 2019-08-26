@@ -18,46 +18,71 @@ template<class T> void Mix(SinList<T>*, SinList<T>*);
 template<class T> SinList<T> *Union(SinList<T> *, SinList<T> *);
 template<class T> bool exchange(DbList<T>*);
 
-template<class T>
-class SeqList {      //順序表的實現
+
+#define initSize 1000
+#define incrementSize 100
+
+template <class T>
+class SeqList { // sequence list
 
 private:
-    T *base = new T[maxn];
-    int length = 0;
+    T* base = new T[initSize];
+    int length = 0, listSize = initSize;
+
 public:
-    int Length() {
-        return length;
-    }
-    T get(int i) {          //取值
-        if (i < 0 or i >= length) return ERROR;
+    int Length() { return length; }
+    T get(int i)
+    { // get value
+        if (i < 0 or i >= length)
+            return ERROR;
         return base[i];
     }
-    T find(T x) {           //按值查找
+    T find(T x)
+    { // find location via value x
         for (int i = 0; i < length; i++)
-            if (base[i] == x) return i;
+            if (base[i] == x)
+                return i;
         return ERROR;
     }
-    bool insert(T x) {      //末尾插入
-        if (length == maxn) return false;
+    bool checkLength()
+    {
+        if (length >= listSize) {
+            T* newBase = (T*)realloc(base, (listSize + incrementSize) * sizeof(T));
+            if (!newBase)
+                return ERROR;
+            base = newBase;
+            listSize += incrementSize;
+        }
+        return true;
+    }
+    bool insert(T x)
+    { // insert at the end
+        if (!checkLength())
+            return false;
         base[length++] = x;
         return true;
     }
-    bool insert(int i, T x) {     //指定位置插入某值
-        if (i < 0 or i > length) return false;
+    bool insert(int i, T x)
+    { // insert x at i-th location
+        if (i < 0 or i > length or !checkLength())
+            return false;
         for (int j = length; j > i; j--)
             base[j] = base[j - 1];
         base[i] = x;
         length++;
         return true;
     }
-    bool Delete(int i) {        //刪除某位置的值
-        if (i < 0 or i >= length) return false;
+    bool Delete(int i)
+    { // delete at i
+        if (i < 0 or i >= length)
+            return false;
         for (int j = i; j < length - 1; j++)
             base[j] = base[j + 1];
         length--;
         return true;
     }
-    void show() {
+    void show()
+    {
         for (int i = 0; i < length; i++)
             cout << base[i] << ' ';
         cout << endl;

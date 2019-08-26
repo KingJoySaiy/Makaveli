@@ -11,7 +11,7 @@ We ride or die.
 * [English Grammar](/笔记/English%20Grammar.md)
 * [数学笔记](/笔记/数学笔记.md)
 * [数学技巧公式](/笔记/数学技巧公式.md)
-* [数据结构&算法笔记](/笔记/数据结构&算法笔记.md)
+* [数据结构&算法](/笔记/数据结构&算法.md)
 
 ## 二、多校训练
 * [杭电多校-1st-2nd](/多校训练/2018%20Multi-University%20Contest%201-2/Multi-University%201st-2nd.md)

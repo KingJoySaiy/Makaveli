@@ -29,7 +29,7 @@ public:
 	}
 	bool push(T x) {   //push x
 		if (top - base == stackSize) {
-			base = (T*)realloc(base, (stackSize + addSize) * sizeof(seqStack));
+			base = (T*)realloc(base, (stackSize + addSize) * sizeof(T));
 			if (!base) return ERROR;	//alloc memory failed
 		}
 		*(top++) = x;

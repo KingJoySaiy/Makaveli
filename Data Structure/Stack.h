@@ -2,74 +2,94 @@
 #define INC_233_Stack_H
 
 #include <iostream>
-#include <climits>
 
-#define ERROR INT_MIN
+#define ERROR false
+#define OK true
 
 using std::cin;
 using std::cout;
 using std::endl;
-const int maxn = 100;
+
+/******** Sqeuence Stack ********/
+#define initSize 1000
+#define addSize 100		//add if stack full
 
 template<class T>
-class Stack1 {      //順序棧的實現
-
+class seqStack {
 private:
-    T *base, *top;
-    int Stacksize;
+	T *base, *top;
+	int stackSize;
 public:
-    Stack1 *create() {  //棧的初始化
-        Stack1 *s = new Stack1;
-        s->top = s->base = new T[maxn];
-        s->Stacksize = maxn;
-        return s;
-    }
-    int Size() {       //棧的元素個數
-        return int(top - base);
-    }
-    bool push(T x) {   //入棧
-        if (top - base == Stacksize) return false;
-        *top++ = x;
-        return true;
-    }
-    bool Empty() {      //判斷棧是否為空
-        return top == base;
-    }
-    T pop() {            //出棧
-        if (Empty()) return ERROR;
-        return *--top;
-    }
-    T Top() {            //返回棧頂
-        return *(top - 1);
-    }
+	seqStack() {		//constructor
+		top = base = new T[initSize];
+		stackSize = initSize;
+	}
+	int Size() {       //element count
+		return int(top - base);
+	}
+	bool push(T x) {   //push x
+		if (top - base == stackSize) {
+			base = (T*)realloc(base, (stackSize + addSize) * sizeof(seqStack));
+			if (!base) return ERROR;	//alloc memory failed
+		}
+		*(top++) = x;
+		return true;
+	}
+	bool Empty() {      //check whether empty
+		return top == base;
+	}
+	T pop() {            //pop the top, return data
+		if (Empty()) return ERROR;
+		return *--top;
+	}
+	T Top() {            //get top
+		return *(top - 1);
+	}
 };
+#undef initSize
+#undef addSize
 
-/************************/
+/******** List Stack ********/
 template <class T>
-struct Stack {      //鏈棧(不帶頭節點)
-    T data;
-    Stack *next = nullptr;
-    Stack() {}
-    Stack(T x) : data(x) {}
+class listStack {	//with head node, 1st data is meaningless
+private:
+	T data;
+	listStack *next;
+public:
+	listStack() {
+		next = nullptr;
+	}
+	listStack(T x) : data(x) {}
+	bool Empty() {	//whether empty
+		return next == nullptr;
+	}
+	int Size() {	//element count
+		listStack<T> *t = this;
+		int ct = 0;
+		while (t->next != nullptr) {
+			t = t->next;
+			ct++;
+		}
+		return ct;
+	}
+	bool push(T x) {	//push x
+		listStack<T> *node = new listStack<T>(x);
+		node->next = next;
+		next = node;
+		return OK;
+	}
+	int pop() {	//pop the top, return data
+		if (Empty()) return ERROR;
+		listStack<T> *t = next;
+		int x = t->data;
+		next = t->next;
+		delete t;
+		return x;
+	}
+	T top() {	//get top
+		if (Empty()) return ERROR;
+		return next->data;
+	}
 };
-template <class T>
-Stack<T>* push(Stack<T> *s, T x) {    //入棧（返回新棧）
-    Stack<T> *p = new Stack<T>(x);
-    p->next = s;
-    return p;
-}
-template <class T>
-Stack<T>* pop(Stack<T> *s) {          //出棧（返回新棧）
-    if (s == nullptr) return nullptr;
-    Stack<T> *p = s;
-    delete p;
-    return s->next;
-}
-template <class T>
-T Top(Stack<T> *s) {                  //返回棧頂
-    if (s != nullptr) return s->data;
-    return ERROR;
-}
-/************************/
 
 #endif //INC_233_Stack_H

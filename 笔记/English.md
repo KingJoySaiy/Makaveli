@@ -27,10 +27,6 @@ eg. It was not until the 19th century that the newspaper became the dominant pre
 | both...and...                               | ...while...     | ...so...  |
 | not only...but (... / ...as well / also...) | ...whereas...   |           |
 
-
-
-
-
 ## Ⅲ. Inverted sentences
 
 ### 3.1 Invert completely
@@ -224,7 +220,7 @@ eg. **Allen's contribution** <u>was to take an assumption</u> **we** <u>all shar
 
 eg. **The way consumers** now <u>approach</u> the process of making purchase decisions <u>means</u> that marketing's impact stems from a broad range of factors beyond conventional paid media.
 
-## Ⅸ .Simplify complex sentence
+## Ⅸ . Simplify complex sentence
 
 ### 9.1 Find predicate verb
 
@@ -247,29 +243,54 @@ eg. A string of **accidents**, <u>including the partial collapse of a cooling to
 Writing
 ======
 
-### 1、大纲
+## Ⅰ. Outline
 
-- Part A：根据所给情景写出约 **100词** 的应用性短文，包括私人和公务信函、备忘录、报告等（10分，5分语言，5分结构）。答卷10行，有3行用在格式上。
-- Part B：根据提示信息写出 **160~200词** 的短文。提示信息包括主题句、写作提纲、规定情景、图表等（20分）。答卷40行，多写扣3分。
+- Part A：根据所给情景写出约 **100词** 的应用性短文，包括私人和公务信函、备忘录、报告等（10分，5分语言，5分结构）。主要考 **书信**，答卷10行，有3行用在格式上。
+- Part B：根据提示信息写出 **160~200词** 的短文。提示信息包括主题句、写作提纲、规定情景、图表等（20分）。主要考 **图画**，齐次图表，答卷40行，多写扣3分。
 - 高分作文特点：**书写**（放弃），**结构**（阅卷A平均4.8s，B平均12.6s），**语言**（单词简单，句型多变）。
 
-### 2. Part A
+## Ⅱ. Part A
 
-- 格式：书信，左上"**Dear XXX**，" + 正文 + 右下"**Yours**"换行"**XXX**"。dear后加头衔、名字（都未知则sir / madam），**正文至少2段**，yours后可加truly / sincerely。
-- 正文第一段：正式书信（不熟的人）需 **自我介绍**；非正式书信（亲人朋友等）需 **寒暄**。然后写 **背景信息** 和 **写信目的**。
-- 类别：申请、邀请、感谢、祝贺、致歉、询问、投诉、建议。
+### 2.1 书信
+* **格式**：左上"**Dear XXX**，" + 正文 + 右下"**Yours**"换行"**XXX**"。dear后加头衔、名字（都未知则sir / madam），**正文至少2段**，yours后可加truly / sincerely。
+* **正文第一段**：正式书信（不熟的人）需 **自我介绍**；非正式书信（亲人朋友等）需 **寒暄**。然后写 **背景信息** 和 **写信目的**。
 
-### 3. Part B
+### 2.2 书信主题
+* **Application**: I am writing to apply for a precious opportunity  to work in a bank that enjoys years of reputation.
+* **Invitation**: I am writing to invite you to participate in an international conference that is to be held in Beijing on September 12.
+* **Gratitude**: I'm writing to extend my heartfelt thanks to all the nurses and doctors in your hospital.
+* **Congratulation**: I'm writing to express my sincere congratulations on your champion in 4th National Speech Contest that was held in Shanghai.
+* **Inquiry**: I am writing to ask for your help / (some information about the...) // I am writing to inquire about...
+* **Complaint**: I'm writing to complain about the poor quality of air conditioner from Sun Appliance Company. 
+* **Recommendation** : 
+* **Apology**: 
+
+### 2.3 其他类型
+* **通告**：需要写标题，右下角单位名，其余正文
+* **备忘录**：左上4行`To:XXX / From:XXX / Date: Jan 1st, 2020 / Subject : ...`，其余正文
+
+## Ⅲ . Part B
+
+### 3.1 审题
 
 
+## Ⅳ . Sentences
 
-### 4. 词组
+The implication underlying this picture is rather thought-provoking.
 
-as is vividly depicted in the picture
 
+## Ⅴ . Phrases
+
+as is vividly depicted in the picture 
+at one's convince
+be deeply impressed with
+be scheduled to
+broaden one's horizons
+extend one's sincere congratulations
+for the purpose of doing sth.
 in face of
-
-The implication underlying this picture is rather thought-provoking. 图背后的含义发人省醒。
+pave the way
+under the circumstances
 
 Reading
 ======

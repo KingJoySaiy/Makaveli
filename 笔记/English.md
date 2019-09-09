@@ -27,6 +27,10 @@ eg. It was not until the 19th century that the newspaper became the dominant pre
 | both...and...                               | ...while...     | ...so...  |
 | not only...but (... / ...as well / also...) | ...whereas...   |           |
 
+
+
+
+
 ## Ⅲ. Inverted sentences
 
 ### 3.1 Invert completely
@@ -271,26 +275,120 @@ Writing
 
 ## Ⅲ . Part B
 
-### 3.1 审题
+### 3.1 文章结构
 
+* **类型**：<u>积极话题</u>（个人素养、好的社会现象），<u>消极话题</u>（负面社会现象），<u>图表</u>。
+* 第一段描述描述现象；第二段尽量展开3点 **好处/危害/原因** ，若无法展开则2-3句重要性+举例；第三段 **发扬光大/如何解决/发展趋势**。
+
+#### 3.2 图画描述
+
+* **描述方法**：（图片描述+反映的主题）不用每一个细节都面面俱到，只需正确完整的反映图片的现象或主旨即可。①直入画面：图片描述+观点展开；②观点先行：观点导入+图片描述；③ 感叹：心情描述+图片描述；④名言导入。
+* **旁文注解**：图片中出现中文标题或注解，且整体描述时无法涵盖进去；There are a couple of huge Chinese characters which read... / An impressive sentence o the lower part of this picture reads...
+
+### 3.3 图表描述
+* **整体描述**：不牵涉具体数据增减和趋势。[par柱状/curve曲线/pie饼状/table表]-[chart/graph图]、[increase / go up / climb / soar / skyrocket / surge / upsurge]上升、下降[decrease / decline / fall / go down / plunge / slump]、平衡[stable / steady / balanced]，顶点[the top / the peak]，谷底[the bottom]。
+* **注意点**：图表描述忌讳句子结构的重复；XX took the lead by occupying ...%, followed by YY and ZZ, which too up ...% and ...% respectively.
 
 ## Ⅳ . Sentences
 
+A great amount of examples can prove its importance, but there is no better illustration than the following one.
+
+In fact, many factors account for such problems.
+
+I firmly believe all of us will be blessed with a brighter future.
+
+Such a trend is definitely detrimental to long-term development of the industry.
+
 The implication underlying this picture is rather thought-provoking.
+
+The vogue may be translated into negatively impact on the young generation.
 
 
 ## Ⅴ . Phrases
 
-as is vividly depicted in the picture 
+### A-M
+
+a reflection of a common phenomenon
+
+as is vividly [illustrated / depicted / revealed / mirrored] in the picture 
+
+as it may seem
+
 at one's convince
+
+be bent on doing
+
 be deeply impressed with
+
+be of critical importance
+
 be scheduled to
+
+be tracked back to
+
+bear in mind
+
 broaden one's horizons
+
 extend one's sincere congratulations
+
 for the purpose of doing sth.
+
+from my point of view
+
+have negative effects on
+
 in face of
+
+in the course of
+
+in the long [term / run]
+
+inner qualities
+
+It goes without saying that
+
+let alone
+
+live up to one's expectation
+
+make allowance for
+
+### N-Z
+
+Not only should we... but we are also supposed to
+
+on my personal note
+
+on the contrary
+
+opinions vary form person to person
+
 pave the way
+
+play [a key / an irreplaceable] role in
+
+put emphasis on
+
+slide into bad habits
+
+take mant factors into consideration
+
+The past decaade or so has witnessed the issue of
+
+There is no definite answer as to
+
 under the circumstances
+
+Under no circumstances should we
+
+We ourselves should awakle to the significance of
+
+What counts most is that
+
+What we are supposed to bear in mind is that
+
+When it comes to key to success
 
 Reading
 ======

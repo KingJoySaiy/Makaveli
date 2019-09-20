@@ -17,7 +17,11 @@ namespace Merge {
 		int *res = new int[right - left + 1];	//allocate temporary memory
 		int i = left, j = mid + 1, ct = 0;
 		while (i <= mid and j <= right) {
-			res[ct++] = (a[i] <= a[j]) ? a[i++] : a[j++];
+			if (a[i] <= a[j]) res[ct++] = a[i++];
+			else {
+				res[ct++] = a[j++];
+//				inversion += mid - i + 1;		//count inversion number			
+			}
 		}
 		while (i <= mid) res[ct++] = a[i++];
 		while (j <= right) res[ct++] = a[j++];

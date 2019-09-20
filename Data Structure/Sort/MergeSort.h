@@ -3,34 +3,28 @@
 
 namespace Merge {
 
-    template<class T> T* MergeList(T*, int, T*, int);
-    template<class T> T* MergeSort(T *a, int n) {       //归并排序（结果另开内存）
+    template<class T> void MergeList(T*, int, int, int);
+    template<class T> void MergeSort(T *a, int left, int right) {	//Merge Sort[left, right]
 
-        if (n <= 1) return a;
-        int mid = n >> 1;
-        T *left = MergeSort(a, mid), *right = MergeSort(a + mid, n - mid);
-        T *res = MergeList(left, mid, right, n - mid);
-        delete left; delete right;
-        return res;
+        if (left >= right) return;
+        int mid = (left + right) >> 1;
+        MergeSort(a, left, mid);	//sort 2 subsequence
+		MergeSort(a, mid + 1, right);	
+        MergeList(a, left, mid, right);	//& merge them
     }
-    template<class T> T* MergeList(T *left, int n, T *right, int m) {   // 合并2个有序序列
+    template<class T> void MergeList(T *a, int left, int mid, int right) {//merge 2 sorted sequence[left,mid][mid+1,right]
 
-        if (n == 0) return right;
-        if (m == 0) return left;
-        T *res = new T[n + m];
-        int ct = 0;
-        while (n > 0 and m > 0) {
-            if (left[0] <= right[0]) {
-                res[ct++] = left[0];
-                left++; n--;
-            } else {
-                res[ct++] = right[0];
-                right++; m--;
-            }
-        }
-        while (n--) res[ct++] = *(left++);
-        while (m--) res[ct++] = *(right++);
-        return res;
+		int *res = new int[right - left + 1];	//allocate temporary memory
+		int i = left, j = mid + 1, ct = 0;
+		while (i <= mid and j <= right) {
+			res[ct++] = (a[i] <= a[j]) ? a[i++] : a[j++];
+		}
+		while (i <= mid) res[ct++] = a[i++];
+		while (j <= right) res[ct++] = a[j++];
+        for (int i = 0; i < ct; i++) {
+        	a[left + i] = res[i];
+		}
+        delete res;
     }
 }
 

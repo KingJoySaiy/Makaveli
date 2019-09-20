@@ -5,16 +5,16 @@
 
 namespace Swap {
 
-    template<class T> void Bubble(T *a, int n) {    //冒泡排序
+    template<class T> void Bubble(T *a, int n) {    //Bubble Sort
 
         for (int i = 0; i < n; i++) {
-            for (int j = i; j < n - 1; j++) {
-                if (a[j] > a[j + 1]) std::swap(a[j], a[j + 1]);
+            for (int j = i; j > 0; j--) {
+                if (a[j - 1] > a[j]) std::swap(a[j], a[j - 1]);
             }
         }
     }
 
-    template<class T> void Quick(T *a, int left, int right) {     //快速排序 (left-right闭区间)
+    template<class T> void Quick(T *a, int left, int right) {     //Quick Sort[left-right]
 
         if (left >= right) return;
         int i = left, j = right;

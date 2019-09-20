@@ -3,21 +3,21 @@
 
 #include <algorithm>
 
-namespace Inertion {        //Insertion Sort in Sequence
+namespace Insertion {        //Insertion Sort in Sequence
 
-    template<class T> void Straight(T *a, int n) {    //直接插入排序
+    template<class T> void Straight(T *a, int n) {	//Staright Insertion Sort
 
         for (int i = 0, j; i < n - 1; i++) {
             T tmp = a[i + 1];
-            for (j = i; ~j and a[j] > tmp; j--) {
+            for (j = i; j >= 0 and a[j] > tmp; j--) {
                 a[j + 1] = a[j];
             }
             a[j + 1] = tmp;
         }
     }
 
-    template<class T> void Binary(T *a, int n) {      //折半插入排序
-
+    template<class T> void Binary(T *a, int n) {	//Binary Insertion Sort
+    
         for (int i = 1; i < n; i++) {
             if (a[i] < a[i - 1]) {
                 T tmp = a[i];
@@ -35,15 +35,23 @@ namespace Inertion {        //Insertion Sort in Sequence
         }
     }
 
-    template<typename T> void Shell(T *a, int n) { //希尔排序
+    template<typename T> void Shell(T *a, int n) {	//shell's Sort
         
-        int h = 1;
-        while (h < n / 3) h = 3 * h + 1;
+        /*
+        Shell increment : h = 1, 2, 4...[n / 2]
+        Hibbard increment : h = 1, 3, 7...(2k + 1)
+        Knuth increment : h = 1, 4, 13...(3k + 1) 
+        */
+		int h = 1;
+        while (h < n / 3) h = 3 * h + 1;	//Knuth increment
         while (h >= 1) {
-            for (int i = h; i < n; i++) {
-                for (int j = i; j >= h and a[j] < a[j - h]; j -= h) {
-                    std::swap(a[j], a[j - h]);
+        	//0-h regarded as sorted
+            for (int i = 0, j; i < n - h; i++) {
+            	T tmp = a[i + h];
+                for (j = i; j >= 0 and a[j] > tmp; j -= h) {
+					a[j + h] = a[j];
                 }
+                a[j + h] = tmp;
             }
             h /= 3;
         }

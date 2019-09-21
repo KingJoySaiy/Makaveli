@@ -9,6 +9,17 @@
 8. 	`assert(x)` x为0时异常终止程序并提示原因，要加头文件`#include<assert.h>`
 9. `template<class Any>` 声明模板Any，可表示任意类型。
 10. `#pragma comment(linker, "/STACK:1024000000,1024000000")`栈内存不够大时可以手动扩栈。
+11. `#include<ctime>`后`srand((size_t)time(0))`生成随机数种子，`rand()`获取整型随机数。
+12. `#pragma GCC optimize(3)`开启O(3)优化
+13. 自定义比较方式如下，可用在`set<data, cmp>`，`priority_queue<data, vector<data>, cmp>`等STL中。
+```c++
+struct cmp{
+    bool operator() (data a, data b) {
+        if(a.x == b.x)  return a.y >= b.y;
+        else return a.x > b.x;
+    }
+};
+```
 
 # 二、string.h	 字符数组
 char a[],b[]
@@ -123,7 +134,9 @@ string a,b,c;
 `xxx<xxx>::reverse_iterator  p`	反向迭代器`a.rbegin()，a.rend()，p++`
 #### 1. queue		队列（1）
 * `queue<int>a`				声明队列
-* `priority_queue<int>b`		声明优先队列
+* `priority_queue<int>b`		声明优先队列（默认最大堆）
+* `priority_queue<int, vector<int>, less<int> > c`      声明优先队列（最大堆）
+* `priority_queue<int, vector<int>, greater<int> > d`   声明优先队列（最小堆）
 #### 2. stack			栈（2）
 * `stack<int>a`			声明栈
 #### 3. vector		数组/向量（3）

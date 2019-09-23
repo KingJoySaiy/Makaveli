@@ -1,45 +1,41 @@
-#ifndef INC_233_Queue_H
-#define INC_233_Queue_H
+#ifndef INC_233_QUEUE_H
+#define INC_233_QUEUE_H
 
 #include <iostream>
 #include <climits>
 
 #define ERROR INT_MIN
+#define OK true
 
-using std::cin;
-using std::cout;
-using std::endl;
 const int maxn = 100;
 
 template <class T>
-class Queue1 {         //循環隊列的基本操作
+class CircularQueue {         //Circular Queue
 
 private:
     T *base;
     int front, rear;
 public:
-    Queue1 *create() {  //隊列的初始化
-        Queue1 *que = new Queue1;
-        que->base = new T[maxn];
-        que->front = que->rear = 0;
-        return que;
-    }
-    bool Empty() {      //判斷是否隊空
+    CircularQueue() {	//constructor
+    	base = new T[maxn];
+    	front = rear = 0;
+	}
+    bool Empty() {      //check whether empty
         return front == rear;
     }
-    int Length() {      //返回隊列的長度
+    int Length() {
         return (rear - front + maxn) % maxn;
     }
-    T Front() {         //返回隊首
+    T Front() {         //front of queue
         return front == rear ? ERROR : base[front];
     }
-    bool push(T x) {   //入隊
+    bool push(T x) {   //push into queue
         if ((rear + 1) % maxn == front) return false;
         base[rear] = x;
         rear = (rear + 1) % maxn;
-        return true;
+        return OK;
     }
-    T pop(Queue1 *t) {              //出隊
+    T pop(CircularQueue *t) {              //pop out of queue
         if (t->front == t->rear) return ERROR;
         T res = t->base[t->front];
         t->front = (t->front + 1) % maxn;
@@ -48,10 +44,10 @@ public:
 };
 
 template <class T>
-class Queue {  //鏈隊(帶頭節點)
+class LinkedQueue {  //Linked Queue (with head node)
 
 private:
-    struct node {       //鏈隊的結點類型
+    struct node {       //node of queue
         T data;
         node *next = nullptr;
         node() {}
@@ -59,38 +55,33 @@ private:
     } *front, *rear;
 
 public:
-    Queue *create() {   //創建鏈隊
-        Queue *que = new Queue;
-        que->rear = que->front = new node;
-        que->front->next = nullptr;
-        return que;
-    }
-    bool Empty() {      //判斷是否隊空
+	LinkedQueue() {	//constructor
+		rear = front = new node();
+		rear->next = nullptr;
+	}
+
+    bool Empty() {      //check whether empty	
         return front == rear;
     }
-    void push(int x) {  //入隊
+    bool push(T x) {  //push into queue
         node *p = new node(x);
         rear->next = p;
         rear = p;
-    }
-    T pop() {           //出隊
+    	return OK;
+	}
+    T pop() {           //pop out of queue
         if (front == rear) return ERROR;
         node *p = front->next;
         T res = p->data;
         front->next = p->next;
-        if (rear == p) rear = front; //首元節點出隊時防止隊尾指針懸空
+        if (rear == p) rear = front; //prevent back pointer from hanging on when 1st node poped out
         delete p;
         return res;
     }
-    T Front() {       //取出隊頭元素
+    T Front() {       //front of queue
         if (Empty()) return ERROR;
         return front->next->data;
     }
 };
 
-
-
-
-
-
-#endif //INC_233_Queue_H
+#endif //INC_233_QUEUE_H

@@ -14,26 +14,26 @@ using std::endl;
 
 typedef std::pair<int, int> pp;
 
-const int maxn = 1005;  //最大不同字符个数
+const int maxn = 1005;  //max size of different characters
 const int inf = INT_MAX;
 
-std::map<char, int> CharCount;  //记录所有字符以及出现的次数
-char book[maxn];                //记录第i个字符
-string HuffDic[maxn];           //记录字符对应的哈夫曼码
-bool ERROR = false;             //標記哈夫曼樹構造出錯
+std::map<char, int> CharCount;  //amount of each character
+char book[maxn];                //save i-th character
+string HuffDic[maxn];           //huffman code of the i-th character
+bool ERROR = false;
 int n, m;
 
 class Huffman {
 
 private:
-    int weight, parent, left, right;    //權值, 父結點, 左子結點, 右子結點
+    int weight, parent, left, right;    //weight, parent id, left-child id, right-child id
 public:
     Huffman(int a = 0, int b = 0, int c = 0, int d = 0) : weight(a), parent(b), left(c), right(d) {}
     friend std::ostream & operator << (std::ostream &out, Huffman t) {
         out << t.weight << ' ' << t.parent << ' ' << t.left << ' ' << t.right << endl;
         return out;
     }
-    friend pp Select(Huffman *tree, int x) {   //返回1-x中双亲为0且权值最小的两个节点的索引
+    friend pp Select(Huffman *tree, int x) {   //return 2 index of nodes whose parent valued 0 & have minimum weight(range [1, x])
 
         int s1 = inf, s2 = inf, id1 = 1, id2 = 2;
         for(int i = 1; i <= x; i++)
@@ -51,9 +51,9 @@ public:
     friend void Create_Huffman(Huffman *tree, string x) {
 
         for (char &i : x) CharCount[i]++;
-        n = (int)CharCount.size();      //共有n個不同的字符
+        n = (int)CharCount.size();      //n different characters
 
-        if (n <= 1) {   //標記構造出錯
+        if (n <= 1) {   //mark error when n <= 1
             ERROR = true;
             return;
         }
@@ -63,19 +63,19 @@ public:
 
         int ct = 0;
         for (auto &p : CharCount) {
-            tree[++ct].weight = p.second;    //每個葉子結點的權值為對應字符出現的次數
+            tree[++ct].weight = p.second;    //weight defined as number of occurence of each character
             book[ct] = p.first;              //index -> CharName
         }
 
         for (int i = n + 1; i <= m; i++) {
             auto s = Select(tree, i - 1);
             tree[s.first].parent = tree[s.second].parent = i;
-            tree[i].left = s.first;         //左子樹為未標記的權值最小結點
-            tree[i].right = s.second;       //右子樹為未標記的權值第二小結點
-            tree[i].weight = tree[s.first].weight + tree[s.second].weight;  //新結點的權值為兩子樹權值之和
+            tree[i].left = s.first;         //left child is minimum node
+            tree[i].right = s.second;       //right child is 2nd minimun node
+            tree[i].weight = tree[s.first].weight + tree[s.second].weight;  //weight of new node is sum of its 2 children's weight
         }
 
-        for (int i = 1, fa, now; i <= n; i++) {   //求葉子結點的哈夫曼編碼
+        for (int i = 1, fa, now; i <= n; i++) {   //calculate huffman-code of each leaf node
             x.clear();
             now = i;
             do {
@@ -87,15 +87,15 @@ public:
             reverse(x.begin(), x.end());
             HuffDic[i] = x;
         }
-        puts("編碼成功！編碼表如下：");
+        puts("encode successful! the table is shown below:");
         for (int i = 1; i <= n; i++) {
             cout << book[i] << " -> " << HuffDic[i] << endl;
         }
     }
 };
-void Coding() {  //对某一字符串进行编码
+void Coding() {  //encode a string
 
-    puts("輸入待編碼的字符串");
+    puts("please input a string to encode");
     string x;
     getline(cin, x);
     for (int i = 0; i < x.length(); i++)
@@ -106,15 +106,15 @@ void Coding() {  //对某一字符串进行编码
                     break;
                 }
         } else {
-            puts("\n編碼表中不存在該字符");
+            puts("\nexist invalid character!");
             return;
         }
     puts("");
 }
 
-void Decoding() { //对某个零一字符串进行译码
+void Decoding() { //decode binary code consist of '0' or '1'
 
-    puts("輸入待譯碼的二進制碼");
+    puts("input binary code to decode: ");
     string x;
     getline(cin, x);
     int len = (int)x.length(), all = 0;
@@ -129,7 +129,7 @@ void Decoding() { //对某个零一字符串进行译码
                 break;
             }
     }
-    if (all < len) puts(" (二進制不規範，譯碼不成功)");
+    if (all < len) puts("invalid binary code, fail to decode!");
     puts("");
 }
 
@@ -140,25 +140,25 @@ int main() {
     int choose;
 
     restart:
-    puts("請輸入任意字符串以便初始化：");
+    puts("please input any string to initialize: ");
     getline(cin, x);
     Create_Huffman(tree, x);
     if(ERROR) {
-        puts("輸入有誤, 請重新輸入！");
+        puts("invalid input! please try again!");
         goto restart;
     }
 
-    puts("選擇接下來的操作：退出->0, 編碼->1, 譯碼->2");
+    puts("select next operation: exit->0, encode->1, decode->2");
     while (cin >> choose and choose) {
         getchar();
         if (!choose) return 0;
         else if (choose == 1) Coding();
         else if (choose == 2) Decoding();
         else {
-            puts("輸入有誤");
+            puts("invalid input! please try again!");
             continue;
         }
-        puts("選擇接下來的操作：退出->0, 編碼->1, 譯碼->2");
+        puts("select next operation: exit->0, encode->1, decode->2");
     }
     
     return 0;

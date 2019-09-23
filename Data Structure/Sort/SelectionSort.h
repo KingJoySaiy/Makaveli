@@ -7,7 +7,7 @@ namespace Selection {
 
     template<class T> class Heap;
     template<class T> void HeapSort(T *a, int n);
-    const int maxn = int(1e4);
+    const int maxn = int(1e4 + 5);
 
     template<class T> class Heap {          //realization of heap(minimun root)
     private:

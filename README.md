@@ -24,8 +24,8 @@ We ride or die.
 * [牛客多校-7th-10th](/多校训练/2018%20Nowcoder%20Contest%207-10/Nowcoder%207th-10th.md)
 
 ## 三、数据结构
-* [排序](/Data%20Structure/Sort)
-* [哈夫曼编码](/Data%20Structure/HuffmanCoding.cpp)
+* [Sorting Algorithm](/Data%20Structure/Sort)
+* [Huffman Coding](/Data%20Structure/HuffmanCoding.cpp)
 * [List](/Data%20Structure/List.h)
 * [Stack](/Data%20Structure/Stack.h)
 * [Queue](/Data%20Structure/Queue.h)

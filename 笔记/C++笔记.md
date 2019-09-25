@@ -11,7 +11,8 @@
 10. `#pragma comment(linker, "/STACK:1024000000,1024000000")`栈内存不够大时可以手动扩栈。
 11. `#include<ctime>`后`srand((size_t)time(0))`生成随机数种子，`rand()`获取整型随机数。
 12. `#pragma GCC optimize(3)`开启O(3)优化
-13. 自定义比较方式如下，可用在`set<data, cmp>`，`priority_queue<data, vector<data>, cmp>`等STL中。
+13. `nth_element(a.begin(), a.begin() + k, a.end())`用于求第k大数，使序列满足左边都小于等于`a[k]`，右边都大于等于`a[k]`（不一定有序，复杂度O(n)）。
+14. 自定义比较方式如下，可用在`set<data, cmp>`，`priority_queue<data, vector<data>, cmp>`等STL中。
 ```c++
 struct cmp{
     bool operator() (data a, data b) {

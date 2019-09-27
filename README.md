@@ -44,3 +44,5 @@ We ride or die.
 * [MUD游戏](/其他/MUD游戏)
 * [SelectCourseSystem](/其他/SelectCourseSystem)
 * [汇编一位四则运算计算器](/其他/calculator.asm)
+
+Those who cannot remember the past are condemned to repeat it.

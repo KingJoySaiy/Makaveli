@@ -32,6 +32,7 @@ We ride or die.
 * [Huffman Coding](/Data%20Structure/HuffmanCoding.cpp)
 * [Sorting Algorithm](/Data%20Structure/Sort)
 * [Divide & Conquer](/Algorithm/DivideAndConquer.cpp)
+* [Dynamic Programming](/Algorithm/DynamicProgramming.cpp)
 
 ## 四、其他
 * [一个pygame半成品](/其他/一个pygame半成品)

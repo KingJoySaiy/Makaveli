@@ -30,9 +30,10 @@ We ride or die.
 * [String](/Data%20Structure/String.h)
 * [Array](/Data%20Structure/Array.h)
 * [Huffman Coding](/Data%20Structure/HuffmanCoding.cpp)
-* [Sorting Algorithm](/Data%20Structure/Sort)
+* [Sort](/Data%20Structure/Sort)
 * [Divide & Conquer](/Algorithm/DivideAndConquer.cpp)
 * [Dynamic Programming](/Algorithm/DynamicProgramming.cpp)
+* [Greedy](/Algorithm/Greedy.cpp)
 
 ## 四、其他
 * [一个pygame半成品](/其他/一个pygame半成品)

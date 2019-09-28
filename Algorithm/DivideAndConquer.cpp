@@ -2,8 +2,9 @@
 
 using namespace std;
 
+const int maxn = 105;
+
 /******** Chessboard Coverage ********/
-const int maxn = 100;
 int a[maxn][maxn], mark;	//chessboard & mark number
 
 void chess(int x0, int y0, int x, int y, int n) {	//(x0,y0)->base, (x,y)->, n->size 
@@ -67,9 +68,10 @@ int findK(int a[], int l, int r, int k) {	//range from l to r
 }
 void findKTest() {	//test function
 	
-	int a[10] = {5, 0, 6, 9, 8, 4, 3, 7, 2, 1}; 
-//	nth_element(a, a + 5, a + 10);
+	int a[10] = {5, 0, 6, 9, 8, 4, 3, 7, 2, 1}, k = 5; 
+//	nth_element(a, a + k, a + 10);
 	findK(a, 0, 9, 5);
+	cout << "the sequence after find " << k << ": ";
 	for (int i = 0; i < 10; i++) {
 		cout << a[i] << ' ';
 	}
@@ -126,7 +128,7 @@ void closestPairTest() {	//test function
 	}
 	
 	sort(p, p + n);
-	printf("%.2lf\n", closestPair(0, n - 1));
+	printf("the length of closest pair: %.2lf\n", closestPair(0, n - 1));
 }
 
 

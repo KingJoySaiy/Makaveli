@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include "..\\Fundamental\\UnionFind.h" 
 
 using namespace std;
 
@@ -110,12 +111,12 @@ void Dijkstra(int cost[][maxn], int n, int x, int res[]) {	//start from x
 		}
 	}
 }
-void DijsktraTest() {
+void DijkstraTest() {
 	
-	int a[][3] = {{2, 4, 2}, {1, 4, 3}, {7, 2, 2}, {3, 4, 3}, {5, 7, 5}, 
+	const int a[][3] = {{2, 4, 2}, {1, 4, 3}, {7, 2, 2}, {3, 4, 3}, {5, 7, 5}, 
 	{7, 3, 3}, {6, 1, 1}, {6, 3, 4}, {2, 4, 3}, {5, 6, 3}, {7, 2, 1}};	//initial data
 	int cost[maxn][maxn], n = 7, m = 11, begin = 5;
-	for (int i = 0; i < maxn; i++) {	//initialize adjacency list
+	for (int i = 0; i < maxn; i++) {	//initialize adjacency matrix
 		fill(cost[i], cost[i] + maxn, inf);
 		cost[i][i] = 0;
 	}
@@ -124,7 +125,7 @@ void DijsktraTest() {
 	}
 	
 	int res[maxn];
-	Dijstra(cost, n, begin, res);
+	Dijkstra(cost, n, begin, res);
 	cout << "shortest path from " << begin << ": ";
 	for (int i = 1; i <= n; i++) {
 		cout << res[i] << ' ';
@@ -132,13 +133,62 @@ void DijsktraTest() {
 	cout << endl;
 }
 
+/******** minimum spanning tree ********/
+struct edge {
+	int x, y, cost;
+	edge(int x = 0, int y = 0, int z = 0) : x(x), y(y), cost(z) {}
+	bool operator <(const edge &t) const {
+		return cost < t.cost;
+	}
+};
+int kruskal(int cost[][maxn], int n) {	//kruskal algorithm
+	
+	int ct = 0, res = 0;
+	edge a[maxn];	
+	for (int i = 0; i < n; i++) {	//switch adjacency matrix to adjacency table
+		for (int j = i + 1; j < n; j++) {
+			if (cost[i][j] != 0) {
+				a[ct++] = edge(i, j, cost[i][j]);
+			}
+		}
+	}
+	sort(a, a + ct);	//sort by cost in ascending order
+	UnionFind uf(n); 	//union-find-set
+	for (int i = 0; i < ct; i++) {
+		if (!uf.same(a[i].x, a[i].y)) {
+			uf.Union(a[i].x, a[i].y);
+			res += a[i].cost;
+		}
+	}
+	return res;
+}
+int prim(int cost[][maxn], int n) {
+	
+	//need to update
+	return -1;
+} 
+void minSpanningTreeTest() {
+	
+	const int a[] = {0, 2, 4, 0, 2, 0, 3, 5, 4, 3, 0, 1, 0, 5, 1, 0};
+	int cost[maxn][maxn], n = 4, id = 0;
+	for (int i = 0; i < n; i++) {	//initialize adjacency matrix
+		for (int j = 0; j < n; j++) {
+			cost[i][j] = a[id++];
+		}
+	}
+	printf("the minimum  weight by kruskal: %d\n", kruskal(cost, n));
+	printf("the minimum weight by prim: %d\n", prim(cost, n));
+}
+
+
 /******** main ********/ 
 int main() {
 
-	partialPackageTest();
-	bestLoadTest();
-	DijstraTest();
-
+//	partialPackageTest();
+//	bestLoadTest();
+//	DijkstraTest();
+	minSpanningTreeTest();
+	
     return 0;
 }
 

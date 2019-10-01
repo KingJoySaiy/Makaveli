@@ -157,6 +157,7 @@ int kruskal(int cost[][maxn], int n) {	//kruskal algorithm
 	for (int i = 0; i < ct; i++) {
 		if (!uf.same(a[i].x, a[i].y)) {
 			uf.Union(a[i].x, a[i].y);
+			cout << a[i].x << ' ' << a[i].y << ' ' << a[i].cost << endl;
 			res += a[i].cost;
 		}
 	}
@@ -164,8 +165,24 @@ int kruskal(int cost[][maxn], int n) {	//kruskal algorithm
 }
 int prim(int cost[][maxn], int n) {
 	
-	//need to update
-	return -1;
+	bool book[maxn] = {};
+	int d[maxn], res = 0; 
+	fill(d, d + maxn, inf);
+	d[0] = 0;
+	while (true) {
+		int id = -1;
+		for (int i = 0; i < n; i++) {
+			if (!book[i] and (id == -1 or d[i] < d[id])) id = i;
+		}
+		if (id == -1) break;
+		book[id] = true;
+		cout << id << ' ' << d[id] << endl; 
+		res += d[id];
+		for (int i = 0; i < n; i++) {
+			d[i] = min(d[i], cost[id][i]);
+		}
+	}
+	return res;
 } 
 void minSpanningTreeTest() {
 	

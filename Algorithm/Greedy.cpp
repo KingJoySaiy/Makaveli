@@ -31,7 +31,7 @@ double partialPackage(package p[], int n, int all, double select[]) {
 	}
 	return res;
 }
-void partialPackageTest() {
+void partialPackageTest() {	//test function
 	
 	double w[] = {10, 9, 11, 12, 7, 3}, v[] = {12, 9, 7, 9, 8, 4}, select[maxn];
 	int n = 6, all = 30;
@@ -76,7 +76,7 @@ int bestLoad(int a[], int n, int all, bool select[]) {
 	}
 	return ct;
 }
-void bestLoadTest() {
+void bestLoadTest() {	//test function
 	
 	int a[] = {20, 10, 26, 15, 9, 18}, n = 6, all = 70;
 	bool select[maxn] = {};
@@ -111,7 +111,7 @@ void Dijkstra(int cost[][maxn], int n, int x, int res[]) {	//start from x
 		}
 	}
 }
-void DijkstraTest() {
+void DijkstraTest() {	//test function
 	
 	const int a[][3] = {{2, 4, 2}, {1, 4, 3}, {7, 2, 2}, {3, 4, 3}, {5, 7, 5}, 
 	{7, 3, 3}, {6, 1, 1}, {6, 3, 4}, {2, 4, 3}, {5, 6, 3}, {7, 2, 1}};	//initial data
@@ -147,7 +147,7 @@ int kruskal(int cost[][maxn], int n) {	//kruskal algorithm
 	edge a[maxn];	
 	for (int i = 0; i < n; i++) {	//switch adjacency matrix to adjacency table
 		for (int j = i + 1; j < n; j++) {
-			if (cost[i][j] != 0) {
+			if (cost[i][j] != inf) {
 				a[ct++] = edge(i, j, cost[i][j]);
 			}
 		}
@@ -157,7 +157,6 @@ int kruskal(int cost[][maxn], int n) {	//kruskal algorithm
 	for (int i = 0; i < ct; i++) {
 		if (!uf.same(a[i].x, a[i].y)) {
 			uf.Union(a[i].x, a[i].y);
-			cout << a[i].x << ' ' << a[i].y << ' ' << a[i].cost << endl;
 			res += a[i].cost;
 		}
 	}
@@ -168,7 +167,9 @@ int prim(int cost[][maxn], int n) {
 	bool book[maxn] = {};
 	int d[maxn], res = 0; 
 	fill(d, d + maxn, inf);
-	d[0] = 0;
+	for (int i = 0; i < n; i++) {	//0 as the starting node
+		d[i] = cost[0][i];
+	}
 	while (true) {
 		int id = -1;
 		for (int i = 0; i < n; i++) {
@@ -176,17 +177,16 @@ int prim(int cost[][maxn], int n) {
 		}
 		if (id == -1) break;
 		book[id] = true;
-		cout << id << ' ' << d[id] << endl; 
-		res += d[id];
-		for (int i = 0; i < n; i++) {
+		res += d[id];	//add node id & update result
+		for (int i = 0; i < n; i++) {	//update minimum distance
 			d[i] = min(d[i], cost[id][i]);
 		}
 	}
 	return res;
 } 
-void minSpanningTreeTest() {
+void minSpanningTreeTest() {	//test function
 	
-	const int a[] = {0, 2, 4, 0, 2, 0, 3, 5, 4, 3, 0, 1, 0, 5, 1, 0};
+	const int a[] = {0, 2, 4, 6, 2, 0, 3, 5, 4, 3, 0, 1, 6, 5, 1, 0};
 	int cost[maxn][maxn], n = 4, id = 0;
 	for (int i = 0; i < n; i++) {	//initialize adjacency matrix
 		for (int j = 0; j < n; j++) {
@@ -201,9 +201,9 @@ void minSpanningTreeTest() {
 /******** main ********/ 
 int main() {
 
-//	partialPackageTest();
-//	bestLoadTest();
-//	DijkstraTest();
+	partialPackageTest();
+	bestLoadTest();
+	DijkstraTest();
 	minSpanningTreeTest();
 	
     return 0;

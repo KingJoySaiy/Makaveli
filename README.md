@@ -36,7 +36,8 @@ We ride or die.
 * [Divide & Conquer](/Algorithm/DivideAndConquer.cpp)
 * [Dynamic Programming](/Algorithm/DynamicProgramming.cpp)
 * [Greedy](/Algorithm/Greedy.cpp)
-* [BackTracking](/Algorithm/BackTracking.cpp)
+* [Backtrack](/Algorithm/Backtrack.cpp)
+* [Branch & Bound](/Algorithm/BranchAndBound.cpp)
 
 ## 四、其他
 * [一个pygame半成品](/其他/一个pygame半成品)

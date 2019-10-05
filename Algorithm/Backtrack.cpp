@@ -149,6 +149,48 @@ void nColoringTest() {	//test function
 }
 
 
+/******** loading problem 2 ********/
+bool loadOK;	//mark whether loading is finished
+void dfs5(int n, int sum, int sum2, int w[], bool select[], int id) {
+	
+	if (!loadOK and id == n) {
+		int ct = 0;
+		for (int i = 0; i < n; i++) {
+			if (!select[i]) ct += w[i];
+		}	
+		if (ct <= sum2) loadOK = true;	//if sum2 could load other packages then finished
+		return;
+	}
+	if (!loadOK and sum >= w[id]) {	//try to load id to 1st ship
+		select[id] = true;
+		dfs5(n, sum - w[id], sum2, w, select, id + 1);
+	}
+	if (!loadOK) {	//dismiss id(load id to 2nd ship)
+		select[id] = false;
+		dfs5(n, sum, sum2, w, select, id + 1);
+	}
+}
+void loading2(int c1, int c2, int n, int w[]) {	//load n package to 2 ships(maximum weight of them is c1 & c2)
+	
+	loadOK = false;
+	bool select[maxn] = {};
+	dfs5(n, c1, c2, w, select, 0);
+	int sum1 = 0, sum2 = 0;
+	for (int i = 0; i < n; i++) {
+		select[i] ? (sum1 += w[i]) : (sum2 += w[i]);
+	}
+	printf("load-weight of the 2 ships: %d, %d\nship number of each package: ", sum1, sum2);
+	for (int i = 0; i < n; i++) {
+		printf("%d%c", select[i] ? 1 : 2, i == n - 1 ? '\n' : ' ');
+	}
+} 
+void loading2Test() {	//test function
+	
+	int c1 = 55, c2 = 35, n = 4, w[] = {20, 15, 30, 20};
+	loading2(c1, c2, n, w);
+}
+
+
 /******** main ********/
 int main() {
 	
@@ -156,6 +198,7 @@ int main() {
 	nQueenTest();
 	packageTest();
 	nColoringTest();
+	loading2Test();
 	
 	return 0;
 }

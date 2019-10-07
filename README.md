@@ -31,13 +31,14 @@ We ride or die.
 * [Queue](/Data%20Structure/Queue.h)
 * [String](/Data%20Structure/String.h)
 * [Array](/Data%20Structure/Array.h)
-* [Huffman Coding](/Data%20Structure/HuffmanCoding.cpp)
+* [Huffman Coding](/Data%20Structure/Tree/HuffmanCoding.cpp)
 * [Sort](/Data%20Structure/Sort)
 * [Divide & Conquer](/Algorithm/DivideAndConquer.cpp)
 * [Dynamic Programming](/Algorithm/DynamicProgramming.cpp)
 * [Greedy](/Algorithm/Greedy.cpp)
 * [Backtrack](/Algorithm/Backtrack.cpp)
 * [Branch & Bound](/Algorithm/BranchAndBound.cpp)
+* [Randomization](/Algorithm/Randomization)
 
 ## 四、其他
 * [一个pygame半成品](/其他/一个pygame半成品)

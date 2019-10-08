@@ -43,7 +43,7 @@ void chessBoardTest() {	//test function
 	chess(0, 0, x, y, n);
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
-			printf("%-3d%c", a[i][j], j == n - 1 ? '\n' : ' ');
+			printf("%-3d%c", a[i][j], " \n"[j == n - 1]);
 		}
 	}
 }
@@ -67,15 +67,14 @@ int findK(int a[], int l, int r, int k) {	//range from l to r
     return findK(a, i + 1, r, k - tmp);
 }
 void findKTest() {	//test function
-	
-	int a[10] = {5, 0, 6, 9, 8, 4, 3, 7, 2, 1}, k = 5; 
+		
+	int a[10] = {5, 0, 6, 9, 8, 4, 3, 7, 2, 1}, n = 10, k = 5;
 //	nth_element(a, a + k, a + 10);
-	findK(a, 0, 9, 5);
+	cout << k << "-th smallest number of the array: " << findK(a, 0, n - 1, 5) << endl;
 	cout << "the sequence after find " << k << ": ";
-	for (int i = 0; i < 10; i++) {
-		cout << a[i] << ' ';
+	for (int i = 0; i < n; i++) {
+		cout << a[i] << " \n"[i == n - 1];
 	}
-	cout << endl;
 }
 
 
@@ -126,7 +125,6 @@ void closestPairTest() {	//test function
 		p[i].x = data[id++];
 		p[i].y = data[id++];
 	}
-	
 	sort(p, p + n);
 	printf("the length of closest pair: %.2lf\n", closestPair(0, n - 1));
 }

@@ -1,8 +1,9 @@
-#ifndef INC_233_RANDOMNUMBER_H
-#define INC_233_RANDOMNUMBER_H
+#ifndef INC_233_RANDOM_H
+#define INC_233_RANDOM_H
 
 #include <climits>
 #include <ctime>
+#include <iostream>
 
 typedef unsigned long long ull;
 typedef unsigned short us;
@@ -29,7 +30,14 @@ public:
 	}
 };
 
+void shuffle(int a[], int n) {	//shuffle the array
+	
+	for (int i = 0; i < n; i++) {
+		std::swap(a[i], a[RandomNumber().Random(n - i) + i]);
+	}
+}
+
 #undef mult
 #undef add
 
-#endif //INC_233_RANDOMNUMBER_H
+#endif //INC_233_RANDOM_H

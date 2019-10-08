@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "../../Fundamental/RandomNumber.h"
+#include "../../Fundamental/Random.h"
 
 using namespace std;
 

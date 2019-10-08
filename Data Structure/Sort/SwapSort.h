@@ -14,7 +14,7 @@ namespace Swap {
         }
     }
 
-    template<class T> void Quick(T *a, int left, int right) {     //Quick Sort[left-right]
+    template<class T> void Quick(T *a, int left, int right) {     //Quick Sort[left, right]
 
         if (left >= right) return;
         int i = left, j = right;

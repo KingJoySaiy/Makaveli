@@ -59,19 +59,43 @@ void nQueenTest() {	//test function
 
 
 /******** factorization ********/
-void factorization(int n) {
+int split(int n) {	//return 1 factor of n (if n <= 1, then return 1)
 	
+	for (int i = sqrt(n); i >= 2; i--) {
+		if (n % i == 0) return i;
+	}
+	return 1;
+}
+int Pollard(int n) {	//return 1 factor of n (Pollard algorithm)
 	
+	int pre = Rand.Random(n - 1) + 1, now = pre, res;
+	for (int i = 2, k = 2; i < ctLimit; i++) {
+		now = (now * now - 1) % n;	//a[i] = (a[i - 1] ^ 2 - 1) mod n
+		res = __gcd(pre - now, n);
+		if (res > 1 and res < n) {	//success to find a factor
+			return res;
+		}
+		if (pre == now) return now;
+		if (i == k) {	//pre's id must be 2^t
+			pre = now;
+			k += k;
+		}
+	}
+	return 1;	//when operate more than ctLimit times, return 1
 }
 void factorizationTest() {	//test function
 	
+	int a[] = {45, 286, 1024, 1025, 4509}, n = 5;
+	for (int i = 0; i < n; i++) {
+		printf("factor of %d: %d (split), %d (Pollard)\n", a[i], split(a[i]), Pollard(a[i]));
+	}
 }
 
 
 /******** main ********/ 
 int main() {
 	
-//	nQueenTest();
+	nQueenTest();
 	factorizationTest();
 	
 	return 0;

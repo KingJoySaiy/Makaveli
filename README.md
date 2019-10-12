@@ -24,7 +24,7 @@ We ride or die.
 * [牛客多校-5th-6th](/多校训练/2018%20Nowcoder%20Contest%205-6/Nowcoder%205th-6th.md)
 * [牛客多校-7th-10th](/多校训练/2018%20Nowcoder%20Contest%207-10/Nowcoder%207th-10th.md)
 
-## 三、数据结构 & 算法
+## 三、数据结构
 * [Fundamental](/Fundamental)
 * [List](/Data%20Structure/List.h)
 * [Stack](/Data%20Structure/Stack.h)
@@ -33,14 +33,17 @@ We ride or die.
 * [Array](/Data%20Structure/Array.h)
 * [Huffman Coding](/Data%20Structure/Tree/HuffmanCoding.cpp)
 * [Sort](/Data%20Structure/Sort)
+
+## 四、算法
 * [Divide & Conquer](/Algorithm/DivideAndConquer.cpp)
 * [Dynamic Programming](/Algorithm/DynamicProgramming.cpp)
 * [Greedy](/Algorithm/Greedy.cpp)
 * [Backtrack](/Algorithm/Backtrack.cpp)
 * [Branch & Bound](/Algorithm/BranchAndBound.cpp)
+* [Network Flow](/Algorithm/NetworkFlow.cpp)
 * [Randomization](/Algorithm/Randomization)
 
-## 四、其他
+## 五、其他
 * [一个pygame半成品](/其他/一个pygame半成品)
 * [oop小练](/其他/oop小练.md)
 * [java连接mysql](/其他/java连接mysql)

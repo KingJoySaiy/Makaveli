@@ -291,104 +291,99 @@ Writing
 
 ## Ⅳ . Sentences
 
-A great amount of examples can prove its importance, but there is no better illustration than the following one.
+|||
+| ----------------------------------- | --------------------------------- |
+|A great amount of examples can prove its importance, but there is no better illustration than the following one.|大量示例可以证明其重要性，但是没有比下面的示例更好的说明了。|
+|In fact, many factors account for such problems.|实际上，许多因素导致了此类问题。|
+|I firmly believe all of us will be blessed with a brighter future.|我坚信所有人都将拥有光明的未来。
+|Such a trend is definitely detrimental to long-term development of the industry.|这种趋势肯定不利于该行业的长期发展。|
+|The implication underlying this picture is rather thought-provoking.|这幅画背后的含意颇为发人深省。|
+|The vogue may be translated into negatively impact on the young generation.|这种时尚可能会转化为对年轻一代的负面影响。|
+|Please accept my sincere apologies for any inconvenience my leaving may cause.|我的离开给您造成的不便，敬请见谅。|
+|||
 
-In fact, many factors account for such problems.
 
-I firmly believe all of us will be blessed with a brighter future.
-
-Such a trend is definitely detrimental to long-term development of the industry.
-
-The implication underlying this picture is rather thought-provoking.
-
-The vogue may be translated into negatively impact on the young generation.
 
 
 ## Ⅴ . Phrases
 
 ### A-M
 
-a reflection of a common phenomenon
-
-as is vividly [illustrated / depicted / revealed / mirrored] in the picture 
-
-as it may seem
-
-at one's convince
-
-be bent on doing
-
-be deeply impressed with
-
-be of critical importance
-
-be scheduled to
-
-be tracked back to
-
-bear in mind
-
-broaden one's horizons
-
-extend one's sincere congratulations
-
-for the purpose of doing sth.
-
-from my point of view
-
-have negative effects on
-
-in face of
-
-in the course of
-
-in the long [term / run]
-
-inner qualities
-
-It goes without saying that
-
-let alone
-
-live up to one's expectation
-
-make allowance for
+|A-M | translate |
+| ----------------------------------- | --------------------------------- |
+|as is vividly [illustrated / revealed] in the picture | 从图片中可以明显看出|
+|as it may seem |正如它所见|
+|at one's convince| 在某人方便的时候|
+|be bent on doing |专心做...|
+|be deeply impressed with |对...印象深刻|
+|be deeply ingrained in Chinese society|...在中国社会中深入人心|
+|be of critical importance| 至关重要|
+|be scheduled to |计划做...|
+|be tracked back to |追溯到...|
+|bear in mind |记住...|
+|broaden one's horizons| 开阔某人眼界|
+|extend one's sincere congratulations |表达某人真诚的祝贺 |
+|for the purpose of doing sth.| 为了...的目的|
+|from my point of view |在我看来|
+|have negative effects on | 有负面作用|
+|in face of |面对...|
+|in spite of|尽管...|
+|in the course of |在...的进程中|
+|in the long [term / run] |长期以来|
+|inner qualities| 内在品质|
+|It goes without saying that |不用说都会...|
+|let alone |更何况|
+|live up to one's expectation |不辜负某人期望...|
+|make allowance for| 给予...|
+|material and spiritual needs|物质和精神需求|
 
 ### N-Z
 
-Not only should we... but we are also supposed to
+|N-Z|translate|
+| ----------------------------------- | --------------------------------- 
+|Not only should we... but we are also supposed to |我们不仅应该...还应该...|
+|on my personal note |在我的字典里|
+|on the contrary |相反的是|
+|opinions vary form person to person |观点因人而异|
+|pave the way |为...铺平道路|
+|play [a key / an irreplaceable] role in |在...中扮演无可提到的角色|
+|put emphasis on |强调|
+|[shift / avoid / shuffle off] responsibility|推卸责任|
+|slide into bad habits |养成坏习惯|
+|social ethos|社会风气|
+|take many factors into consideration| 考虑很多因素|
+|The past decade or so has witnessed the issue of|过去十年左右见证了...的问题|
+|There is no definite answer as to|关于...没有确切的答案|
+|traditional virtue|传统美德|
+|under the circumstances of|在...的情形下|
+|Under no circumstances should we|任何情况下我们都不应该...|
+|We ourselves shall awake to the significance of|我们自己应该醒悟到...|
+|What counts most is that|最重要的是...|
+|What we are supposed to bear in mind is that|我们应该铭记在心的是...|
+|When it comes to key to success|一说到成功的关键|
 
-on my personal note
 
-on the contrary
 
-opinions vary form person to person
 
-pave the way
 
-play [a key / an irreplaceable] role in
 
-put emphasis on
 
-slide into bad habits
 
-take mant factors into consideration
 
-The past decaade or so has witnessed the issue of
 
-There is no definite answer as to
 
-under the circumstances
 
-Under no circumstances should we
 
-We ourselves should awakle to the significance of
 
-What counts most is that
 
-What we are supposed to bear in mind is that
 
-When it comes to key to success
+
+
+
+
+
+
+
 
 Reading
 ======

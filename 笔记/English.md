@@ -308,9 +308,7 @@ Writing
 |The implication underlying this picture is rather thought-provoking.|这幅画背后的含意颇为发人深省。|
 |The vogue may be translated into negatively impact on the young generation.|这种时尚可能会转化为对年轻一代的负面影响。|
 |Please accept my sincere apologies for any inconvenience my leaving may cause.|我的离开给您造成的不便，敬请见谅。|
-|||
-
-
+|I really appreciate your attention and hope to hear from you soon.|非常感谢您的关注，并希望很快收到您的来信。|
 
 
 ## Ⅴ . Phrases
@@ -319,6 +317,7 @@ Writing
 
 |A-M | translate |
 | ----------------------------------- | --------------------------------- |
+|A is one thing, and B is something else.|A是一回事，B又是另一回事。|
 |as is vividly [illustrated / revealed] in the picture | 从图片中可以明显看出|
 |as it may seem |正如它所见|
 |at one's convince| 在某人方便的时候|
@@ -331,6 +330,7 @@ Writing
 |be tracked back to |追溯到...|
 |bear in mind |记住...|
 |broaden one's horizons| 开阔某人眼界|
+|do one's [bit / part]|尽某人一份力|
 |extend one's sincere congratulations |表达某人真诚的祝贺 |
 |for the purpose of doing sth.| 为了...的目的|
 |from my point of view |在我看来|
@@ -345,6 +345,7 @@ Writing
 |let alone |更何况|
 |live up to one's expectation |不辜负某人期望...|
 |make allowance for| 给予...|
+|make reflection on...|反思...|
 |material and spiritual needs|物质和精神需求|
 
 ### N-Z
@@ -359,7 +360,9 @@ Writing
 |play [a key / an irreplaceable] role in |在...中扮演无可提到的角色|
 |plead with sb. for sth.|向某人恳求某事|
 |put emphasis on |强调|
+|refer to...as...|把...称作...|
 |[shift / avoid / shuffle off] responsibility|推卸责任|
+|seek out|挑出, 找到|
 |slide into bad habits |养成坏习惯|
 |social ethos|社会风气|
 |take many factors into consideration| 考虑很多因素|

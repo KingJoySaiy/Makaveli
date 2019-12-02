@@ -294,33 +294,46 @@ Writing
 * **旁文注解**：图片中出现中文标题或注解，且整体描述时无法涵盖进去；There are a couple of huge Chinese characters which read... / An impressive sentence o the lower part of this picture reads...
 
 ### 3.3 图表描述
-* **整体描述**：不牵涉具体数据增减和趋势。[par柱状/curve曲线/pie饼状/table表]-[chart/graph图]、[increase / go up / climb / soar / skyrocket / surge / upsurge]上升、下降[decrease / decline / fall / go down / plunge / slump]、平衡[stable / steady / balanced]，顶点[the top / the peak]，谷底[the bottom]。
+* **整体描述**：不牵涉具体数据增减和趋势。[par柱状 / curve曲线 / pie饼状 / table表]-[chart / graph图]、[increase / go up / climb / soar / skyrocket / surge / upsurge]上升、下降[decrease / decline / fall / go down / plunge / slump]、平衡[stable / steady / balanced]，顶点[the top / the peak]，谷底[the bottom]。
 * **注意点**：图表描述忌讳句子结构的重复；XX took the lead by occupying ...%, followed by YY and ZZ, which too up ...% and ...% respectively.
 
 ## Ⅳ . Sentences
 
-|||
+| ~ | Translation |
 | ----------------------------------- | --------------------------------- |
 |A great amount of examples can prove its importance, but there is no better illustration than the following one.|大量示例可以证明其重要性，但是没有比下面的示例更好的说明了。|
+|I'm willing to give you a few suggestions that you might find useful.|我很乐意给你几个你也许觉得有用的建议。|
 |In fact, many factors account for such problems.|实际上，许多因素导致了此类问题。|
 |I firmly believe all of us will be blessed with a brighter future.|我坚信所有人都将拥有光明的未来。
+|I really appreciate your attention and hope to hear from you soon.|非常感谢您的关注，并希望很快收到您的来信。|
+|I would like you extend my greatest appreciation if you are so kind as to take my suggestions into consideration.|如果您愿意考虑我的建议，我将深深的表达我的感激。|
+|Hope you take these suggestions positively and improve your services as soon as possible.|希望您积极采纳这些建议，并尽快改善服务。|
+|Nothing can be done without hope and confidence.|没有希望和自信就会一事无成。|
+|Optimistic is the faith that [leads to / result in] achievement.|乐观是一种通往成就的信仰。|
+|Please accept my sincere apologies for any inconvenience my leaving may cause.|我的离开给您造成的不便，敬请见谅。|
+|Straightforward as the drawing is, it mirrors reality and is loaded with profound meanings.|图片直截了当的反映了现实，而且寓意深刻。|
 |Such a trend is definitely detrimental to long-term development of the industry.|这种趋势肯定不利于该行业的长期发展。|
 |The implication underlying this picture is rather thought-provoking.|这幅画背后的含意颇为发人深省。|
 |The vogue may be translated into negatively impact on the young generation.|这种时尚可能会转化为对年轻一代的负面影响。|
-|Please accept my sincere apologies for any inconvenience my leaving may cause.|我的离开给您造成的不便，敬请见谅。|
-|I really appreciate your attention and hope to hear from you soon.|非常感谢您的关注，并希望很快收到您的来信。|
+|To begin with...Moreover...In addition...|(衔接词)|
+|Your prompt attention to my suggestions would be highly appreciated.|非常感谢您对我的建议的及时关注。|
+|If you wish to know me more, please call me at (phone number).|如果你想了解更多，请打我电话(号码)。|
 
 
 ## Ⅴ . Phrases
 
 ### A-M
 
-|A-M | translate |
+| A-M | Translation |
 | ----------------------------------- | --------------------------------- |
+|...as a token of...|以...表示...|
+|...is a the pyramidal cornerstone for success|...是成功金字塔的基石|
+|a case in point|一个恰当的例子|
 |A is one thing, and B is something else.|A是一回事，B又是另一回事。|
 |as is vividly [illustrated / revealed] in the picture | 从图片中可以明显看出|
 |as it may seem |正如它所见|
 |at one's convince| 在某人方便的时候|
+|attach great significance to|高度重视|
 |be analogous [to / with]|与...类似|
 |be bent on doing |专心做...|
 |be deeply impressed with |对...印象深刻|
@@ -331,6 +344,7 @@ Writing
 |bear in mind |记住...|
 |broaden one's horizons| 开阔某人眼界|
 |do one's [bit / part]|尽某人一份力|
+|endeavor to do sth.|努力做某事|
 |extend one's sincere congratulations |表达某人真诚的祝贺 |
 |for the purpose of doing sth.| 为了...的目的|
 |from my point of view |在我看来|
@@ -342,10 +356,14 @@ Writing
 |in the long [term / run] |长期以来|
 |inner qualities| 内在品质|
 |It goes without saying that |不用说都会...|
+|It is advisable to...|建议做某事|
+|It is not until...that...|直到...才...|
 |let alone |更何况|
 |live up to one's expectation |不辜负某人期望...|
 |make allowance for| 给予...|
+|make an apology to...|向某人道歉|
 |make reflection on...|反思...|
+|make up for|弥补|
 |material and spiritual needs|物质和精神需求|
 
 ### N-Z
@@ -356,10 +374,12 @@ Writing
 |on my personal note |在我的字典里|
 |on the contrary |相反的是|
 |opinions vary form person to person |观点因人而异|
+|[overestimate / underestimate] one's abilities|高估/低估某人的能力|
 |pave the way |为...铺平道路|
 |play [a key / an irreplaceable] role in |在...中扮演无可提到的角色|
 |plead with sb. for sth.|向某人恳求某事|
 |put emphasis on |强调|
+|reach for / fetch|去拿|
 |refer to...as...|把...称作...|
 |[shift / avoid / shuffle off] responsibility|推卸责任|
 |seek out|挑出, 找到|
@@ -369,30 +389,14 @@ Writing
 |The past decade or so has witnessed the issue of|过去十年左右见证了...的问题|
 |There is no definite answer as to|关于...没有确切的答案|
 |traditional virtue|传统美德|
+|turn the situation around|扭转局面|
 |under the circumstances of|在...的情形下|
 |Under no circumstances should we|任何情况下我们都不应该...|
 |We ourselves shall awake to the significance of|我们自己应该醒悟到...|
 |What counts most is that|最重要的是...|
 |What we are supposed to bear in mind is that|我们应该铭记在心的是...|
 |When it comes to key to success|一说到成功的关键|
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+|with regard to...|关于, 有关|
 
 
 
@@ -401,10 +405,6 @@ Writing
 
 Reading
 ======
-
-1. 先题后问，只看题干。
-2. 串联题干间逻辑，推测文章主题。（题干中重复信息——文章中心
-3. 文章中抓作者的态度（adj & adv），看句子间和段落间的逻辑关系
 
 ## Ⅰ、主旨大意题
 

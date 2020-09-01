@@ -1,48 +1,56 @@
-## 一、操作符 operator
+## 一、操作符 & 关键字
 
-|常用操作符               |      |
+### 1.1 常见操作符
+
+|operator               |      |
 |---|---|
 |a ** b                  | a的b次方|
 |pow(a,b)                | a的b次方|
+| a / b 			     | 算数除法，得到浮点数|
 |a // b                  | 除法并向下取整|
 |a + b                   | 算术加,str,list,tuple中为拼接|
 |a - b                   | 算术减,set中为差集|
 |a丨b                    | 逻辑或,set中为并集|
 |a & b                   | 逻辑与,set中为交集|
 |a ^ b                   | 逻辑异或,set中为对称差|
-|abs(a)                  | 取绝对值|
-|complex(i,j)            | 返回实虚部分别为i,j的复数|
-|a.conjugate()           | 返回复数的共轭复数|
-|divmod(x,y)             | 返回数值对(x//y,x%y),结果和余数|
-|a is (not) b            | 判断是否引用同一个对象|
-|and / or / not          | 与或非|
-|x<<1 / x>>1             | 左移/右移|
+|x<<n / x>>n             | 左移/右移|
 |~x                      | 按位取反|
-|a**=b                   | 幂赋值|
-|a//=b                   | 取整除法赋值|
+|a=b					 | 赋值|
 |a,b = x,y               | 对应赋值a=x,b=y|
+|a += b / a -= b	     | 加法赋值/减法赋值|
+|a *= b / a /= b	     | 乘法赋值/除法赋值|
+|a %= b	  				  | 取模赋值|
+|a**=b                   | 幂赋值a=a**b|
+|a//=b                   | 整除法赋值a=a//b|
+|and / or / not          | 与或非|
+|a < b / a <= b          | 小于/小于等于|
+|a > b / a >= b          | 大于/大于等于|
+|a == b / a != b         | 等于/不等于|
+|a (not) is b            | 判断标识符是否引用同一个对象|
+|a < b >= c == d         | 允许链式比较|
+|*a						  | 解包sequence|
 
+### 1.1 常见关键字
 
-
-|关键字| |
+|keyword| |
 |---|---|
+|a is (not) b            | 判断是否引用同一个对象|
+|a (not) in b            | 判断a是否是b中的元素|
 |pass                    | 跳过不执行操作|
 |def 函数名(参数列表)      | 定义函数|
-|global a                | 局部作用域中使用全局变量| 
+|global a                | 局部作用域中使用全局变量|
 |sep=' '                 | 控制分隔符，默认空格|
 |end='\n'                | 控制结束符，默认换行|
-|import                  | 导入模块|
-|from collections import deque | 从模块中导入模块|
 |with open('233.txt') as file_object:  | 打开文件并定义文件对象名为file_object|
-|form time import *      | 导入模块中的所有函数或变量名称|
+|form time import *      | 导入模块中的函数或变量名称|
 |import math as x        | 导入模块并重命名|
-|int()                   | str强制转换为int|
-|float()                 | str强制转换为float|
+|del a / a[0] / a[2:5]   | 删除实体/元素/切片 |
 
+## 二、方法
 
-## 二、方法 method
+### 2.1 常用库
 
-|import package| |
+|import导入| |
 |---|---|
 |keywords                | 提供标准库关键字|
 |math                    | 提供数学库|
@@ -52,44 +60,56 @@
 |collections             | 容器库|
 |unittest                | 提供代码测试工具,测试函数是否在各种情形下的行为都符合要求|
 
+### 2.2 常用方法
 
-|常用方法||
+|method||
 |---|---|
 |keywords.kwlist         | 输出标准库的所有关键字|
-|'233' (not) in a        | 判断'233'是否在a中，返回布尔值|
 |type(a)                 | 返回变量a的对象类型|
 |len(a)                  | 返回元素个数|
 |sorted(a,reverse=True)  | 默认升序排序|
 |input(x)                | 输出x，并读取下一个字符串|
-|range(s,e,step)         | [s,e)中步长为step的range对象|
 |id(a)                   | 返回a的地址|
 |dir(list)               | 查询类的所有属性，查询模块定义的所有名字|
 |help(list)              | 查询说明文档|
+|range(6)                | 范围[0,6)的整数|
+|range(1,10,3)           | 范围[1,10)内间隔为3的整数|
+|list(range(4))          | 将[0,4)转化为列表|
+|int(a)                  | 强制转换为int|
+|float(a)                | 强制转换为float|
+|abs(a)                  | 取绝对值|
+|pow(a, b)               | a的y次幂，同a**b|
+|complex(i,j)            | 返回实虚部分别为i,j的复数|
+|a.conjugate()           | 返回复数a的共轭复数|
+|divmod(x,y)             | 返回数值对(x//y,x%y),结果和余数|
 
+## 三、基本类型
 
-## 二、字符串 str
+* 字符串、列表、元组、集合可用*进行解包；字典用**解包且只能在函数中取出，无法直接使用
+* 列表、集合、字典分别用[..for...]、{...for...}、{...:...for...}推导式；生成器用(...for...)推导式，可以遍历读每个迭代器；没有字典推导式；字符串推导式可以将字符列表用join转化 **''.join([c+c for c in 'abc'])**
 
-|a = '233' / "233" 皆可||
+### 3.1 字符串
+
+|a = '233' / "233" | 单引号双引号皆可|
 |---|---|
 |a.upper()               | 转为大写|
 |a.lower()               | 转为小写|
 |a.title()               | 所有单词以大写开始，其余小写|
 |a.rjust(len,char)       | 长度扩展为len,原字符在右侧，其余填充char(默认空格)|
 |a.ljust(len,char)       | 同上，原字符在左侧|
-|a='{id1:<6d},{id2:^5d}'.format(23,13) | 字符串格式化，id省略则按原顺序(居左<,居中^,居右>，默认>)|
+|a='{0:<6d},{1:^5s}，{2:2f}'.format(23,'ab',11.2) | 字符串格式化，id省略则按原顺序(居左<,居中^,居右>，默认>)|
 
-
-## 三、列表 List
+### 3.2 列表
 
 |a = [1,2,3]||
 |---|---|
 |a.append(4)             | 末尾添上4|
-|a.extend(b)             | 列表b接到a后面|
+|a.extend(b)             | 列表b接到a后面，相当于a[len(a):] = b|
 |a.insert(0,5)           | 在位置0处添上5|
 |a[0:3]                  | 返回[0,3)的切片副本,省却即为首尾|
 |del a[0]                | 删除a[0]|
 |a.pop(2)                | 弹出a[2]并返回，默认a[-1]|
-|a.remove(3)             | 弹出值为3的元素|
+|a.remove(3)             | 弹出第一个值为3的元素|
 |a.reverse()             | 逆序|
 |a.clear()               | 删除所有元素|
 |a.index(x)              | 返回第一个值为x的索引|
@@ -98,48 +118,131 @@
 |a.copy()                | 返回一个浅拷贝|
 |min(a)/max/sum          | 返回最小值/最大值/总和|
 |*a                      | 解包列表，返回所有元素|
+|a+b          | 简单拼接|
+|a = [x**3 for x in range(5)]	|列表推导式|
 
 
-|其他|| 
-|---|---|
-|range(1,10,3)           | 生成[1,10)内间隔为3的数字|
-|list(range(4))          | 将[0,4)转化为列表|
-|b = (1,4,2,3)           | 小括号为不可变的元组|
+### 3.3 元组
 
-
-## 四、元组 tuple
-与 list 类似，但是tuple元素不能修改
-
-|a = (1,2,3,'233')|| 
+|a = (1,2,3,'233')|list可修改，tuple不可修改|
 |---|---|
 |a+b                     | 元组简单拼接|
 |a = (1,)                | 一个元素后加逗号，否则认为是int型|
+|*a						|解包元组|
 
-## 五、集合 set
 
-|a = {1,2,3,'233'}||
+### 3.4 集合
+
+|a = {1,2,3,'233'}| 重复元素仅保留一个，升序|
 |---|---|
-|a = set('123abc')       | 字符串拆分成字符集合|
-|a = set()               | 创建空集合|
+|a = set('Hello')|字符串转成升序去重的字符集合|
+|a.clear()                | 清空|
+|a - b              	 | a和b的差集|
+|a | b              	 | a和b的并集|
+|a & b              	 | a和b的交集|
+|a ^ b              	 | a和b中不同时存在的元素|
+|*a						|解包集合|
+|a = {x**3 for x in range(5)}	|集合推导式|
 
-
-## 六、字典 dict
+### 3.5 字典（类似map）
 
 |a = {'001':'Jason','002':'Kitty'}|key-value任意类型|
 |---|---|
-|a = {}                  | 创建空字典|
 |a[key]=value            | 添加键-值对|
 |del a['001']            | 删除键值为'001'的键值对|
-|.item()                 | 返回字典的 key-value 对列表|
-|.keys()                 | 返回key组成的list|
-|.values()               | 返回value组成的list|
-|.clear()                | 清空字典|
+|a.items()                 | 返回字典的 key-value 对列表|
+|a.keys()                 | 返回key组成的list|
+|a.values()               | 返回value组成的list|
+|a.clear()                | 清空字典|
 |a=dict([('a',1),('b',2)])|从list键值对构建字典|
-|a = dict(a=1,b=2)       | 直接用键值对构建字典|
-|**a                     | |
+|a = dict(string1=1,string2=2)       | 直接用键值对构建字典|
 
+## 四、条件，循环与函数
 
-## 七、文件 file
+### 4.1 条件控制
+
+* 没有switch-case语法
+* **if-elis-else** 示例如下：
+```python
+if x < 0:
+	print(1)
+elif x > 0:
+	print(2)
+else:
+	print(3)
+```
+
+### 4.2 循环控制
+
+* **continue / break** ：继续下一循环 / 跳出循环
+* **pass**：什么都不做
+* **else**：可以跟在循环后，循环结束或为假时执行，若循环被break则不执行
+* **while** 示例如下：
+```python
+while True:
+	break
+```
+
+* **for-in** 示例如下：
+```python
+a = [x*x for x in range(0, 10)]
+for item in a[2 : 7]:
+	if item == 3:
+		continue
+	print(item, end=',')
+else:
+	pass
+```
+
+### 4.3 函数
+
+* 可变参数 **def fun(a, b, *args)**
+* 默认参数 **def fun(a = 1)**
+* 函数中第一个语句为'''string'''或"""string"""的三引号字符串，表示函数的文档字符串，保存在全局变量**function.__doc__**中，示例如下：
+```python
+def function(a):
+	'''this is a docstring'''
+	sum = 0
+	for i in a:
+		sum += i
+	return sum
+print(function([1, 2, 3]))
+print(function.__doc__)
+```
+
+* 函数调用可以指定参数，无视顺序
+```python
+def function(name, age):
+	print('name = ', name)
+	print('age = ', age)
+function(age = 11, name = 'Joy')
+```
+
+* 函数内可引用全局变量，但不可修改，除非使用global关键字
+```python
+x = "old"
+def change():
+    global x
+    x = "new"
+change()
+print(x)
+```
+
+* lambda arg1, arg2...:expression，用简单的表达式表示一个函数，示例如下：
+```python
+fun = lambda x, y : x + y
+print(fun(2, 3))
+```
+
+## 五、输入输出
+
+### 5.1 控制台I/O
+
+* x = input('text')，读取一行，可以添加字符串用于提示
+* **print(a, b, c, sep = ' ', end = '\n')**，打印，sep修改printf不同元素间的分隔符，end修改print语句后的结束符
+* 利用string.format()方法进行格式化输出：**print('{0:<6d},{1:^5s}，{2:2f}'.format(23,'ab',11.2))**，id省略则按原顺序(居左<,居中^,居右>，默认>)，冒号右边省略则是默认格式。常见用法：**print('This is {0} and {1}’.format('A', 'B'))**
+
+### 5.2 文件
 
 |file object||
 |---|---|
@@ -154,6 +257,34 @@
 |a = b'233'              | 创建byte对象|
 |a = byte('233','UTF-8') | 创建byte对象，须指定编码格式，默认 UTF-8|
 |a.decode()              | byte对象解码为str|
+
+## 六、类
+
+### 6.1 类的定义和实例化
+
+* 变量和方法名前加2个下划线__即表示是私有的
+* 类内部函数第一个参数必须是self
+* 类的定义和实例化示例如下：
+```python
+class myClass:
+	x = 233
+	def __init__(self, name, age):	#构造函数
+		self.name = name
+		self.age = age
+	def fun(self):
+		return 'Hello'
+a = myClass('Joy', 12)
+a.data = 1	#数据属性无需声明，第一次使用即被引入
+print(a.x, a.data)
+```
+
+### 6.2 类的继承
+
+```python
+
+```
+
+
 
 
 

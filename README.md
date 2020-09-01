@@ -4,15 +4,16 @@
 We ride or die.
 
 ## 一、笔记
-* [C++笔记](/笔记/C++笔记.md)
+* [python笔记](/笔记/python笔记.md)
 * [java笔记](/笔记/java笔记.md)
+* [C++笔记](/笔记/C++笔记.md)
 * [MySQL笔记](/笔记/MySQL笔记.md)
 * [Vim笔记](/笔记/Vim笔记.md)
-* [python笔记](/笔记/python笔记.md)
-* [数学笔记](/笔记/数学笔记.md)
-* [数学技巧&公式](/笔记/数学技巧&公式.md)
-* [数据结构&算法](/笔记/数据结构&算法.md)
 * [English](/笔记/English.md)
+* [高数笔记](/笔记/高数笔记.md)
+* [数学技巧&公式](/笔记/数学技巧&公式.md)
+* [833数据结构&算法](/笔记/833数据结构&算法.md)
+
 
 ## 二、多校训练
 * [杭电多校-1st-2nd](/多校训练/2018%20Multi-University%20Contest%201-2/Multi-University%201st-2nd.md)
@@ -44,13 +45,13 @@ We ride or die.
 * [Randomization](/Algorithm/Randomization)
 
 ## 五、其他
-* [一个pygame半成品](/其他/一个pygame半成品)
+* [RSA加密解密](/其他/RSA加密解密)
+* [pygame小练习](/其他/pygame小练习)
 * [oop小练](/其他/oop小练.md)
+* [MUD游戏](/其他/MUD游戏)
 * [java连接mysql](/其他/java连接mysql)
 * [java课设](/其他/java课设)
 * [数据结构课设](/其他/数据结构课设)
-* [RSA加密解密](/其他/RSA加密解密)
-* [MUD游戏](/其他/MUD游戏)
 * [SelectCourseSystem](/其他/SelectCourseSystem)
 * [汇编一位四则运算计算器](/其他/calculator.asm)
 

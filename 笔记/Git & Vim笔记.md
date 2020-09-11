@@ -1,4 +1,23 @@
-## 一、游標移動
+## 一、Git Command
+
+|commands|description|
+| ------------------------------- | ---- |
+| cd /home/joy/MachineLearning/ |   enter local repository |
+| git status| show all of changes|
+| git commit -m [message] | commit changes to cache |
+| git push| push changes in cache to repository |
+| git init [project_name] | initial repository using current folder/ new folder |
+| git log [--stat]| show history of commits |
+| git clone [url]| clone a repository to local |
+| git config --list	| show current configuration |
+| git config [--global] user.name "[name]"|set user name used when commit|
+| git config [--global] user.email "[email]"|set user email used when commit |
+| git fetch [url]|fetch all changes |
+| git add [dir] / [file1]...|add direction or files to cache |
+| git rm [file1]...| delete file in cache or repository |
+| git mv [ini_file] [end_file]|rename or move file |
+
+## 二、游標移動
 * `h / 方向左 / Backspace`向左移動
 * `j / 方向下 / Enter`向下移動
 * `k / 方向上 / -`向上移動
@@ -8,7 +27,7 @@
 * `gg`移至檔首
 * `G`移至檔尾
 
-## 二、常態模式 Normal Mode
+## 三、常態模式 Normal Mode
 
 * `Esc`按下Esc退回到常態模式
 
@@ -43,7 +62,7 @@
 * `*`查找下一個遊標處的單詞
 * `#`查找上一個遊標處的單詞
 
-## 三、插入模式 Insert Mode
+## 四、插入模式 Insert Mode
 
 * `i`進入插入模式 (Insert mode)，鍵入內容
 * `Del`刪除游標處的字符
@@ -58,7 +77,7 @@
 * `A`在行尾鍵入
 * `J`將下一整行接至本行行尾，用空格分割
 
-## 四、命令列模式 Cmdline Mode
+## 五、命令列模式 Cmdline Mode
 
 * `:`進入命令列模式 ，左下角出現冒號
 * `/`查找字符模式，输完后回车，`n`下一处，`N`上一处
@@ -82,7 +101,7 @@
 * `wq`存檔並離開
 * `x / ZZ`存檔並離開，若未修改則不存檔
 
-## 五、標示模式 Visual Mode
+## 六、標示模式 Visual Mode
 * `v`選中遊標字符，可以上下左右選中
 * `V`選中遊標行，可以上下選中
 * `d`刪除選中區域
@@ -90,7 +109,7 @@
 * `>`選中區域右移一格
 * `<`選中區域左移一格
 
-## 六、快捷鍵
+## 七、快捷鍵
 
 * `shift + ctrl + t`新標籤頁
 * `shift + ctrl + n`新窗口

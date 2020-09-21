@@ -42,7 +42,8 @@
 |a (not) in b            | 判断a是否是b中的元素|
 |pass                    | 跳过不执行操作|
 |def 函数名(参数列表)      | 定义函数|
-|global a                | 局部作用域中使用全局变量|
+|global a                | 声明a是全局变量，作用域为全局 |
+|nonlocal a|声明a不是局部变量，也不是全局变量，而是外部嵌套函数内的变量|
 |sep=' '                 | 控制分隔符，默认空格|
 |end='\n'                | 控制结束符，默认换行|
 |with open('233.txt') as file_object:  | 打开文件并定义文件对象名为file_object|
@@ -86,6 +87,8 @@
 |complex(i,j)            | 返回实虚部分别为i,j的复数|
 |a.conjugate()           | 返回复数a的共轭复数|
 |divmod(x,y)             | 返回数值对(x//y,x%y),结果和余数|
+| isinstance(a, className) | 判断对象a是否是className或其派生类的实例 |
+| issubclass(className1, className2) | 判断class1是否是class2的派生类 |
 
 ## 三、基本类型
 
@@ -271,25 +274,89 @@ print(fun(2, 3))
 * 类的定义和实例化示例如下：
 ```python
 class myClass:
-	x = 233
-	def __init__(self, name, age):	#构造函数
-		self.name = name
-		self.age = age
-	def fun(self):
-		return 'Hello'
+    x = 233
+
+    __secret = 'secret'  # 以2个下划线开头的名字为private
+
+    def __init__(self, name, age):  # 构造函数
+        self.name = name
+        self.age = age
+
+    @staticmethod  # 声明为静态函数
+    def fun(self):
+        return 'Hello'
+
+
 a = myClass('Joy', 12)
 a.data = 1	#数据属性无需声明，第一次使用即被引入
 print(a.x, a.data)
+del a.data	# 删除对象中某一数据
 ```
 
 ### 6.2 类的继承
 
-```python
+* `class newClass(class1, class2...):`支持多继承；
+* 派生类可以override基类方法，也可以利用`baseClassName.method(self, arguments)`调用基类方法
 
+```python
+class newClass(myClass):
+    def __init__(self, name, age, sex, organization):
+        super().__init__(name, age)	# 调用基类构造函数
+        self.sex = sex
+        self.organization = organization
+
+    def fun(self):	# 重写基类方法
+        s = myClass.fun(self)	# 调用基类方法
+        return s + ' world'
+
+
+b = newClass('Jason', 21, 'male', 'ORZ')
+print(isinstance(b, myClass), issubclass(newClass, myClass))
+print(b.fun())
 ```
 
+### 5.3 Iterator & Generator
+
+* 迭代器用于迭代访问容器中的每一个元素；`it = iter(a)`获取容器的迭代器，`next(it)`获取下一个迭代器；
+* 可以在类中定义`__iter__()`方法，返回具有`__next__()`的对象，若该类已定义了该方法则返回self即可。一个例子如下：
+```python
+class Reverse:
+    """逆序迭代一个序列 """
+    def __init__(self, data):
+        self.data = data
+        self.index = len(data)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index == 0:
+            raise StopIteration
+        self.index -= 1
+        return self.data[self.index]
 
 
+a = Reverse('KingJoy')
+for p in a:	# Iterate
+    print(p, end='')
+```
+
+* 生成器是用于创建迭代器的工具，其形式与函数基本一致（区别在于用yield返回）；
+* 生成器函数的执行流程和一个例子如下：
+
+1. 调用生成器函数返回一个生成器；
+2. 第一次调用next时才执行生成器函数，遇到yield时挂起，并返回此时yield的参数；
+3. 再次调用next时，生成器将从上次挂起的位置继续运行，直到再次遇到yield；
+4. 在调用next发现没有元素了则抛出`StopIteration`异常，作为for循环的终止条件。
+
+```python
+def Reverse(data):
+    """逆序迭代一个序列 """
+    for idx in range(len(data) - 1, -1, -1):
+        yield data[idx]
 
 
+for p in Reverse('KingJoy'):
+    print(p, end='')
+```
 

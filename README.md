@@ -4,11 +4,11 @@
 We ride or die.
 
 ## 一、笔记
-* [python笔记](/笔记/python笔记.md)
-* [java笔记](/笔记/java笔记.md)
+* [Python笔记](/笔记/Python笔记.md)
+* [Java笔记](/笔记/Java笔记.md)
 * [C++笔记](/笔记/C++笔记.md)
 * [MySQL笔记](/笔记/MySQL笔记.md)
-* [Vim笔记](/笔记/Vim笔记.md)
+* [Git & Vim笔记](/笔记/Git & Vim笔记.md)
 * [English](/笔记/English.md)
 * [高数笔记](/笔记/高数笔记.md)
 * [数学技巧&公式](/笔记/数学技巧&公式.md)

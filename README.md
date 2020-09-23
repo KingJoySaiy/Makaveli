@@ -4,7 +4,7 @@
 We ride or die.
 
 ## 一、笔记
-* [Python笔记](https://github.com/KingJoySaiy/MachineLearning/blob/master/Python Notes.md)
+* [Python笔记](https://github.com/KingJoySaiy/MachineLearning/blob/master/Python%20Notes.md)
 * [Java笔记](/笔记/Java笔记.md)
 * [C++笔记](/笔记/C++笔记.md)
 * [Linux笔记](/笔记/Linux笔记.md)

@@ -3,7 +3,13 @@
 
 We ride or die.
 
-## 一、多校训练
+## 一、2019笔记
+* [数学技巧&公式](/Notes/数学技巧&公式.md)
+* [高数笔记](/Notes/高数笔记.md)
+* [English](/Notes/English.md)
+* [833数据结构&算法](/Notes/833数据结构&算法.md)
+
+## 二、多校训练
 * [杭电多校-1st-2nd](/多校训练/2018%20Multi-University%20Contest%201-2/Multi-University%201st-2nd.md)
 * [杭电多校-3rd-4th](/多校训练/2018%20Multi-University%20Contest%203-4/Multi-University%203rd-4th.md)
 * [杭电多校-5th-6th](/多校训练/2018%20Multi-University%20Contest%205-6/Multi-University%205th-6th.md)
@@ -13,7 +19,7 @@ We ride or die.
 * [牛客多校-5th-6th](/多校训练/2018%20Nowcoder%20Contest%205-6/Nowcoder%205th-6th.md)
 * [牛客多校-7th-10th](/多校训练/2018%20Nowcoder%20Contest%207-10/Nowcoder%207th-10th.md)
 
-## 二、数据结构
+## 三、数据结构
 * [Fundamental](/Fundamental)
 * [List](/Data%20Structure/List.h)
 * [Stack](/Data%20Structure/Stack.h)
@@ -23,7 +29,7 @@ We ride or die.
 * [Huffman Coding](/Data%20Structure/Tree/HuffmanCoding.cpp)
 * [Sort](/Data%20Structure/Sort)
 
-## 三、算法
+## 四、算法
 * [Divide & Conquer](/Algorithm/DivideAndConquer.cpp)
 * [Dynamic Programming](/Algorithm/DynamicProgramming.cpp)
 * [Greedy](/Algorithm/Greedy.cpp)
@@ -43,4 +49,4 @@ We ride or die.
 * [SelectCourseSystem](/其他/SelectCourseSystem)
 * [汇编一位四则运算计算器](/其他/calculator.asm)
 
-Those who cannot remember the past are condemned to repeat it.
+

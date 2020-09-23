@@ -3,20 +3,7 @@
 
 We ride or die.
 
-## 一、笔记
-* [Python笔记](https://github.com/KingJoySaiy/MachineLearning/blob/master/Python%20Notes.md)
-* [Java笔记](/笔记/Java笔记.md)
-* [C++笔记](/笔记/C++笔记.md)
-* [Linux笔记](/笔记/Linux笔记.md)
-* [Git&Vim笔记](/笔记/Git&Vim笔记.md)
-* [MySQL笔记](/笔记/MySQL笔记.md)
-* [数学技巧&公式](/笔记/数学技巧&公式.md)
-* [高数笔记](/笔记/高数笔记.md)
-* [English](/笔记/English.md)
-* [833数据结构&算法](/笔记/833数据结构&算法.md)
-
-
-## 二、多校训练
+## 一、多校训练
 * [杭电多校-1st-2nd](/多校训练/2018%20Multi-University%20Contest%201-2/Multi-University%201st-2nd.md)
 * [杭电多校-3rd-4th](/多校训练/2018%20Multi-University%20Contest%203-4/Multi-University%203rd-4th.md)
 * [杭电多校-5th-6th](/多校训练/2018%20Multi-University%20Contest%205-6/Multi-University%205th-6th.md)
@@ -26,7 +13,7 @@ We ride or die.
 * [牛客多校-5th-6th](/多校训练/2018%20Nowcoder%20Contest%205-6/Nowcoder%205th-6th.md)
 * [牛客多校-7th-10th](/多校训练/2018%20Nowcoder%20Contest%207-10/Nowcoder%207th-10th.md)
 
-## 三、数据结构
+## 二、数据结构
 * [Fundamental](/Fundamental)
 * [List](/Data%20Structure/List.h)
 * [Stack](/Data%20Structure/Stack.h)
@@ -36,7 +23,7 @@ We ride or die.
 * [Huffman Coding](/Data%20Structure/Tree/HuffmanCoding.cpp)
 * [Sort](/Data%20Structure/Sort)
 
-## 四、算法
+## 三、算法
 * [Divide & Conquer](/Algorithm/DivideAndConquer.cpp)
 * [Dynamic Programming](/Algorithm/DynamicProgramming.cpp)
 * [Greedy](/Algorithm/Greedy.cpp)
@@ -45,7 +32,7 @@ We ride or die.
 * [Network Flow](/Algorithm/NetworkFlow.cpp)
 * [Randomization](/Algorithm/Randomization)
 
-## 五、其他
+## 四、其他
 * [RSA加密解密](/其他/RSA加密解密)
 * [pygame小练习](/其他/pygame小练习)
 * [oop小练](/其他/oop小练.md)

@@ -4,14 +4,15 @@
 We ride or die.
 
 ## 一、笔记
-* [Python笔记](/笔记/Python笔记.md)
+* [Python笔记](https://github.com/KingJoySaiy/MachineLearning/blob/master/Python Notes.md)
 * [Java笔记](/笔记/Java笔记.md)
 * [C++笔记](/笔记/C++笔记.md)
+* [Linux笔记](/笔记/Linux笔记.md)
+* [Git&Vim笔记](/笔记/Git&Vim笔记.md)
 * [MySQL笔记](/笔记/MySQL笔记.md)
-* [Git & Vim笔记](/笔记/Git & Vim笔记.md)
-* [English](/笔记/English.md)
-* [高数笔记](/笔记/高数笔记.md)
 * [数学技巧&公式](/笔记/数学技巧&公式.md)
+* [高数笔记](/笔记/高数笔记.md)
+* [English](/笔记/English.md)
 * [833数据结构&算法](/笔记/833数据结构&算法.md)
 
 
